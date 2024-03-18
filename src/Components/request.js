@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Update the Baseurl variable to match your Django backend server's URL
-const Baseurl = "http://localhost:8000/api/";
+export const Baseurl = "http://localhost:8000/api/";
 
 axios.defaults.withCredentials = true;
 

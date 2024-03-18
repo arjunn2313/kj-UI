@@ -35,7 +35,7 @@ export const Mobilenumber = () => {
  
   const handleValue = (e) => {
     e.preventDefault();
-    request.post('http://localhost:8000/api/register-otp-generation/', formValue)
+    request.post('register-otp-generation/', formValue)
       .then((response) => {
         console.log('Response:', response);
 
