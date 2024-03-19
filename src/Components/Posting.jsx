@@ -72,7 +72,10 @@ const Posting = () => {
   const [phone, setPhone] = useState("");
 
   // Function to handle phone number changes
-  const handlePhoneChange = (value) => {};
+  const handlePhoneChange = (e) => {
+     setUser({...user,phone:e})
+  };
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
 
@@ -311,7 +314,7 @@ const Posting = () => {
                     Phone Number
                   </Form.Label>
 
-                  <PhoneInput
+                  {/* <PhoneInput
                     className=" w-100"
                     value={`+91${phone}`}
                     onChange={handlePhoneChange}
@@ -320,7 +323,20 @@ const Posting = () => {
                       borderColor: "#D7242A",
                       borderRadius: "4px",
                     }}
+                  /> */}
+
+                  <PhoneInput
+                    className="w-100"
+                    value={phone}
+                    onChange={handlePhoneChange}
+                    country={"in"}
+                    inputStyle={{
+                      borderColor: "#D7242A",
+                      borderRadius: "4px",
+                    }}
                   />
+
+
                 </Form.Group>
               </Col>
               <Col md={4} className="ms-5">
@@ -441,9 +457,9 @@ const Posting = () => {
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "residential" ? "rest" : ""
+                    first === "residential_plot" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("residential")}
+                  onClick={() => handleButtonClicks("residential_plot")}
                 >
                   Residential plot
                 </Button>

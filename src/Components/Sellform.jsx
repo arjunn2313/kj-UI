@@ -11,9 +11,11 @@ import {
 import { useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { FaTimes } from "react-icons/fa";
-import request from "./request";
+import request, { Baseurl, UserConfig, token } from "./request";
 import { log } from "util";
-const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
+import axios from "axios";
+import { toast } from "react-toastify";
+const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
   const [plot, setPlot] = useState(false);
   const [land, setLand] = useState(false);
   const [residential, setResidential] = useState(false);
@@ -26,12 +28,6 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
   const [activeLink, setActiveLink] = useState(1);
 
   const [formValue, setFormValue] = useState({});
-//  console.log(activeButton);
-//  console.log(user);
-//  console.log(first);
-//  console.log(second);
-//  console.log(selectedPropType);
-
 
   const handleCityChange = (e) => {
     setCity(e.target.value);
@@ -65,18 +61,124 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
     setPlotSizeUnit(event.target.value);
   };
 
-  const handleview = (e) => {
+  // const handleview = (e) => {
+  //   e.preventDefault();
+  //   request
+  //     .post("createproperty/", formValue)
+  //     .then((resp) => {
+  //       console.log("res", resp);
+  //       alert("sendmessage");
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error:", error);
+  //       alert("Failed to send message. Please try again.");
+  //     });
+  // };
+
+  const [errors, setErrors] = useState({});
+
+  // Validation function
+  const validateForm = () => {
+    let errors = {};
+    if (!formValue.propertyName) {
+      errors.propertyName = "*Please enter a valid property name";
+    }
+    if (!formValue.propertyLocation) {
+      errors.propertyLocation = "*Please enter property location";
+    }
+    if (!formValue.plotSize) {
+      errors.plotSize = "*Please enter plot size";
+    }
+    if (!formValue.plotSize) {
+      errors.plotSize = "*Please enter plot size";
+    }
+    if (!formValue.plotBreadth) {
+      errors.plotBreadth = "*Please enter plot bredth";
+    }
+    if (!formValue.AreaUnit) {
+      errors.AreaUnit = "*Please enter plot area";
+    }
+    if (!formValue.roadWidth) {
+      errors.roadWidth = "*Please enter plot road width";
+    }
+    if (!formValue.salePrice) {
+      errors.salePrice = "*Please enter sale price";
+    }
+    if (!formValue.advanceAmout) {
+      errors.advanceAmout = "*Please enter advance amount";
+    }
+    if (!formValue.description) {
+      errors.description = "*Please enter description";
+    }
+    if (selectedImage.length != 6) {
+      toast.warning("recommented to upload 6 site view images");
+      errors.selectedImage = "*Please";
+    }
+
+    return errors;
+  };
+
+  // console.log(selectedFile);
+  // console.log(selectedvalue);
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    request
-      .post("createproperty/", formValue)
-      .then((resp) => {
-        console.log("res", resp);
-        alert("sendmessage");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("Failed to send message. Please try again.");
-      });
+    const errors = validateForm();
+    if (Object.keys(errors).length === 0) {
+      try {
+        const formData = new FormData();
+        formData.append("name", user?.userName);
+        formData.append("phone", `+${user?.phone}`);
+        formData.append("email", user?.email);
+        formData.append("property_type", selectedPropType);
+        formData.append("plot.plot_type", "residential_plot");
+        formData.append("you_are_here_to", second.toLowerCase());
+        formData.append("owner", activeButton === "Owner");
+        formData.append("plot.length", parseInt(formValue?.plotSize));
+        formData.append("plot.breadth", parseInt(formValue?.plotBreadth));
+        formData.append("area_sqft", parseInt(formValue?.totalArea));
+        formData.append("plot.road_width", parseInt(formValue?.roadWidth));
+        formData.append("plot.direction_facing", formValue?.direction);
+        formData.append("plot.approval", formValue?.category);
+        formData.append("title", formValue?.propertyName);
+        formData.append("description", formValue?.description);
+        formData.append("location", formValue?.propertyLocation);
+        // formData.append("city", "edappally");
+        formData.append("sale_price", formValue?.salePrice);
+        formData.append("advance", formValue?.advanceAmout);
+        formData.append("unit", formValue?.AreaUnit);
+        content.forEach((element, index) => {
+          formData.append(`plot.facilities[${index}]name`, element);
+        });
+        selectedImage.forEach((image, index) => {
+          formData.append(`plot_images[${index}]section`, "siteview");
+          formData.append(`plot_images[${index}]image`, image);
+        });
+        formData.append(`plot_images[0]section`, "FMB");
+        formData.append("plot_images[0]image", selectedFile);
+        // formData.append(`plot_images[0]section`,"location");
+        // formData.append("plot_images[0]image", selectedvalue);
+
+        const response = await axios.post(
+          `${Baseurl}createproperty/`,
+          formData,
+          UserConfig
+        );
+        console.log(response.data);
+        toast.success("Submitted", {
+          hideProgressBar: true,
+          position: "top-center",
+        });
+      } catch (error) {
+        console.error("Server error", error);
+        toast.error("something went wrong", {
+          hideProgressBar: true,
+          position: "top-center",
+        });
+      }
+    } else {
+      setErrors(errors); // Set validation errors in state
+    }
   };
 
   const formControlStyle = {
@@ -150,7 +252,7 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
       setInputValue("");
     }
   };
-  console.log(content);
+
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleAddCount();
@@ -189,7 +291,7 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
   };
   const [upload, setupload] = useState("");
   // const [selectedImage, setSelectedImage] = useState("");
-  const [selectedImage, setSelectedImage] = useState("");
+  const [selectedImage, setSelectedImage] = useState([]);
 
   const [selectedFile, setSelectedFile] = useState("");
   const [selectedvalue, setselectedvalue] = useState("");
@@ -222,24 +324,30 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
   };
 
   // const handleImageChange = (event) => {
-  //   const file = event.target.files[0];
+  //   const files = event.target.files;
 
-  //   setSelectedImage(file);
+  //   const newSelectedImages = [];
+
+  //   for (let i = 0; i < files.length; i++) {
+  //     const fileItem = files[i];
+
+  //     newSelectedImages.push(fileItem);
+  //   }
+
+  //   setSelectedImage(newSelectedImages);
+  //   console.log(newSelectedImages);
+  //   setupload("");
   // };
+
   const handleImageChange = (event) => {
     const files = event.target.files;
-
-    const newSelectedImages = [];
-
-    for (let i = 0; i < files.length; i++) {
-      const fileItem = files[i];
-
-      newSelectedImages.push(fileItem);
+    if (files.length + selectedImage.length > 6) {
+      // Display an alert or message indicating the limit is reached
+      alert("You can only upload a maximum of 6 images.");
+      return;
     }
-
-    setSelectedImage(newSelectedImages);
-    console.log(newSelectedImages);
-    setupload("");
+    // Add the selected images to the state
+    setSelectedImage((prevImages) => [...prevImages, ...files]);
   };
 
   const handleFileChange = (event) => {
@@ -286,7 +394,6 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
     });
   };
 
-  console.log(formValue);
   return (
     <div>
       <Form className="mx-3">
@@ -300,7 +407,11 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
                 style={{ ...formControlStyle }}
                 onChange={handleChange}
                 name="propertyName"
+                required
               />
+              {errors.propertyName && (
+                <div className="text-danger">{errors.propertyName}</div>
+              )}
             </Form.Group>
           </Col>
           <Col md={6}>
@@ -313,7 +424,11 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
                 pattern="[A-Za-z\s]+"
                 onChange={handleChange}
                 name="propertyLocation"
+                required
               />
+              {errors.propertyLocation && (
+                <div className="text-danger">{errors.propertyLocation}</div>
+              )}
             </Form.Group>
           </Col>
         </Row>
@@ -333,7 +448,9 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
                   style={formControlStyle}
                   onChange={handleChange}
                   name="plotSize"
+                  required
                 />
+
                 <select
                   className="rounded-end down border-start-0 ps-5"
                   style={{
@@ -347,6 +464,9 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
                   <option>ft</option>
                   <option>mt</option>
                 </select>
+                {errors.plotSize && (
+                  <div className="text-danger">{errors.plotSize}</div>
+                )}
               </div>
             </Form.Group>
           </Col>
@@ -364,6 +484,7 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
                   style={formControlStyle}
                   onChange={handleChange}
                   name="plotBreadth"
+                  required
                 />
                 <select
                   className="rounded-end down border-start-0 ps-5"
@@ -378,6 +499,9 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
                   <option>ft</option>
                   <option>mt</option>
                 </select>
+                {errors.plotBreadth && (
+                  <div className="text-danger">{errors.plotBreadth}</div>
+                )}
               </div>
             </Form.Group>
           </Col>
@@ -398,9 +522,12 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
                   style={{ ...formControlStyle }}
                   onChange={handleChange}
                   name="totalArea"
+                  required
                 />
                 <select
                   className="rounded-end down border-start-0 ps-5"
+                  onChange={handleChange}
+                  name="AreaUnit"
                   style={{
                     position: "absolute",
                     top: 0,
@@ -409,9 +536,13 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
                     height: "100%",
                   }}
                 >
-                  <option>ft</option>
-                  <option>mt</option>
+                  <option value="ft">ft</option>
+                  <option value="mt">mt</option>
+                  <option value="sqft">sqft</option>
                 </select>
+                {errors.AreaUnit && (
+                  <div className="text-danger">{errors.AreaUnit}</div>
+                )}
               </div>
             </Form.Group>
           </Col>
@@ -429,6 +560,7 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
                   style={{ ...formControlStyle }}
                   onChange={handleChange}
                   name="roadWidth"
+                  required
                 />
                 <select
                   className="rounded-end down border-start-0 ps-5"
@@ -443,13 +575,20 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
                   <option>ft</option>
                   <option>mt</option>
                 </select>
+                {errors.roadWidth && (
+                  <div className="text-danger">{errors.roadWidth}</div>
+                )}
               </div>
             </Form.Group>
           </Col>
         </Row>
       </Form>
       <h5 className="mt-4">Direction Facing</h5>
-      <div className="custom-radio d-flex mt-4" onChange={handleChange}>
+      <div
+        className="custom-radio d-flex mt-4"
+        onChange={handleChange}
+        required
+      >
         <div className="flex-grow-1">
           <div className="form-check">
             <input
@@ -575,7 +714,11 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
         </Card>
       </div>
       <h5 className="mt-5 gy-3">Category</h5>
-      <div className="custom-radio d-flex mt-4 gx-3" onChange={handleChange}>
+      <div
+        className="custom-radio d-flex mt-4 gx-3"
+        onChange={handleChange}
+        required
+      >
         <div className="form-check">
           <input
             className="form-check-input"
@@ -613,7 +756,11 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
                 style={formControlStyle}
                 name="salePrice"
                 onChange={handleChange}
+                required
               />
+              {errors.salePrice && (
+                <div className="text-danger">{errors.salePrice}</div>
+              )}
             </Form.Group>
           </Col>
           <Col>
@@ -625,7 +772,11 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
                 style={formControlStyle}
                 name="advanceAmout"
                 onChange={handleChange}
+                required
               />
+              {errors.advanceAmout && (
+                <div className="text-danger">{errors.advanceAmout}</div>
+              )}
             </Form.Group>
           </Col>
         </Row>
@@ -641,6 +792,7 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
                   style={formControlStyle}
                   name="agentCommision"
                   onChange={handleChange}
+                  required
                 />
               </Form.Group>
             </Col>
@@ -652,98 +804,101 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
             </Form.Group>
           </Col>
         </Row>
-      </Form>
-      <h5 className="mb-5 gy-3">Description</h5>
-      <textarea
-        className="form-control mb-4"
-        name="description"
-        onChange={handleChange}
-        style={{
-          width: "1170px",
-          height: "270px",
-          borderRadius: "30px",
-          border: "1px solid #D7242A",
-        }}
-        placeholder="Type something...."
-        id="message"
-        rows="5"
-        required
-      ></textarea>
-      <h5 className="mt-5 gy-3">Upload Photos</h5>
-      <Card
-        className="mt-5"
-        style={{
-          width: "1170px",
-          height: "300px",
-          borderRadius: "30px",
-          border: "1px solid #D7242A",
-        }}
-      >
-        <Card.Body>
-          <nav className="navbar navbar-expand">
-            <div
-              className="d-flex justify-content-between gap-4"
-              style={navbarStyle}
-            >
-              <ul className="navbar-nav value d-flex justify-content-between w-100">
-                <li className="nav-item mx-5">
-                  <a
-                    className={`nav-link ${
-                      upload === "Site View" ? "design" : ""
-                    }`}
-                    style={navLinkStyle}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                    onClick={() => handleImage("Site View")}
-                  >
-                    Site View
-                  </a>
-                </li>
 
-                <li className="nav-item mx-5">
-                  <a
-                    className={`nav-link ${upload === "FMB" ? "design" : ""}`}
-                    style={navLinkStyle}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                    onClick={() => handleImage("FMB")}
-                  >
-                    FMB
-                  </a>
-                </li>
-                <li className="nav-item mx-5">
-                  <a
-                    className={`nav-link ${
-                      upload === "Location Map" ? "design" : ""
-                    }`}
-                    style={navLinkStyle}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                    onClick={() => handleImage("Location Map")}
-                  >
-                    Location Map
-                  </a>
-                </li>
-                {activeButton === "Builder" && (
+        <h5 className="mb-5 gy-3">Description</h5>
+        <textarea
+          className="form-control mb-4"
+          name="description"
+          onChange={handleChange}
+          style={{
+            width: "1170px",
+            height: "270px",
+            borderRadius: "30px",
+            border: "1px solid #D7242A",
+          }}
+          placeholder="Type something...."
+          id="message"
+          rows="5"
+          required
+        ></textarea>
+        {errors.description && (
+          <div className="text-danger">{errors.description}</div>
+        )}
+        <h5 className="mt-5 gy-3">Upload Photos</h5>
+        <Card
+          className="mt-5"
+          style={{
+            width: "1170px",
+            height: "300px",
+            borderRadius: "30px",
+            border: "1px solid #D7242A",
+          }}
+        >
+          <Card.Body>
+            <nav className="navbar navbar-expand">
+              <div
+                className="d-flex justify-content-between gap-4"
+                style={navbarStyle}
+              >
+                <ul className="navbar-nav value d-flex justify-content-between w-100">
                   <li className="nav-item mx-5">
                     <a
                       className={`nav-link ${
-                        upload === "Logo" ? "design" : ""
+                        upload === "Site View" ? "design" : ""
                       }`}
                       style={navLinkStyle}
                       onMouseEnter={handleMouseEnter}
                       onMouseLeave={handleMouseLeave}
-                      onClick={() => handleImage("Logo")}
+                      onClick={() => handleImage("Site View")}
                     >
-                      Logo
+                      Site View
                     </a>
                   </li>
-                )}
-              </ul>
-            </div>
-          </nav>
-          <hr />
-          {/*        
+
+                  <li className="nav-item mx-5">
+                    <a
+                      className={`nav-link ${upload === "FMB" ? "design" : ""}`}
+                      style={navLinkStyle}
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
+                      onClick={() => handleImage("FMB")}
+                    >
+                      FMB
+                    </a>
+                  </li>
+                  <li className="nav-item mx-5">
+                    <a
+                      className={`nav-link ${
+                        upload === "Location Map" ? "design" : ""
+                      }`}
+                      style={navLinkStyle}
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
+                      onClick={() => handleImage("Location Map")}
+                    >
+                      Location Map
+                    </a>
+                  </li>
+                  {activeButton === "Builder" && (
+                    <li className="nav-item mx-5">
+                      <a
+                        className={`nav-link ${
+                          upload === "Logo" ? "design" : ""
+                        }`}
+                        style={navLinkStyle}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        onClick={() => handleImage("Logo")}
+                      >
+                        Logo
+                      </a>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </nav>
+            <hr />
+            {/*        
          <div className="file-input d-flex justify-content-center align-items-center" onClick={handleUpload} >
       <input
         type="file"
@@ -757,27 +912,27 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
         <span>Upload file</span></label
       >
     </div> */}
- {upload === "Site View" && (
-            <div>
-              <div
-                className="file-input d-flex justify-content-center align-items-center"
-                onClick={handleUpload}
-              >
-                <input
-                  type="file"
-                  name="file-input"
-                  id="file-input"
-                  className="file-input__input"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  multiple
-                />
-                <label className="file-input__label" htmlFor="file-input">
-                  <span>Upload file</span>
-                </label>
-              </div>
+            {upload === "Site View" && (
+              <div>
+                <div
+                  className="file-input d-flex justify-content-center align-items-center"
+                  onClick={handleUpload}
+                >
+                  <input
+                    type="file"
+                    name="file-input"
+                    id="file-input"
+                    className="file-input__input"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    multiple
+                  />
+                  <label className="file-input__label" htmlFor="file-input">
+                    <span>Upload file</span>
+                  </label>
+                </div>
 
-              {selectedImage &&
+                {/* {selectedImage &&
                 selectedImage.map((image, index) => (
                   <div key={index} className="mt-3 text-center ">
                     <img
@@ -797,139 +952,175 @@ const Sellform = ({ activeButton,user,first,second,selectedPropType }) => {
                       <i className="fas fa-times"></i> Remove
                     </button>
                   </div>
-                ))}
-            </div>
-          )}
-          {upload === "FMB" && (
-            <div>
-              <div className="file-input d-flex justify-content-center align-items-center">
-                <input
-                  type="file"
-                  name="file-input"
-                  id="file-input"
-                  className="file-input__input"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                />
-                <label className="file-input__label" htmlFor="file-input">
-                  <span>Upload file</span>
-                </label>
-              </div>
+                ))} */}
 
-              {selectedFile && (
-                <div className="mt-3 text-center">
-                  <img
-                    src={URL.createObjectURL(selectedFile)}
-                    alt={selectedFile ? selectedFile.name : "upload image"}
-                    style={{
-                      width: "200px",
-                      maxHeight: "100px",
-                      borderRadius: "10px",
-                      border: "1px solid",
-                    }}
-                  />
-                  <button
-                    onClick={removeSelectedImage1}
-                    className="btn btn-danger btn-sm mt-2"
-                  >
-                    <i className="fas fa-times"></i> Remove
-                  </button>
+                <div className="row">
+                  {selectedImage &&
+                    selectedImage.map((image, index) => (
+                      <div key={index} className="col-md-2 mb-3">
+                        <div className="text-center">
+                          <img
+                            src={URL.createObjectURL(image)}
+                            alt={image ? image.name : "upload image"}
+                            className="img-fluid"
+                            style={{
+                              maxWidth: "100%",
+                              maxHeight: "100px",
+                              borderRadius: "10px",
+                              border: "1px solid",
+                            }}
+                          />
+                          <button
+                            onClick={() => removeSelectedImage(index)}
+                            className="btn btn-danger btn-sm mb-5"
+                          >
+                            <i className="fas fa-times"></i> Remove
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                 </div>
-              )}
-            </div>
-          )}
-          {upload === "Location Map" && (
-            <div>
-              <div
-                className="file-input d-flex justify-content-center align-items-center"
-                onClick={handleUpload}
-              >
-                <input
-                  type="file"
-                  name="file-input"
-                  id="file-input"
-                  className="file-input__input"
-                  accept="image/*"
-                  onChange={handleImagevalue}
-                />
-                <label className="file-input__label" htmlFor="file-input">
-                  <span>Upload file</span>
-                </label>
               </div>
-
-              {selectedvalue && (
-                <div className="mt-3 text-center">
-                  <img
-                    src={URL.createObjectURL(selectedvalue)}
-                    alt={selectedvalue ? selectedvalue.name : "upload image"}
-                    style={{
-                      width: "200px",
-                      maxHeight: "100px",
-                      borderRadius: "10px",
-                      border: "1px solid",
-                    }}
+            )}
+            {upload === "FMB" && (
+              <div>
+                <div className="file-input d-flex justify-content-center align-items-center">
+                  <input
+                    type="file"
+                    name="file-input"
+                    id="file-input"
+                    className="file-input__input"
+                    accept="image/*"
+                    onChange={handleFileChange}
                   />
-                  <button
-                    onClick={removeSelectedImage2}
-                    className="btn btn-danger btn-sm mt-2"
-                  >
-                    <i className="fas fa-times"></i> Remove
-                  </button>
+                  <label className="file-input__label" htmlFor="file-input">
+                    <span>Upload file</span>
+                  </label>
                 </div>
-              )}
-            </div>
-          )}
 
-          {upload === "Logo" && (
-            <div>
-              <div className="file-input d-flex justify-content-center align-items-center">
-                <input
-                  type="file"
-                  name="file-input"
-                  id="file-input"
-                  className="file-input__input"
-                  accept="image/*"
-                  onChange={handleImageLogo}
-                />
-                <label className="file-input__label" htmlFor="file-input">
-                  <span>Upload file</span>
-                </label>
+                {selectedFile && (
+                  <div className="mt-3 text-center">
+                    <img
+                      src={URL.createObjectURL(selectedFile)}
+                      alt={selectedFile ? selectedFile.name : "upload image"}
+                      style={{
+                        width: "200px",
+                        maxHeight: "100px",
+                        borderRadius: "10px",
+                        border: "1px solid",
+                      }}
+                    />
+                    <button
+                      onClick={removeSelectedImage1}
+                      className="btn btn-danger btn-sm mt-2"
+                    >
+                      <i className="fas fa-times"></i> Remove
+                    </button>
+                  </div>
+                )}
               </div>
-
-              {selectedLogo && (
-                <div className="mt-3 text-center">
-                  <img
-                    src={URL.createObjectURL(selectedLogo)}
-                    alt={selectedLogo ? selectedLogo.name : "upload image"}
-                    style={{
-                      width: "200px",
-                      maxHeight: "100px",
-                      borderRadius: "10px",
-                      border: "1px solid",
-                    }}
+            )}
+            {upload === "Location Map" && (
+              <div>
+                <div
+                  className="file-input d-flex justify-content-center align-items-center"
+                  onClick={handleUpload}
+                >
+                  <input
+                    type="file"
+                    name="file-input"
+                    id="file-input"
+                    className="file-input__input"
+                    accept="image/*"
+                    onChange={handleImagevalue}
                   />
-                  <button
-                    onClick={removeSelectedLogo}
-                    className="btn btn-danger btn-sm mt-2"
-                  >
-                    <i className="fas fa-times"></i> Remove
-                  </button>
+                  <label className="file-input__label" htmlFor="file-input">
+                    <span>Upload file</span>
+                  </label>
                 </div>
-              )}
-            </div>
-          )}
-        </Card.Body>
-      </Card>
-      <div className="d-flex justify-content-center">
-        <button
+
+                {selectedvalue && (
+                  <div className="mt-3 text-center">
+                    <img
+                      src={URL.createObjectURL(selectedvalue)}
+                      alt={selectedvalue ? selectedvalue.name : "upload image"}
+                      style={{
+                        width: "200px",
+                        maxHeight: "100px",
+                        borderRadius: "10px",
+                        border: "1px solid",
+                      }}
+                    />
+                    <button
+                      onClick={removeSelectedImage2}
+                      className="btn btn-danger btn-sm mt-2"
+                    >
+                      <i className="fas fa-times"></i> Remove
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {upload === "Logo" && (
+              <div>
+                <div className="file-input d-flex justify-content-center align-items-center">
+                  <input
+                    type="file"
+                    name="file-input"
+                    id="file-input"
+                    className="file-input__input"
+                    accept="image/*"
+                    onChange={handleImageLogo}
+                  />
+                  <label className="file-input__label" htmlFor="file-input">
+                    <span>Upload file</span>
+                  </label>
+                </div>
+
+                {selectedLogo && (
+                  <div className="mt-3 text-center">
+                    <img
+                      src={URL.createObjectURL(selectedLogo)}
+                      alt={selectedLogo ? selectedLogo.name : "upload image"}
+                      style={{
+                        width: "200px",
+                        maxHeight: "100px",
+                        borderRadius: "10px",
+                        border: "1px solid",
+                      }}
+                    />
+                    <button
+                      onClick={removeSelectedLogo}
+                      className="btn btn-danger btn-sm mt-2"
+                    >
+                      <i className="fas fa-times"></i> Remove
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+          </Card.Body>
+        </Card>
+        <div className="d-flex justify-content-center">
+          {/* <button
           type="button"
           className="buttonmobile mt-5"
           style={{ width: "370px" }}
           onClick={() => handleview("Post Property")}
         >
           Post Property
-        </button>
-      </div>
+        </button> */}
+          <button
+            type="button"
+            className="buttonmobile mt-5"
+            style={{ width: "370px" }}
+            onClick={(e) => handleSubmit(e)}
+          >
+            Post Property
+          </button>
+        </div>
+      </Form>
     </div>
   );
 };
