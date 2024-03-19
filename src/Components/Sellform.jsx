@@ -464,10 +464,10 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
                   <option>ft</option>
                   <option>mt</option>
                 </select>
-                {errors.plotSize && (
-                  <div className="text-danger">{errors.plotSize}</div>
-                )}
               </div>
+              {errors.plotSize && (
+                <div className="text-danger">{errors.plotSize}</div>
+              )}
             </Form.Group>
           </Col>
           <Col md={6}>
@@ -499,10 +499,11 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
                   <option>ft</option>
                   <option>mt</option>
                 </select>
-                {errors.plotBreadth && (
-                  <div className="text-danger">{errors.plotBreadth}</div>
-                )}
+           
               </div>
+              {errors.plotBreadth && (
+                <div className="text-danger">{errors.plotBreadth}</div>
+              )}
             </Form.Group>
           </Col>
         </Row>
@@ -540,10 +541,10 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
                   <option value="mt">mt</option>
                   <option value="sqft">sqft</option>
                 </select>
-                {errors.AreaUnit && (
-                  <div className="text-danger">{errors.AreaUnit}</div>
-                )}
               </div>
+              {errors.AreaUnit && (
+                <div className="text-danger">{errors.AreaUnit}</div>
+              )}
             </Form.Group>
           </Col>
           <Col md={6}>
@@ -575,10 +576,10 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
                   <option>ft</option>
                   <option>mt</option>
                 </select>
-                {errors.roadWidth && (
-                  <div className="text-danger">{errors.roadWidth}</div>
-                )}
               </div>
+              {errors.roadWidth && (
+                <div className="text-danger">{errors.roadWidth}</div>
+              )}
             </Form.Group>
           </Col>
         </Row>
