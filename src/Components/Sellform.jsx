@@ -224,15 +224,21 @@ const formControlStyle = {
 
   
    
+     const handleImageChange = (event) => {
+      const files = event.target.files;
+      if (files.length + selectedImage.length > 6) {
+
+          alert("You can only upload a maximum of 6 images.");
+          return;
+      }
+     
+      setSelectedImage(prevImages => [...prevImages, ...files]);
+  };
   
-    const handleImageChange = (event) => {
-      const file = event.target.files[0];
   
-  
-  
-      setSelectedImage(file);
+      // setSelectedImage(file);
       
-    };
+  
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
@@ -253,10 +259,12 @@ const formControlStyle = {
     setselectedLogo(file);
 
   };
-  const removeSelectedImage = () => {
-    setSelectedImage('');
+//   const removeSelectedImage = () => {
+//     setSelectedImage('');
+// };
+const removeSelectedImage = (index) => {
+  setSelectedImage(prevImages => prevImages.filter((image, i) => i !== index));
 };
-
   const removeSelectedImage1 = () => {
     setSelectedFile('');
 };
@@ -267,6 +275,7 @@ const removeSelectedImage2 = () => {
 const removeSelectedLogo = () => {
   setselectedLogo('');
 };
+
   return (
 
     <div>
@@ -297,9 +306,11 @@ const removeSelectedLogo = () => {
       <Col md={6}>
         <Form.Group controlId="formGroup3">
           <Form.Label>Plot size</Form.Label><br/>
-          <div className='rounded-pill' style={{ position: 'relative', display: 'inline-block' }}>
+          <div className='rounded-pill' 
+          style={{ position: 'relative', display: 'inline-block' }}>
         <Form.Control type="number" placeholder="length" style={formControlStyle} />
-        <select className='rounded-end down border-start-0 ps-5' style={{ position: 'absolute', top: 0, right: 0, width: '100px', height: '100%',}}>
+        <select className='rounded-end down border-start-0 ps-5' 
+        style={{ position: 'absolute', top: 0, right: 0, width: '100px', height: '100%',}}>
   <option>ft</option>
   <option>mt</option>
 </select>
@@ -310,9 +321,11 @@ const removeSelectedLogo = () => {
       <Col md={6}>
   <Form.Group controlId="formGroup4">
     <Form.Label>Breadth</Form.Label><br/>
-    <div className='rounded-pill' style={{ position: 'relative', display: 'inline-block' }}>
+    <div className='rounded-pill' 
+    style={{ position: 'relative', display: 'inline-block' }}>
         <Form.Control type="number" placeholder="Breadth" style={formControlStyle} />
-        <select className='rounded-end down border-start-0 ps-5' style={{ position: 'absolute', top: 0, right: 0, width: '100px', height: '100%',}}>
+        <select className='rounded-end down border-start-0 ps-5'
+         style={{ position: 'absolute', top: 0, right: 0, width: '100px', height: '100%',}}>
   <option>ft</option>
   <option>mt</option>
 </select>
@@ -497,7 +510,7 @@ const removeSelectedLogo = () => {
          value="option1"
        />
        <label className="form-check-label ms-3" htmlFor="exampleRadio1">
-       Approved
+       Approved  
        </label>
      </div>
   
@@ -623,6 +636,21 @@ const removeSelectedLogo = () => {
 
 {upload === 'Site View' && 
     <div>     
+        {/* <div className="file-input d-flex justify-content-center align-items-center">
+            <input
+                type="file"
+                name="file-input"
+                id="file-input"
+                className="file-input__input"
+                accept="image/*"
+                multiple 
+                onChange={handleImageChange}
+            />
+            <label className="file-input__label" htmlFor="file-input">
+                <span>Upload file</span>
+            </label>
+        </div> */}
+        
         <div className="file-input d-flex justify-content-center align-items-center">
             <input
                 type="file"
@@ -631,14 +659,13 @@ const removeSelectedLogo = () => {
                 className="file-input__input"
                 accept="image/*"
                 onChange={handleImageChange}
+                multiple // Allow multiple file selection
             />
             <label className="file-input__label" htmlFor="file-input">
                 <span>Upload file</span>
             </label>
         </div>
-        
-
-        {selectedImage && (
+        {/* {selectedImage && (
             <div className="mt-3 text-center">
                 <img
                     src={URL.createObjectURL(selectedImage)}
@@ -649,7 +676,26 @@ const removeSelectedLogo = () => {
                     <i className="fas fa-times"></i> Remove
                 </button>
             </div>
-        )}
+        )} */}
+<div className="row">
+    {selectedImage && selectedImage.map((image, index) => (
+        <div key={index} className="col-md-2 mb-3">
+            <div className="text-center">
+                <img
+                    src={URL.createObjectURL(image)}
+                    alt={image ? image.name : 'upload image'}
+                    className="img-fluid"
+                    style={{ maxWidth: '100%', maxHeight: '100px', borderRadius: '10px', border: '1px solid' }}
+                />
+                <button onClick={() => removeSelectedImage(index)} className="btn btn-danger btn-sm mb-5">
+                    <i className="fas fa-times"></i> Remove
+                </button>
+            </div>
+        </div>
+    ))}
+</div>
+
+
     </div>
 }
 {upload === 'FMB' && 

@@ -258,13 +258,16 @@ const Commerciallease = ({ activeButton }) => {
     
     
     
-    const handleImageChange = (event) => {
-      const file = event.target.files[0];
+       
+     const handleImageChange = (event) => {
+      const files = event.target.files;
+      if (selectedImage.length + files.length > 6) {
+          alert("You can only upload a maximum of 6 images.");
+          return;
+      }
     
-    
-    
-      setSelectedImage(file);
-      
+      const newImages = Array.from(files);
+      setSelectedImage(prevImages => [...prevImages, ...newImages]);
     };
     const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -313,8 +316,8 @@ const Commerciallease = ({ activeButton }) => {
     setselectedLogo(file);
     
     };
-    const removeSelectedImage = () => {
-    setSelectedImage('');
+    const removeSelectedImage = (index) => {
+      setSelectedImage(prevImages => prevImages.filter((_, i) => i !== index));
     };
     
     const removeSelectedImage1 = () => {
@@ -822,7 +825,7 @@ const Commerciallease = ({ activeButton }) => {
         </div>
         
 
-        {selectedImage && (
+        {/* {selectedImage && (
             <div className="mt-3 text-center">
                 <img
                     src={URL.createObjectURL(selectedImage)}
@@ -833,7 +836,25 @@ const Commerciallease = ({ activeButton }) => {
                     <i className="fas fa-times"></i> Remove
                 </button>
             </div>
-        )}
+        )} */}
+{selectedImage && (
+    <div className="mb-3 text-center" style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {selectedImage.map((image, index) => (
+            <div key={index} style={{ flex: '0 0 calc(16.666% - 10px)', margin: '5px' }}>
+                <img
+                    src={typeof image === 'string' ? image : URL.createObjectURL(image)}
+                    alt={typeof image === 'string' ? 'Uploaded Image' : image.name}
+                    style={{ width: '100%', maxHeight: '100px', borderRadius: '10px', border: '1px solid' }}
+                />
+                <button onClick={() => removeSelectedImage(index)} className="btn btn-danger btn-sm mb-2">
+                    <i className="fas fa-times"></i> Remove
+                </button>
+            </div>
+        ))}
+    </div>
+)}
+
+
     </div>
 }
 {upload === 'Interior' && 

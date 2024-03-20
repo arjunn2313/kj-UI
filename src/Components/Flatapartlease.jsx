@@ -252,13 +252,16 @@ const [selectedmap, setselectedmap] = useState('');
 
 
 
-const handleImageChange = (event) => {
-  const file = event.target.files[0];
+    
+ const handleImageChange = (event) => {
+  const files = event.target.files;
+  if (files.length + selectedImage.length > 6) {
 
-
-
-  setSelectedImage(file);
-  
+      alert("You can only upload a maximum of 6 images.");
+      return;
+  }
+ 
+  setSelectedImage(prevImages => [...prevImages, ...files]);
 };
 const handleFileChange = (event) => {
 const file = event.target.files[0];
@@ -307,9 +310,10 @@ const file = event.target.files[0];
 setselectedLogo(file);
 
 };
-const removeSelectedImage = () => {
-setSelectedImage('');
+const removeSelectedImage = (index) => {
+  setSelectedImage(prevImages => prevImages.filter((image, i) => i !== index));
 };
+
 
 const removeSelectedImage1 = () => {
 setSelectedFile('');

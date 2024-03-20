@@ -299,7 +299,8 @@ const Posting = () => {
             <Row className="gx-3 mb-3">
               <Col md={4}>
                 <Form.Group className="mb-3">
-                  <Form.Label className="small-label w-100" style={{ color: ' #2D2D2D' }} htmlFor="inputOrgName">
+                  <Form.Label className="small-label w-100" style={{ color: ' #2D2D2D' }}
+                   htmlFor="inputOrgName" >
                     Phone Number
                   </Form.Label>
 

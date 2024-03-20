@@ -250,13 +250,15 @@ const formControlStyle = {
     
     
     
-    const handleImageChange = (event) => {
-      const file = event.target.files[0];
+     const handleImageChange = (event) => {
+      const files = event.target.files;
+      if (files.length + selectedImage.length > 6) {
     
-    
-    
-      setSelectedImage(file);
-      
+          alert("You can only upload a maximum of 6 images.");
+          return;
+      }
+     
+      setSelectedImage(prevImages => [...prevImages, ...files]);
     };
     const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -305,8 +307,8 @@ const formControlStyle = {
     setselectedLogo(file);
     
     };
-    const removeSelectedImage = () => {
-    setSelectedImage('');
+    const removeSelectedImage = (index) => {
+      setSelectedImage(prevImages => prevImages.filter((image, i) => i !== index));
     };
     
     const removeSelectedImage1 = () => {
@@ -739,7 +741,7 @@ const formControlStyle = {
       className="mt-5"
       style={{
         width: "1170px",
-        height: "270px",
+        height: "300px",
         borderRadius: "30px",
         border: "1px solid #D7242A",
       }}
@@ -878,7 +880,8 @@ const formControlStyle = {
         )} */}
 {upload === 'Exterior View' && 
     <div>     
-        <div className="file-input d-flex justify-content-center align-items-center">
+            
+            <div className="file-input d-flex justify-content-center align-items-center">
             <input
                 type="file"
                 name="file-input"
@@ -886,25 +889,31 @@ const formControlStyle = {
                 className="file-input__input"
                 accept="image/*"
                 onChange={handleImageChange}
+                multiple // Allow multiple file selection
             />
             <label className="file-input__label" htmlFor="file-input">
                 <span>Upload file</span>
             </label>
         </div>
         
-
-        {selectedImage && (
-            <div className="mt-3 text-center">
+        <div className="row">
+    {selectedImage && selectedImage.map((image, index) => (
+        <div key={index} className="col-md-2 mb-3">
+            <div className="text-center">
                 <img
-                    src={URL.createObjectURL(selectedImage)}
-                    alt={selectedImage ? selectedImage.name : 'upload image'}
-                    style={{ width: '200px', maxHeight: '100px', borderRadius: '10px', border: '1px solid' }}
+                    src={URL.createObjectURL(image)}
+                    alt={image ? image.name : 'upload image'}
+                    className="img-fluid"
+                    style={{ maxWidth: '100%', maxHeight: '100px', borderRadius: '10px', border: '1px solid' }}
                 />
-                <button onClick={removeSelectedImage} className="btn btn-danger btn-sm mt-2">
+                <button onClick={() => removeSelectedImage(index)} className="btn btn-danger btn-sm mb-5">
                     <i className="fas fa-times"></i> Remove
                 </button>
             </div>
-        )}
+        </div>
+    ))}
+</div>
+   
     </div>
 }
 {upload === 'Living Room' && 

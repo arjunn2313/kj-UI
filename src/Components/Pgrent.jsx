@@ -90,123 +90,6 @@ const formControlStyle = {
       };
    
 
-      // const [buttonAdd, setButtonAdd] = useState({
-      //   CarParking: false,
-      //   Security: false,
-      //  ' Street Light':false,
-      //  Compound:false,
-      //   AvenueTrees:false,
-      //   Canteen:false,
-      //   Parks: false,
-      //   Store: false,
-      //   Saloon:false,
-      //   Pharmacy:false,
-      //   'Coffee Bar':false,
-      //   Gym:false,
-      
-        
-      // });
-      // const [buttonValue, setButtonvalue] = useState({
-      //   Furniture: false,
-      //   Balcony: false,
-      //   'Wash Room': false,
-      //   'Washing Machine': false,
-      //   'Laundry': false,
-      //   'Modular Kitchen': false,
-      //   TV:false,
-      //   Phone:false,
-      //   Fridge:false,
-      //   PowerBackup:false,
-      //   WIFI:false,
-      //   Lift:false,
-      
-      // });
-     
-      // const [buttonfootType, setButtonFootType] = useState({
-      //   Vegetarian: false,
-      //   NonVeg: false,
-      //   VegAndNonveg: false,
-      //   SelfCooking :false ,                                                                      
-      //   Kitchen:false,
-      
-      // });
-
-
-
-      // const [data, setData] = useState([]);
-      // const [count, setCount] = useState([]);
-
-      // const [footType, setFootType] = useState([]);
-      // const handleButtonClickss = (datta) => {
-      //   // Check if the button has already been clicked
-      //   if (!setButtonAdd[datta]) {
-      //     setButtonAdd((prevButtonAdd) => ({
-      //       ...prevButtonAdd,
-      //       [datta]: true,
-      //     }));
-    
-      //     setData((prevData) => [...prevData, datta]);
-    
-   
-      //   }
-      // };
-      // const handleButton = (type) => { 
-      
-      //   if (!buttonValue[type]) {
-      //     setButtonvalue((prevValue) => ({
-      //       ...prevValue,
-      //       [type]: true,
-      //     }));
-    
-      //     setCount((prevCount) => [...prevCount, type]);
-    
-          
-      //   }
-      // };
-      //
-      // const handleobuttonfootType = (typ) => {
-       
-      //   if (!buttonfootType[typ]) {
-      //     setButtonFootType((prevFootType) => ({
-      //       ...prevFootType,
-      //       [typ]: true,
-      //     }));
-    
-      //     setFootType((prevFootType) => [...prevFootType, typ]);
-    
-     
-      //   }
-      // };
-      // const handleRemoveData = (itemRemove) => {
-      //   setButtonAdd((prevButtonAdd) => ({
-      //     ...prevButtonAdd,
-      //     [itemRemove]: false,
-      //   }));
-    
-      //   setData((prevData) => prevData.filter((outdoor) => outdoor !== itemRemove));
-    
-      //   // Other logic, if needed
-      // };
-      // const handleRemoveCount = (Remove) => {
-      //   setButtonvalue((prevValue) => ({
-      //     ...prevValue,
-      //     [Remove]: false,
-      //   }));
-    
-      //   setCount((prevCount) => prevCount.filter((items) => items !== Remove));
-    
-      //   // Other logic, if needed
-      // };
-      // const handleRemovefoottype = (Removefoottype) => {
-      //   setButtonFootType((prevFootType) => ({
-      //     ...prevFootType,
-      //     [Removefoottype]: false,
-      //   }));
-    
-      //   setFootType((prevFoottype) => prevFoottype.filter((ittm) => ittm !== Removefoottype));
-    
-      //   // Other logic, if needed
-      // };
       
       const newArray = [
         "Furniture" ,
@@ -490,14 +373,19 @@ const formControlStyle = {
      
      
      
-     const handleImageChange = (event) => {
-       const file = event.target.files[0];
-     
-     
-     
-       setSelectedImage(file);
-       
-     };
+    
+      const handleImageChange = (event) => {
+        const files = event.target.files;
+        if (selectedImage.length + files.length > 6) {
+            alert("You can only upload a maximum of 6 images.");
+            return;
+        }
+    
+        const newImages = Array.from(files);
+      
+    
+        setSelectedImage(prevImages => [...prevImages, ...newImages]);
+      };
      const handleFileChange = (event) => {
      const file = event.target.files[0];
      setSelectedFile(file);
@@ -545,9 +433,9 @@ const formControlStyle = {
      setselectedLogo(file);
      
      };
-     const removeSelectedImage = () => {
-     setSelectedImage('');
-     };
+     const removeSelectedImage = (index) => {
+      setSelectedImage(prevImages => prevImages.filter((_, i) => i !== index));
+    };
      
      const removeSelectedImage1 = () => {
      setSelectedFile('');
@@ -1274,7 +1162,7 @@ const formControlStyle = {
       className="mt-5"
       style={{
         width: "1170px",
-        height: "270px",
+        height: "300px",
         borderRadius: "30px",
         border: "1px solid #D7242A",
       }}
@@ -1416,7 +1304,7 @@ const formControlStyle = {
         </div>
         
 
-        {selectedImage && (
+        {/* {selectedImage && (
             <div className="mt-3 text-center">
                 <img
                     src={URL.createObjectURL(selectedImage)}
@@ -1427,7 +1315,25 @@ const formControlStyle = {
                     <i className="fas fa-times"></i> Remove
                 </button>
             </div>
-        )}
+        )} */}
+{selectedImage && (
+    <div className="mb-3 text-center" style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {selectedImage.map((image, index) => (
+            <div key={index} style={{ flex: '0 0 calc(16.666% - 10px)', margin: '5px' }}>
+                <img
+                    src={typeof image === 'string' ? image : URL.createObjectURL(image)}
+                    alt={typeof image === 'string' ? 'Uploaded Image' : image.name}
+                    style={{ width: '100%', maxHeight: '100px', borderRadius: '10px', border: '1px solid' }}
+                />
+                <button onClick={() => removeSelectedImage(index)} className="btn btn-danger btn-sm mb-2">
+                    <i className="fas fa-times"></i> Remove
+                </button>
+            </div>
+        ))}
+    </div>
+)}
+
+
     </div>
 }
 {upload === 'Living Room' && 

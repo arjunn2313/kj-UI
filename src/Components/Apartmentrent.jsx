@@ -220,13 +220,17 @@ const Apartmentrent = ({activeButton}) => {
   
   
   
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
+   const handleImageChange = (event) => {
+    const files = event.target.files;
+    if (selectedImage.length + files.length > 6) {
+        alert("You can only upload a maximum of 6 images.");
+        return;
+    }
+
+    const newImages = Array.from(files);
   
-  
-  
-    setSelectedImage(file);
-    
+
+    setSelectedImage(prevImages => [...prevImages, ...newImages]);
   };
   const handleFileChange = (event) => {
   const file = event.target.files[0];
@@ -275,10 +279,9 @@ const Apartmentrent = ({activeButton}) => {
   setselectedLogo(file);
   
   };
-  const removeSelectedImage = () => {
-  setSelectedImage('');
+  const removeSelectedImage = (index) => {
+    setSelectedImage(prevImages => prevImages.filter((_, i) => i !== index));
   };
-  
   const removeSelectedImage1 = () => {
   setSelectedFile('');
   };
@@ -632,7 +635,7 @@ const Apartmentrent = ({activeButton}) => {
                 <h5 className='mt-5 gy-3'>Description</h5>
                 <textarea className="form-control mt-4" style={{ width: '1170px', height: "270px", borderRadius: '30px', border: '1px solid #D7242A' }} placeholder="Type something...." id="message" rows="5" required></textarea>
                 <h5 className='mt-5 gy-3'>Upload Photos</h5>
-                <Card className="mt-5" style={{ width: '1170px', height: "270px", borderRadius: '30px', border: '1px solid #D7242A' }}>
+                <Card className="mt-5" style={{ width: '1170px', height: "300px", borderRadius: '30px', border: '1px solid #D7242A' }}>
           <Card.Body>
             <nav className="navbar navbar-expand">
               <div className="d-flex justify-content-between" style={navbarStyle}>
@@ -732,7 +735,6 @@ const Apartmentrent = ({activeButton}) => {
               </div>
 
             )} */}
-
 {upload === 'Exterior View' && 
     <div>     
         <div className="file-input d-flex justify-content-center align-items-center">
@@ -750,7 +752,7 @@ const Apartmentrent = ({activeButton}) => {
         </div>
         
 
-        {selectedImage && (
+        {/* {selectedImage && (
             <div className="mt-3 text-center">
                 <img
                     src={URL.createObjectURL(selectedImage)}
@@ -761,7 +763,25 @@ const Apartmentrent = ({activeButton}) => {
                     <i className="fas fa-times"></i> Remove
                 </button>
             </div>
-        )}
+        )} */}
+{selectedImage && (
+    <div className="mb-3 text-center" style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {selectedImage.map((image, index) => (
+            <div key={index} style={{ flex: '0 0 calc(16.666% - 10px)', margin: '5px' }}>
+                <img
+                    src={typeof image === 'string' ? image : URL.createObjectURL(image)}
+                    alt={typeof image === 'string' ? 'Uploaded Image' : image.name}
+                    style={{ width: '100%', maxHeight: '100px', borderRadius: '10px', border: '1px solid' }}
+                />
+                <button onClick={() => removeSelectedImage(index)} className="btn btn-danger btn-sm mb-2">
+                    <i className="fas fa-times"></i> Remove
+                </button>
+            </div>
+        ))}
+    </div>
+)}
+
+
     </div>
 }
 {upload === 'Interior' && 

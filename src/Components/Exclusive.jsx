@@ -18,11 +18,7 @@ const Exclusive = () => {
             Exclusive Owner Properties in Chennai
           </h3>
         </div>
-        {/* <div className='col'>
-          <p className='mt-3 pt-3 mx-1 text-lg-end' style={{ color: '#D7242A' }}>
-            See all Projects
-          </p>
-        </div> */}
+       
           <div className='col'>
           <p className='mt-3 pt-3 mx-1 text-lg-end' style={{ color: '#D7242A',cursor: 'pointer' }} onClick={()=>{handleViewDetailss()}}>
             See all Projects <FaArrowRight />
