@@ -110,18 +110,17 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
     if (!formValue.description) {
       errors.description = "*Please enter description";
     }
-    if (selectedImage.length != 6) {
-      toast.warning("recommented to upload 6 site view images");
-      errors.selectedImage = "*Please";
-    }
+    // if (selectedImage.length != 6) {
+    //   toast.warning("recommented to upload 6 site view images");
+    //   errors.selectedImage = "*Please";
+    // }
 
     return errors;
   };
 
-  // console.log(selectedFile);
-  // console.log(selectedvalue);
   // Handle form submission
   const handleSubmit = async (e) => {
+    alert(first)
     e.preventDefault();
     const errors = validateForm();
     if (Object.keys(errors).length === 0) {
@@ -131,7 +130,7 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
         formData.append("phone", `+${user?.phone}`);
         formData.append("email", user?.email);
         formData.append("property_type", selectedPropType);
-        formData.append("plot.plot_type", "residential_plot");
+        formData.append("plot.plot_type", first);
         formData.append("you_are_here_to", second.toLowerCase());
         formData.append("owner", activeButton === "Owner");
         formData.append("plot.length", parseInt(formValue?.plotSize));
@@ -143,21 +142,27 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
         formData.append("title", formValue?.propertyName);
         formData.append("description", formValue?.description);
         formData.append("location", formValue?.propertyLocation);
-        // formData.append("city", "edappally");
         formData.append("sale_price", formValue?.salePrice);
         formData.append("advance", formValue?.advanceAmout);
         formData.append("unit", formValue?.AreaUnit);
         content.forEach((element, index) => {
           formData.append(`plot.facilities[${index}]name`, element);
         });
-        selectedImage.forEach((image, index) => {
-          formData.append(`plot_images[${index}]section`, "siteview");
-          formData.append(`plot_images[${index}]image`, image);
-        });
-        formData.append(`plot_images[0]section`, "FMB");
-        formData.append("plot_images[0]image", selectedFile);
-        // formData.append(`plot_images[0]section`,"location");
-        // formData.append("plot_images[0]image", selectedvalue);
+
+        if (selectedImage) {
+          selectedImage.forEach((image, index) => {
+            formData.append(`plot_images[${index}]section`, "siteview");
+            formData.append(`plot_images[${index}]image`, image);
+          });
+        }
+        if (selectedFile) {
+          formData.append(`plot_images[${7}]section`, "FMB");
+          formData.append(`plot_images[${7}]image`, selectedFile);
+        }
+        if (selectedvalue) {
+          formData.append(`plot_images[${8}]section`, "location_map");
+          formData.append(`plot_images[${8}]image`, selectedvalue);
+        }
 
         const response = await axios.post(
           `${Baseurl}createproperty/`,
@@ -499,7 +504,6 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
                   <option>ft</option>
                   <option>mt</option>
                 </select>
-           
               </div>
               {errors.plotBreadth && (
                 <div className="text-danger">{errors.plotBreadth}</div>
@@ -933,27 +937,7 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
                   </label>
                 </div>
 
-                {/* {selectedImage &&
-                selectedImage.map((image, index) => (
-                  <div key={index} className="mt-3 text-center ">
-                    <img
-                      src={URL.createObjectURL(image)}
-                      alt={image ? image.name : "upload image"}
-                      style={{
-                        width: "200px",
-                        maxHeight: "100px",
-                        borderRadius: "10px",
-                        border: "1px solid",
-                      }}
-                    />
-                    <button
-                      onClick={() => removeSelectedImage(index)}  
-                      className="btn btn-danger btn-sm mt-2"
-                    >
-                      <i className="fas fa-times"></i> Remove
-                    </button>
-                  </div>
-                ))} */}
+        
 
                 <div className="row">
                   {selectedImage &&

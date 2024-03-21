@@ -466,18 +466,18 @@ const Posting = () => {
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "commercial" ? "rest" : ""
+                    first === "commercial_plot" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("commercial")}
+                  onClick={() => handleButtonClicks("commercial_plot")}
                 >
                   Commercial Plot
                 </Button>
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "industrial" ? "rest" : ""
+                    first === "industrial_plot" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("industrial")}
+                  onClick={() => handleButtonClicks("industrial_plot")}
                 >
                   Industrial Plot
                 </Button>
@@ -869,7 +869,14 @@ const Posting = () => {
           />
         )}
 
-        {activeButton === "Owner" && first && second === "Rent" && <Rentform />}
+        {activeButton === "Owner" && first && second === "Rent" &&
+         <Rentform
+         activeButton={activeButton}
+         user={user}
+         first={first}
+         second={second}
+         selectedPropType={selectedPropType}
+         />}
         {activeButton === "Owner" && first && second === "Lease" && (
           <Leaseform />
         )}
