@@ -73,7 +73,7 @@ const Posting = () => {
 
   // Function to handle phone number changes
   const handlePhoneChange = (e) => {
-     setUser({...user,phone:e})
+    setUser({ ...user, phone: e });
   };
 
   const handleImageChange = (event) => {
@@ -335,8 +335,6 @@ const Posting = () => {
                       borderRadius: "4px",
                     }}
                   />
-
-
                 </Form.Group>
               </Col>
               <Col md={4} className="ms-5">
@@ -869,16 +867,23 @@ const Posting = () => {
           />
         )}
 
-        {activeButton === "Owner" && first && second === "Rent" &&
-         <Rentform
-         activeButton={activeButton}
-         user={user}
-         first={first}
-         second={second}
-         selectedPropType={selectedPropType}
-         />}
+        {activeButton === "Owner" && first && second === "Rent" && (
+          <Rentform
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+          />
+        )}
         {activeButton === "Owner" && first && second === "Lease" && (
-          <Leaseform />
+          <Leaseform
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+          />
         )}
 
         {four === "Industrial Building" && second === "Sell" && (
@@ -978,15 +983,28 @@ const Posting = () => {
             user={user}
             first={first}
             second={second}
+            selectedPropType={selectedPropType}
           />
         )}
 
         {activeButton === "Agent" && first && second === "Rent" && (
-          <Rentform activeButton={activeButton} />
+          <Rentform  
+          activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          />
         )}
 
         {activeButton === "Agent" && first && second === "Lease" && (
-          <Leaseform activeButton={activeButton} />
+          <Leaseform 
+          activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          />
         )}
         {activeButton === "Agent" && third === "Top" && second === "Sell" && (
           <Restform activeButton={activeButton} />
@@ -1050,13 +1068,26 @@ const Posting = () => {
             user={user}
             first={first}
             second={second}
+            selectedPropType={selectedPropType}
           />
         )}
         {activeButton === "Builder" && first && second === "Rent" && (
-          <Rentform activeButton={activeButton} />
+          <Rentform  
+          activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          />
         )}
         {activeButton === "Builder" && first && second === "Lease" && (
-          <Leaseform activeButton={activeButton} />
+          <Leaseform   
+          activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          />
         )}
         {activeButton === "Builder" && third === "Top" && second === "Sell" && (
           <Restform activeButton={activeButton} />

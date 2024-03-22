@@ -170,6 +170,7 @@ const Rentform = ({ activeButton, user, first, second, selectedPropType }) => {
   const [selectedImage, setSelectedImage] = useState([]);
   const [selectedFile, setSelectedFile] = useState("");
   const [selectedvalue, setselectedvalue] = useState("");
+  const [selectedLogo, setselectedLogo] = useState("");
 
   const handleUpload = () => {
     if (upload === "Site View" && selectedImage) {
@@ -215,6 +216,11 @@ const Rentform = ({ activeButton, user, first, second, selectedPropType }) => {
 
     setselectedvalue(file);
   };
+  const handleImageLogo = (event) => {
+    const file = event.target.files[0];
+
+    setselectedLogo(file);
+  };
 
 const removeSelectedImage = (indexToRemove) => {
     setSelectedImage((prevSelectedImages) =>
@@ -229,6 +235,10 @@ const removeSelectedImage = (indexToRemove) => {
     setselectedvalue("");
   };
 
+  const removeSelectedLogo = () => {
+    setselectedLogo("");
+  };
+
   const [formData, setFormData] = useState({
     propertyName: "",
     propertyLocation: "",
@@ -239,6 +249,7 @@ const removeSelectedImage = (indexToRemove) => {
     rentAmount: "",
     advanceAmount: "",
     description: "",
+    agentCommision:""
   });
 
   const [errors, setErrors] = useState({});
@@ -254,6 +265,8 @@ const removeSelectedImage = (indexToRemove) => {
   
     submitForm(formData);
   };
+
+ 
   
   const validateFormData = (data) => {
     const errors = {};
@@ -299,6 +312,8 @@ const removeSelectedImage = (indexToRemove) => {
     formValue.append("plot.plot_type", first);
     formValue.append("you_are_here_to", second.toLowerCase());
     formValue.append("owner", activeButton === "Owner");
+    formValue.append("agent", activeButton === "Agent");
+    formValue.append("builder", activeButton === "Builder");
     formValue.append("plot.length", parseInt(formData?.plotSize));
     formValue.append("plot.breadth", parseInt(formData?.ploatBreadth));
     formValue.append("area_sqft", parseInt(formData?.ploatArea));
@@ -310,6 +325,9 @@ const removeSelectedImage = (indexToRemove) => {
     formValue.append("location", formData?.propertyLocation);
     formValue.append("sale_price", formData?.rentAmount);
     formValue.append("rent", formData?.rentAmount);
+    if (activeButton === "Agent") {
+      formValue.append("agent_commission", formData?.agentCommision);
+    }
     formValue.append("advance", formData?.advanceAmount);
     formValue.append("unit", formData?.AreaUnit);
     content.forEach((element, index) => {
@@ -332,6 +350,10 @@ const removeSelectedImage = (indexToRemove) => {
     if (selectedvalue) {
       formValue.append(`plot_images[${8}]section`, "location_map");
       formValue.append(`plot_images[${8}]image`, selectedvalue);
+    }
+    if (activeButton === "Builder" && selectedLogo) {
+      formValue.append(`plot_images[${9}]section`,"logo");
+      formValue.append(`plot_images[${9}]image`, selectedLogo);
     }
    try{
     const response = await axios.post(
@@ -795,6 +817,10 @@ const removeSelectedImage = (indexToRemove) => {
                   type="number"
                   placeholder="Rs"
                   style={formControlStyle}
+                  name="agentCommision"
+                isInvalid={!!errors.agentCommision}
+                value={formData.agentCommision}
+                onChange={handleChange}
                 />
               </Form.Group>
             </Col>
@@ -1031,47 +1057,44 @@ const removeSelectedImage = (indexToRemove) => {
               )}
             </div>
           )}
-          {upload === "Logo" && (
-            <div>
-              <div
-                className="file-input d-flex justify-content-center align-items-center"
-                onClick={handleUpload}
-              >
-                <input
-                  type="file"
-                  name="file-input"
-                  id="file-input"
-                  className="file-input__input"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                />
-                <label className="file-input__label" htmlFor="file-input">
-                  <span>Upload file</span>
-                </label>
-              </div>
-              <p>Logo</p>
-              {selectedImage && (
-                <div className="mt-3 text-center">
-                  <img
-                    src={URL.createObjectURL(selectedImage)}
-                    alt={selectedImage ? selectedImage.name : "upload image"}
-                    style={{
-                      width: "200px",
-                      maxHeight: "100px",
-                      borderRadius: "10px",
-                      border: "1px solid",
-                    }}
+             {upload === "Logo" && (
+              <div>
+                <div className="file-input d-flex justify-content-center align-items-center">
+                  <input
+                    type="file"
+                    name="file-input"
+                    id="file-input"
+                    className="file-input__input"
+                    accept="image/*"
+                    onChange={handleImageLogo}
                   />
-                  <button
-                    onClick={removeSelectedImage}
-                    className="btn btn-danger btn-sm mt-2"
-                  >
-                    <i className="fas fa-times"></i> Remove
-                  </button>
+                  <label className="file-input__label" htmlFor="file-input">
+                    <span>Upload file</span>
+                  </label>
                 </div>
-              )}
-            </div>
-          )}
+
+                {selectedLogo && (
+                  <div className="mt-3 text-center">
+                    <img
+                      src={URL.createObjectURL(selectedLogo)}
+                      alt={selectedLogo ? selectedLogo.name : "upload image"}
+                      style={{
+                        width: "200px",
+                        maxHeight: "100px",
+                        borderRadius: "10px",
+                        border: "1px solid",
+                      }}
+                    />
+                    <button
+                      onClick={removeSelectedLogo}
+                      className="btn btn-danger btn-sm mt-2"
+                    >
+                      <i className="fas fa-times"></i> Remove
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
         </Card.Body>
       </Card>
       {Object.keys(errors).length > 0 && (

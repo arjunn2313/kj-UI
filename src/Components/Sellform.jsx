@@ -120,11 +120,11 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    alert(first)
     e.preventDefault();
     const errors = validateForm();
     if (Object.keys(errors).length === 0) {
       try {
+        console.log(selectedPropType);
         const formData = new FormData();
         formData.append("name", user?.userName);
         formData.append("phone", `+${user?.phone}`);
@@ -133,6 +133,8 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
         formData.append("plot.plot_type", first);
         formData.append("you_are_here_to", second.toLowerCase());
         formData.append("owner", activeButton === "Owner");
+        formData.append("agent", activeButton === "Agent");
+        formData.append("builder", activeButton === "Builder");
         formData.append("plot.length", parseInt(formValue?.plotSize));
         formData.append("plot.breadth", parseInt(formValue?.plotBreadth));
         formData.append("area_sqft", parseInt(formValue?.totalArea));
@@ -143,6 +145,10 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
         formData.append("description", formValue?.description);
         formData.append("location", formValue?.propertyLocation);
         formData.append("sale_price", formValue?.salePrice);
+        if (activeButton === "Agent") {
+          formData.append("agent_commission", formValue?.agentCommision);
+        }
+
         formData.append("advance", formValue?.advanceAmout);
         formData.append("unit", formValue?.AreaUnit);
         content.forEach((element, index) => {
@@ -162,6 +168,10 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
         if (selectedvalue) {
           formData.append(`plot_images[${8}]section`, "location_map");
           formData.append(`plot_images[${8}]image`, selectedvalue);
+        }
+        if (activeButton === "Builder" && selectedLogo) {
+          formData.append(`plot_images[${9}]section`, "logo");
+          formData.append(`plot_images[${9}]image`, selectedLogo);
         }
 
         const response = await axios.post(
@@ -799,6 +809,9 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
                   onChange={handleChange}
                   required
                 />
+                {errors.agentCommision && (
+                  <div className="text-danger">{errors.agentCommision}</div>
+                )}
               </Form.Group>
             </Col>
           )}
@@ -936,8 +949,6 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
                     <span>Upload file</span>
                   </label>
                 </div>
-
-        
 
                 <div className="row">
                   {selectedImage &&
