@@ -124,23 +124,40 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
     const errors = validateForm();
     if (Object.keys(errors).length === 0) {
       try {
-        console.log(selectedPropType);
         const formData = new FormData();
         formData.append("name", user?.userName);
         formData.append("phone", `+${user?.phone}`);
         formData.append("email", user?.email);
-        formData.append("property_type", selectedPropType);
-        formData.append("plot.plot_type", first);
+        if (selectedPropType === "plot") {
+          formData.append("property_type", selectedPropType);
+          formData.append("plot.plot_type", first);
+          formData.append("plot.length", parseInt(formValue?.plotSize));
+          formData.append("plot.breadth", parseInt(formValue?.plotBreadth));
+          formData.append("plot.road_width", parseInt(formValue?.roadWidth));
+          formData.append("plot.direction_facing", formValue?.direction);
+          formData.append("plot.approval", formValue?.category);
+          content.forEach((element, index) => {
+            formData.append(`plot.facilities[${index}]name`, element);
+          });
+        }
+        if (selectedPropType === "land") {
+          formData.append("property_type", selectedPropType);
+          formData.append("land.land_type", first);
+          formData.append("land.length", parseInt(formValue?.plotSize));
+          formData.append("land.breadth", parseInt(formValue?.plotBreadth));
+          formData.append("land.road_width", parseInt(formValue?.roadWidth));
+          formData.append("land.direction_facing", formValue?.direction);
+          formData.append("land.approval", formValue?.category);
+          formData.append("land.total_area",parseInt(formValue?.totalArea));
+          content.forEach((element, index) => {
+            formData.append(`land.facilities[${index}]name`, element);
+          });
+        }
         formData.append("you_are_here_to", second.toLowerCase());
         formData.append("owner", activeButton === "Owner");
         formData.append("agent", activeButton === "Agent");
         formData.append("builder", activeButton === "Builder");
-        formData.append("plot.length", parseInt(formValue?.plotSize));
-        formData.append("plot.breadth", parseInt(formValue?.plotBreadth));
         formData.append("area_sqft", parseInt(formValue?.totalArea));
-        formData.append("plot.road_width", parseInt(formValue?.roadWidth));
-        formData.append("plot.direction_facing", formValue?.direction);
-        formData.append("plot.approval", formValue?.category);
         formData.append("title", formValue?.propertyName);
         formData.append("description", formValue?.description);
         formData.append("location", formValue?.propertyLocation);
@@ -151,9 +168,7 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
 
         formData.append("advance", formValue?.advanceAmout);
         formData.append("unit", formValue?.AreaUnit);
-        content.forEach((element, index) => {
-          formData.append(`plot.facilities[${index}]name`, element);
-        });
+      
 
         if (selectedImage) {
           selectedImage.forEach((image, index) => {

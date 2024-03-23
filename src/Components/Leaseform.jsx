@@ -249,27 +249,27 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
     leaseAmount: "",
     advanceAmount: "",
     description: "",
-    agentCommision:""
+    agentCommision: "",
   });
 
   const [errors, setErrors] = useState({});
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  
+
     const newErrors = validateFormData(formData);
-  
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-  
+
     submitForm(formData);
   };
 
   const validateFormData = (data) => {
     const errors = {};
-  
+
     if (!data.propertyName.trim()) {
       errors.propertyName = "Please enter a property name";
     }
@@ -297,38 +297,58 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
-    if(activeButton === "Agent"){
+    if (activeButton === "Agent") {
       if (!data.agentCommision.trim()) {
         errors.agentCommision = "Please enter agent commision";
       }
     }
-  
-  
+
     return errors;
   };
 
-  const submitForm = async(formData) => {
+  const submitForm = async (formData) => {
     console.log(formData);
     const formValue = new FormData();
     formValue.append("name", user?.userName);
     formValue.append("phone", `+${user?.phone}`);
     formValue.append("email", user?.email);
-    formValue.append("property_type", selectedPropType);
-    formValue.append("plot.plot_type", first);
+
     formValue.append("you_are_here_to", second.toLowerCase());
     formValue.append("owner", activeButton === "Owner");
     formValue.append("agent", activeButton === "Agent");
     formValue.append("builder", activeButton === "Builder");
-    formValue.append("plot.length", parseInt(formData?.plotSize));
-    formValue.append("plot.breadth", parseInt(formData?.ploatBreadth));
+    if (selectedPropType === "plot") {
+      formValue.append("property_type", selectedPropType);
+      formValue.append("plot.plot_type", first);
+      formValue.append("plot.length", parseInt(formValue?.plotSize));
+      formValue.append("plot.breadth", parseInt(formValue?.plotBreadth));
+      formValue.append("plot.road_width", parseInt(formValue?.roadWidth));
+      formValue.append("plot.direction_facing", formValue?.direction);
+      formValue.append("plot.approval", formValue?.category);
+      content.forEach((element, index) => {
+        formValue.append(`plot.facilities[${index}]name`, element);
+      });
+    }
+    if (selectedPropType === "land") {
+      formValue.append("property_type", selectedPropType);
+      formValue.append("land.land_type", first);
+      formValue.append("land.length", parseInt(formValue?.plotSize));
+      formValue.append("land.breadth", parseInt(formValue?.plotBreadth));
+      formValue.append("land.road_width", parseInt(formValue?.roadWidth));
+      formValue.append("land.direction_facing", formValue?.direction);
+      formValue.append("land.approval", formValue?.category);
+      formValue.append("land.total_area", parseInt(formValue?.totalArea));
+      content.forEach((element, index) => {
+        formValue.append(`land.facilities[${index}]name`, element);
+      });
+    }
+
     formValue.append("area_sqft", parseInt(formData?.ploatArea));
-    formValue.append("plot.road_width", parseInt(formData?.ploatWidth));
-    formValue.append("plot.direction_facing", formData?.direction);
-    formValue.append("plot.approval", formData?.category);
+
     formValue.append("title", formData?.propertyName);
     formValue.append("description", formData?.description);
     formValue.append("location", formData?.propertyLocation);
-    formValue.append("sale_price", formData?.leaseAmount);
+    formValue.append("sale_price", formData?.leaseAmount); //dummy
     formValue.append("lease_amount", formData?.leaseAmount);
     formValue.append("advance", formData?.advanceAmount);
     formValue.append("unit", formData?.AreaUnit);
@@ -354,47 +374,45 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
       formValue.append(`plot_images[${8}]image`, selectedvalue);
     }
     if (activeButton === "Builder" && selectedLogo) {
-      formValue.append(`plot_images[${9}]section`,"logo");
+      formValue.append(`plot_images[${9}]section`, "logo");
       formValue.append(`plot_images[${9}]image`, selectedLogo);
     }
-   try{
-    const response = await axios.post(
-      `${Baseurl}createproperty/`,
-      formValue,
-      UserConfig
-    );
-    console.log(response.data);
-    toast.success("Submitted", {
-      hideProgressBar: true,
-      position: "top-center",
-    });
-    setFormData({
-      propertyName: "",
-      propertyLocation: "",
-      plotSize: "",
-      ploatBreadth: "",
-      ploatArea: "",
-      ploatWidth: "",
-      leaseAmount : "",
-      advanceAmount: "",
-      description: "",
-      AreaUnit:"",
-      category:""
-    })
-    setContent([])
-    setSelectedImage([])
-    setSelectedFile("")
-    setselectedvalue("")
-  } catch (error) {
-    console.error("Server error", error);
-    toast.error("something went wrong", {
-      hideProgressBar: true,
-      position: "top-center",
-    });
-  }
+    try {
+      const response = await axios.post(
+        `${Baseurl}createproperty/`,
+        formValue,
+        UserConfig
+      );
+      console.log(response.data);
+      toast.success("Submitted", {
+        hideProgressBar: true,
+        position: "top-center",
+      });
+      setFormData({
+        propertyName: "",
+        propertyLocation: "",
+        plotSize: "",
+        ploatBreadth: "",
+        ploatArea: "",
+        ploatWidth: "",
+        leaseAmount: "",
+        advanceAmount: "",
+        description: "",
+        AreaUnit: "",
+        category: "",
+      });
+      setContent([]);
+      setSelectedImage([]);
+      setSelectedFile("");
+      setselectedvalue("");
+    } catch (error) {
+      console.error("Server error", error);
+      toast.error("something went wrong", {
+        hideProgressBar: true,
+        position: "top-center",
+      });
+    }
   };
-  
- 
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -404,8 +422,8 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
     });
     setErrors({
       ...errors,
-      [name] : ""
-    })
+      [name]: "",
+    });
   };
 
   return (
@@ -424,7 +442,7 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
                 value={formData.propertyName}
                 onChange={handleChange}
               />
-                 <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type="invalid">
                 {errors.propertyName}
               </Form.Control.Feedback>
             </Form.Group>
@@ -442,7 +460,7 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
                 value={formData.propertyLocation}
                 onChange={handleChange}
               />
-                 <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type="invalid">
                 {errors.propertyLocation}
               </Form.Control.Feedback>
             </Form.Group>
@@ -555,7 +573,7 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
                   onChange={handleChange}
                   name="AreaUnit"
                 >
-                 <option value="sqft">ft</option>
+                  <option value="sqft">ft</option>
                   <option value="sqft">m</option>
                   <option value="sqft">sqft</option>
                 </select>
@@ -799,7 +817,7 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
                 value={formData.advanceAmount}
                 onChange={handleChange}
               />
-                <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type="invalid">
                 {errors.advanceAmount}
               </Form.Control.Feedback>
             </Form.Group>
@@ -821,8 +839,8 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
                   onChange={handleChange}
                 />
                 <Form.Control.Feedback type="invalid">
-                {errors.agentCommision}
-              </Form.Control.Feedback>
+                  {errors.agentCommision}
+                </Form.Control.Feedback>
               </Form.Group>
             </Col>
           )}
@@ -851,7 +869,7 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
         value={formData.description}
         onChange={handleChange}
       ></textarea>
-           {errors.description && (
+      {errors.description && (
         <div className="text-danger">{errors.description}</div>
       )}
       <h5 className="mt-5 gy-3">Upload Photos</h5>
@@ -1155,7 +1173,7 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
         </div>
       )}
       <div className="d-flex justify-content-center">
-      <button
+        <button
           type="button"
           onClick={handleSubmit}
           className="buttonmobile mt-5"

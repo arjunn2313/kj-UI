@@ -488,54 +488,54 @@ const Posting = () => {
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "residentialLand" ? "rest" : ""
+                    first === "residential_land" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("residentialLand")}
+                  onClick={() => handleButtonClicks("residential_land")}
                 >
                   Residential Land
                 </Button>
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "Industrial Land" ? "rest" : ""
+                    first === "industrial_land" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("Industrial Land")}
+                  onClick={() => handleButtonClicks("industrial_land")}
                 >
                   Industrial Land
                 </Button>
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "Agricultural  Land" ? "rest" : ""
+                    first === "agricultural_land" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("Agricultural  Land")}
+                  onClick={() => handleButtonClicks("agricultural_land")}
                 >
                   Agricultural Land
                 </Button>
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "Plantation" ? "rest" : ""
+                    first === "plantation" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("Plantation")}
+                  onClick={() => handleButtonClicks("plantation")}
                 >
                   Plantation
                 </Button>
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "Estate" ? "rest" : ""
+                    first === "estate" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("Estate")}
+                  onClick={() => handleButtonClicks("estate")}
                 >
                   Estate
                 </Button>
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "Farm  Land" ? "rest" : ""
+                    first === "farm_land" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("Farm  Land")}
+                  onClick={() => handleButtonClicks("farm_land")}
                 >
                   Farm Land
                 </Button>

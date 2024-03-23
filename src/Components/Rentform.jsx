@@ -308,18 +308,37 @@ const removeSelectedImage = (indexToRemove) => {
     formValue.append("name", user?.userName);
     formValue.append("phone", `+${user?.phone}`);
     formValue.append("email", user?.email);
-    formValue.append("property_type", selectedPropType);
-    formValue.append("plot.plot_type", first);
+    if (selectedPropType === "plot") {
+      formValue.append("property_type", selectedPropType);
+      formValue.append("plot.plot_type", first);
+      formValue.append("plot.length", parseInt(formValue?.plotSize));
+      formValue.append("plot.breadth", parseInt(formValue?.plotBreadth));
+      formValue.append("plot.road_width", parseInt(formValue?.roadWidth));
+      formValue.append("plot.direction_facing", formValue?.direction);
+      formValue.append("plot.approval", formValue?.category);
+      content.forEach((element, index) => {
+        formValue.append(`plot.facilities[${index}]name`, element);
+      });
+    }
+    if (selectedPropType === "land") {
+      formValue.append("property_type", selectedPropType);
+      formValue.append("land.land_type", first);
+      formValue.append("land.length", parseInt(formValue?.plotSize));
+      formValue.append("land.breadth", parseInt(formValue?.plotBreadth));
+      formValue.append("land.road_width", parseInt(formValue?.roadWidth));
+      formValue.append("land.direction_facing", formValue?.direction);
+      formValue.append("land.approval", formValue?.category);
+      formValue.append("land.total_area",parseInt(formValue?.totalArea));
+      content.forEach((element, index) => {
+        formValue.append(`land.facilities[${index}]name`, element);
+      });
+    }
+ 
     formValue.append("you_are_here_to", second.toLowerCase());
     formValue.append("owner", activeButton === "Owner");
     formValue.append("agent", activeButton === "Agent");
     formValue.append("builder", activeButton === "Builder");
-    formValue.append("plot.length", parseInt(formData?.plotSize));
-    formValue.append("plot.breadth", parseInt(formData?.ploatBreadth));
     formValue.append("area_sqft", parseInt(formData?.ploatArea));
-    formValue.append("plot.road_width", parseInt(formData?.ploatWidth));
-    formValue.append("plot.direction_facing", formData?.direction);
-    formValue.append("plot.approval", formData?.category);
     formValue.append("title", formData?.propertyName);
     formValue.append("description", formData?.description);
     formValue.append("location", formData?.propertyLocation);
