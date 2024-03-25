@@ -936,7 +936,14 @@ const Posting = () => {
           four !== "Industrial shed" &&
           four !== "Factory" &&
           four !== "PG Home" &&
-          four !== "PG Hostel" && <Commercialsell />}
+          four !== "PG Hostel" && 
+          <Commercialsell 
+          activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          />}
         {activeButton === "Owner" &&
           four &&
           second === "Rent" &&
