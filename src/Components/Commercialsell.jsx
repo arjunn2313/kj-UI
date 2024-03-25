@@ -427,6 +427,7 @@ const Commercialsell = ({
     submitForm(formValue);
   };
 
+  console.log(input);
   // form submittion after validation
   const submitForm = async (formValue) => {
     const formData = new FormData();
@@ -438,10 +439,21 @@ const Commercialsell = ({
     formData.append("you_are_here_to", second.toLowerCase());
     formData.append("owner", activeButton === "Owner");
     formData.append("title", formValue?.propertyName);
-    formData.append("area_sqft", parseInt(formValue?.area));
+    formData.append("showroom.built_up_area", parseInt(formValue?.area));
+    formData.append("showroom.built_up_area_unit", "sqft");
+    formData.append("showroom.unit", "sqft");
     formData.append("showroom.available_floors", parseInt(formValue?.floors));
     formData.append("showroom.total_floors", formValue?.totalFloor);
     formData.append("showroom.category_of_project", formValue?.category);
+    formData.append(
+      "showroom.no_of_two_wheeler_parking",
+      formValue?.twoParking
+    );
+    formData.append(
+      "showroom.no_of_car_parking",
+      formValue?.carParking
+    );
+    formData.append("showroom.condition", formValue?.condition);
     formData.append("showroom.status", formValue?.status);
     formData.append("description", formValue?.description);
     formData.append("location", formValue?.propertyLocation);
@@ -451,10 +463,13 @@ const Commercialsell = ({
     formData.append("advance", formValue?.advanceAmount);
     formData.append("unit", formValue?.AreaUnit);
     data.forEach((element, index) => {
-      formData.append(`showroom.facilities[${index}]name`, element);
+      formData.append(`showroom.indoor_facilities[${index}]name`, element);
     });
     count.forEach((element, index) => {
-      formData.append(`showroom.facilities[${index}]name`, element);
+      formData.append(
+        `showroom.outdoor_facilities[${index}]name`,
+        element
+      );
     });
     if (selectedImage) {
       formData.append(`showroom_images[${0}]section`, "exterior");
@@ -462,7 +477,7 @@ const Commercialsell = ({
     }
     if (selectedFile) {
       formData.append(`showroom_images[${1}]section`, "Interior");
-      formData.append(`showroom_images[${1}]image` , selectedFile);
+      formData.append(`showroom_images[${1}]image`, selectedFile);
     }
     if (selectedroom) {
       formData.append(`showroom_images[${2}]section`, "washroom");
@@ -481,9 +496,9 @@ const Commercialsell = ({
       formData.append(`showroom_images[${5}]image`, selectedLogo);
     }
 
-    formData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
+    // formData.forEach((value, key) => {
+    //   console.log(`${key}: ${value}`);
+    // });
 
     try {
       const response = await axios.post(

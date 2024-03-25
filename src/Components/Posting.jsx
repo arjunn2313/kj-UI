@@ -164,7 +164,7 @@ const Posting = () => {
       setPlot(false);
       setCommercial(true);
       setResidential(false);
-      setSelectedPropType("commercial property");
+      setSelectedPropType("commercial_properties");
     }
   };
 
