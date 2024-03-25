@@ -449,10 +449,11 @@ const Commercialsell = ({
       "showroom.no_of_two_wheeler_parking",
       formValue?.twoParking
     );
-    formData.append(
-      "showroom.no_of_car_parking",
-      formValue?.carParking
-    );
+    formData.append("showroom.no_of_car_parking", formValue?.carParking);
+    // dummy data to avoid errors
+    formData.append("area_sqft", 10);
+    formData.append("unit", "sqft");
+    // ddddd
     formData.append("showroom.condition", formValue?.condition);
     formData.append("showroom.status", formValue?.status);
     formData.append("description", formValue?.description);
@@ -461,22 +462,24 @@ const Commercialsell = ({
     formData.append("showroom.floor_number", formValue?.floorNumber);
     formData.append("sale_price", formValue?.salePrice);
     formData.append("advance", formValue?.advanceAmount);
-    formData.append("unit", formValue?.AreaUnit);
     data.forEach((element, index) => {
-      formData.append(`showroom.indoor_facilities[${index}]name`, element);
+      formData.append(
+        `showroom.indoor_facilities[${index}]facility.name`,
+        element
+      );
     });
     count.forEach((element, index) => {
       formData.append(
-        `showroom.outdoor_facilities[${index}]name`,
+        `showroom.outdoor_facilities[${index}]facility.name`,
         element
       );
     });
     if (selectedImage) {
-      formData.append(`showroom_images[${0}]section`, "exterior");
+      formData.append(`showroom_images[${0}]section`, "exterior_view");
       formData.append(`showroom_images[${0}]image`, selectedImage);
     }
     if (selectedFile) {
-      formData.append(`showroom_images[${1}]section`, "Interior");
+      formData.append(`showroom_images[${1}]section`, "interior_view");
       formData.append(`showroom_images[${1}]image`, selectedFile);
     }
     if (selectedroom) {
@@ -495,11 +498,6 @@ const Commercialsell = ({
       formData.append(`showroom_images[${5}]section`, "washroom");
       formData.append(`showroom_images[${5}]image`, selectedLogo);
     }
-
-    // formData.forEach((value, key) => {
-    //   console.log(`${key}: ${value}`);
-    // });
-
     try {
       const response = await axios.post(
         ` ${Baseurl}createproperty/`,

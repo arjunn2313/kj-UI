@@ -164,7 +164,7 @@ const Posting = () => {
       setPlot(false);
       setCommercial(true);
       setResidential(false);
-      setSelectedPropType("commercial_properties");
+      setSelectedPropType("commercial");
     }
   };
 
@@ -936,14 +936,15 @@ const Posting = () => {
           four !== "Industrial shed" &&
           four !== "Factory" &&
           four !== "PG Home" &&
-          four !== "PG Hostel" && 
-          <Commercialsell 
-          activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
-          />}
+          four !== "PG Hostel" && (
+            <Commercialsell
+              activeButton={activeButton}
+              user={user}
+              first={first}
+              second={second}
+              selectedPropType={selectedPropType}
+            />
+          )}
         {activeButton === "Owner" &&
           four &&
           second === "Rent" &&
@@ -971,7 +972,13 @@ const Posting = () => {
           third === "bottom" &&
           second === "Sell" && <Flatapartsell />}
         {activeButton === "Owner" && third === "Top" && second === "Rent" && (
-          <Restland />
+          <Restland
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+          />
         )}
         {activeButton === "Owner" &&
           third === "bottom" &&
@@ -995,22 +1002,22 @@ const Posting = () => {
         )}
 
         {activeButton === "Agent" && first && second === "Rent" && (
-          <Rentform  
-          activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
+          <Rentform
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
           />
         )}
 
         {activeButton === "Agent" && first && second === "Lease" && (
-          <Leaseform 
-          activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
+          <Leaseform
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
           />
         )}
         {activeButton === "Agent" && third === "Top" && second === "Sell" && (
@@ -1079,21 +1086,21 @@ const Posting = () => {
           />
         )}
         {activeButton === "Builder" && first && second === "Rent" && (
-          <Rentform  
-          activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
+          <Rentform
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
           />
         )}
         {activeButton === "Builder" && first && second === "Lease" && (
-          <Leaseform   
-          activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
+          <Leaseform
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
           />
         )}
         {activeButton === "Builder" && third === "Top" && second === "Sell" && (
