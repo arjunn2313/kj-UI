@@ -311,11 +311,11 @@ const removeSelectedImage = (indexToRemove) => {
     if (selectedPropType === "plot") {
       formValue.append("property_type", selectedPropType);
       formValue.append("plot.plot_type", first);
-      formValue.append("plot.length", parseInt(formValue?.plotSize));
-      formValue.append("plot.breadth", parseInt(formValue?.plotBreadth));
-      formValue.append("plot.road_width", parseInt(formValue?.roadWidth));
-      formValue.append("plot.direction_facing", formValue?.direction);
-      formValue.append("plot.approval", formValue?.category);
+      formValue.append("plot.length", parseInt(formData?.plotSize));
+      formValue.append("plot.breadth", parseInt(formData?.ploatBreadth));
+      formValue.append("plot.road_width", parseInt(formData?.ploatWidth));
+      formValue.append("plot.direction_facing", formData?.direction);
+      formValue.append("plot.approval", formData?.category);
       content.forEach((element, index) => {
         formValue.append(`plot.facilities[${index}]name`, element);
       });
@@ -323,12 +323,12 @@ const removeSelectedImage = (indexToRemove) => {
     if (selectedPropType === "land") {
       formValue.append("property_type", selectedPropType);
       formValue.append("land.land_type", first);
-      formValue.append("land.length", parseInt(formValue?.plotSize));
-      formValue.append("land.breadth", parseInt(formValue?.plotBreadth));
-      formValue.append("land.road_width", parseInt(formValue?.roadWidth));
-      formValue.append("land.direction_facing", formValue?.direction);
-      formValue.append("land.approval", formValue?.category);
-      formValue.append("land.total_area",parseInt(formValue?.totalArea));
+      formValue.append("land.length", parseInt(formData?.plotSize));
+      formValue.append("land.breadth", parseInt(formData?.plotBreadth));
+      formValue.append("land.road_width", parseInt(formData?.roadWidth));
+      formValue.append("land.direction_facing", formData?.direction);
+      formValue.append("land.approval", formData?.category);
+      formValue.append("land.total_area",parseInt(formData?.totalArea));
       content.forEach((element, index) => {
         formValue.append(`land.facilities[${index}]name`, element);
       });

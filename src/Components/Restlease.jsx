@@ -330,6 +330,7 @@ const formControlStyle = {
   
     return (
         <div>
+          lease
         <Form className="mx-3">
           <Row className="gx-md-3">
             <Col md={6}>
