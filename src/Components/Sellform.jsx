@@ -342,11 +342,11 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
   const handleImageChange = (event) => {
     const files = event.target.files;
     if (files.length + selectedImage.length > 6) {
-      // Display an alert or message indicating the limit is reached
+     
       alert("You can only upload a maximum of 6 images.");
       return;
     }
-    // Add the selected images to the state
+   
     setSelectedImage((prevImages) => [...prevImages, ...files]);
   };
 
@@ -364,9 +364,7 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
 
     setselectedLogo(file);
   };
-  // const removeSelectedImage = () => {
-  //   setSelectedImage("");
-  // };
+ 
 
   const removeSelectedImage = (indexToRemove) => {
     setSelectedImage((prevSelectedImages) =>

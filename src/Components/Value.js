@@ -51,7 +51,7 @@ villa:"4 BHK Villa",
 value:"₹ 90 Lac",
 title:"In AA Jayam Flats, Perumbakkam",
 feet:"1200 sqft",
-own:"Under Construction",
+own:"Posted by owner",
 hrs:"22hrs ago",
 thumbnail: v2
 },
@@ -63,7 +63,7 @@ value:"₹ 90 Lac",
 title:"In AA Jayam Flats, Perumbakkam",
 feet:"1200 sqft",
 own:"Posted by owner",
-hrs:"22hrs ago",
+hrs:"Ready to move",
 thumbnail: v1
 },
 {
@@ -76,7 +76,20 @@ feet:"1200 sqft",
 own:"Posted by owner",
 hrs:"22hrs ago",
 thumbnail: v2
-}
+},
+{
+
+  id:8,
+  villa:"3 BHK Villa",
+  value:"₹ 90 Lac",
+  title:"In AA Jayam Flats, Perumbakkam",
+  feet:"1200 sqft",
+  own:"Posted by owner",
+  hrs:"Ready to move",
+  thumbnail: v1
+  },
+
+
 ];
 
 

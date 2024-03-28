@@ -164,7 +164,7 @@ const Posting = () => {
       setPlot(false);
       setCommercial(true);
       setResidential(false);
-      setSelectedPropType("commercial property");
+      setSelectedPropType("commercial");
     }
   };
 
@@ -733,18 +733,18 @@ const Posting = () => {
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "Office" ? "rest" : ""
+                      four === "office" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("Office")}
+                    onClick={() => handlecommercial("office")}
                   >
                     Office
                   </Button>
                   <Button
                     type="button"
                     className={`btn btn-outline-light  customplot rounded-pill ${
-                      four === "Shop" ? "rest" : ""
+                      four === "shop" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("Shop")}
+                    onClick={() => handlecommercial("shop")}
                   >
                     Shop
                   </Button>
@@ -761,9 +761,9 @@ const Posting = () => {
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "Godown" ? "rest" : ""
+                      four === "godown" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("Godown")}
+                    onClick={() => handlecommercial("godown")}
                   >
                     Godown
                   </Button>
@@ -780,18 +780,18 @@ const Posting = () => {
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "Co-working Space" ? "rest" : ""
+                      four === "co_working_space" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("Co-working Space")}
+                    onClick={() => handlecommercial("co_working_space")}
                   >
                     Co-working Space
                   </Button>
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "Commercial complex" ? "rest" : ""
+                      four === "commercial_complex" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("Commercial complex")}
+                    onClick={() => handlecommercial("commercial_complex")}
                   >
                     Commercial complex
                   </Button>
@@ -875,7 +875,12 @@ const Posting = () => {
         )}
 
         {four === "Industrial Building" && second === "Sell" && (
-          <Servicesell activeButton={activeButton} />
+          <Servicesell 
+          activeButton={activeButton}
+          user={user}
+          four={four}
+          second={second}
+          selectedPropType={selectedPropType}/>
         )}
         {four === "Industrial Building" && second === "Rent" && (
           <Servicerent activeButton={activeButton} />
@@ -884,7 +889,12 @@ const Posting = () => {
           <Servicelease activeButton={activeButton} />
         )}
         {four === "Industrial shed" && second === "Sell" && (
-          <Servicesell activeButton={activeButton} />
+          <Servicesell 
+          activeButton={activeButton}
+          user={user}
+          four={four}
+          second={second}
+          selectedPropType={selectedPropType} />
         )}
         {four === "Industrial shed" && second === "Rent" && (
           <Servicerent activeButton={activeButton} />
@@ -894,7 +904,12 @@ const Posting = () => {
         )}
 
         {four === "Factory" && second === "Sell" && (
-          <FactorySell activeButton={activeButton} />
+          <FactorySell 
+          activeButton={activeButton}
+          user={user}
+          four={four}
+          second={second}
+          selectedPropType={selectedPropType}  />
         )}
         {four === "Factory" && second === "Rent" && (
           <FactoryRent activeButton={activeButton} />
@@ -924,7 +939,12 @@ const Posting = () => {
           four !== "Industrial shed" &&
           four !== "Factory" &&
           four !== "PG Home" &&
-          four !== "PG Hostel" && <Commercialsell />}
+          four !== "PG Hostel" && <Commercialsell 
+          activeButton={activeButton}
+          user={user}
+          four={four}
+          second={second}
+          selectedPropType={selectedPropType}/>}
         {activeButton === "Owner" &&
           four &&
           second === "Rent" &&
@@ -933,7 +953,12 @@ const Posting = () => {
           four !== "Industrial shed" &&
           four !== "Factory" &&
           four !== "PG Home" &&
-          four !== "PG Hostel" && <Commercialrent />}
+          four !== "PG Hostel" && <Commercialrent
+          activeButton={activeButton}
+          user={user}
+          four={four}
+          second={second}
+          selectedPropType={selectedPropType}/>}
         {activeButton === "Owner" &&
           four &&
           second === "Lease" &&
@@ -943,7 +968,12 @@ const Posting = () => {
           four !== "Industrial shed" &&
           four !== "Factory" &&
           four !== "PG Home" &&
-          four !== "PG Hostel" && <Commerciallease />}
+          four !== "PG Hostel" && <Commerciallease
+          activeButton={activeButton}
+          user={user}
+          four={four}
+          second={second}
+          selectedPropType={selectedPropType} />}
 
         {activeButton === "Owner" && third === "Top" && second === "Sell" && (
           <Restform />
@@ -975,7 +1005,8 @@ const Posting = () => {
         )}
 
         {activeButton === "Agent" && first && second === "Rent" && (
-          <Rentform activeButton={activeButton} />
+          <Rentform activeButton={activeButton} 
+          />
         )}
 
         {activeButton === "Agent" && first && second === "Lease" && (
@@ -1010,7 +1041,12 @@ const Posting = () => {
           four !== "Factory" &&
           four !== "PG Home" &&
           four !== "PG Hostel" && (
-            <Commercialsell activeButton={activeButton} />
+            <Commercialsell 
+            activeButton={activeButton}
+            user={user}
+            four={four}
+            second={second}
+            selectedPropType={selectedPropType} />
           )}
 
         {activeButton === "Agent" &&

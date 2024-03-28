@@ -32,7 +32,7 @@ const Myproperties = () => {
      
 
         <p className="text-start" style={{fontSize:'30px',marginTop:'100px'}}> My Properties</p>
-        <Card style={{ width: '1170px',height:'450px',borderRadius:'10px', border:'1px solid #D7242A'}} onClick={handleDetail}>
+        <Card style={{ width: '1170px',height:'450px',borderRadius:'10px', border:'1px solid #D7242A', cursor:'pointer'}} onClick={handleDetail}>
       
        <div className='row mx-4 my-3'style={{color: "#2D2D2D",fontSize:"20px",
 }}>
@@ -146,7 +146,7 @@ Lorem Ipsum is simply dummy text of the printing......</p>
        </div>
         
         </Card>
-        <Card className="mt-5"style={{ width: '1170px', border: ' 1px solid #D7242A' }}>
+        <Card className="mt-5"style={{ width: '1170px', border: ' 1px solid #D7242A',cursor:'pointer'}}  onClick={handleDetail}>
         <div className='row mx-2 my-3'style={{color: "#2D2D2D",fontSize:"20px"
 }}>
           <div className='col mx-3 my-2'>
@@ -258,7 +258,7 @@ Lorem Ipsum is simply dummy text of the printing......</p>
        </div>
         
         </Card>
-        <Card className="mt-5"style={{ width: '1170px', border: '1px solid #D7242A' }}>
+        <Card className="mt-5"style={{ width: '1170px', border: '1px solid #D7242A',cursor:'pointer'}} onClick={handleDetail}>
         <div className='row mx-2 my-3'style={{color: "#2D2D2D",fontSize:"20px"
 }}>
           <div className='col  mx-3 my-2'>

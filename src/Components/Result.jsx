@@ -31,7 +31,7 @@ const Result = () => {
 
   const handleViewDetails = () => {
     
-    navigate('/mobile'); 
+    navigate('/builder'); 
   };
   return (
     
@@ -164,7 +164,7 @@ Lorem Ipsum is simply dummy text of the printing......</p>
 
   </div>
   <div className= "col text-end">
-  <button style={{ backgroundColor: '#D7242A', color: 'white', border: 'none', padding: '10px 20px', fontSize: '16px', borderRadius: '30px' }} onClick={handleViewDetails}> Contact Details</button>
+  <button style={{ backgroundColor: '#D7242A', color: 'white', border: 'none', padding: '10px 20px', fontSize: '16px', borderRadius: '30px' }} onClick={handleViewDetails}>View Details</button>
   </div>
 </div>
           </div>
@@ -264,7 +264,7 @@ Lorem Ipsum is simply dummy text of the printing......</p>
 
   </div>
   <div className= "col text-end">
-  <button style={{ backgroundColor: '#D7242A', color: 'white', border: 'none', padding: '10px 20px', fontSize: '16px', borderRadius: '30px' }} onClick={handleViewDetails}> Contact Details</button>
+  <button style={{ backgroundColor: '#D7242A', color: 'white', border: 'none', padding: '10px 20px', fontSize: '16px', borderRadius: '30px' }} onClick={handleViewDetails}>View Details</button>
   </div>
 </div>
     
@@ -369,7 +369,7 @@ Lorem Ipsum is simply dummy text of the printing......</p>
 
   </div>
   <div className= "col text-end">
-  <button style={{ backgroundColor: '#D7242A', color: 'white', border: 'none', padding: '10px 20px', fontSize: '16px', borderRadius: '30px' }} onClick={handleViewDetails}> Contact Details</button>
+  <button style={{ backgroundColor: '#D7242A', color: 'white', border: 'none', padding: '10px 20px', fontSize: '16px', borderRadius: '30px' }} onClick={handleViewDetails}>View Details</button>
   </div>
 </div>
           </div>

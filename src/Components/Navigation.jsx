@@ -85,7 +85,7 @@ const [Category, setCategory] = useState('');
 const [pgrent,setPgrent]=useState(false);
 const [Gender, setGender] = useState('');
 const [selectedOption, setSelectedOption] = useState(null);
-const [activeLink, setActiveLink] = useState('Plot');
+const [activeLink, setActiveLink] = useState('');
 const [price, setprice] = useState(false);
 const [link, setlink] = useState('Buy')
   const handleDropdownClick = (dropdown) => {
@@ -165,34 +165,22 @@ const handleBudget =(budget)=>{
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#" style={link === 'Rent' ? activeLinkStyle : navLinkStyle} onClick={() => handleLinkClick('Rent')}
+              <a className="nav-link" href="/Rent"  style={link === 'Rent' ? activeLinkStyle : navLinkStyle} onClick={() => handleLinkClick('Rent')}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}>
                 Rent
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#" style={link === ' Lease' ? activeLinkStyle : navLinkStyle} onClick={() => handleLinkClick('Lease')}
+              <a className="nav-link" href="/Lease" style={link === ' Lease' ? activeLinkStyle : navLinkStyle} onClick={() => handleLinkClick('Lease')}
                
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}>
                 Lease
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/post" style={navLinkStyle}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}>
-                Sell
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#" style={navLinkStyle}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}>
-              Prime
-              </a>
-            </li>
+         
+      
             <li className="nav-item">
               <a className="nav-link" href="#" style={navLinkStyle}
                 onMouseEnter={handleMouseEnter}

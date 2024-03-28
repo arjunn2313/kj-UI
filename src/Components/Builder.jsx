@@ -121,7 +121,7 @@ const Builder = () => {
               </tbody>
             </table>
         <hr/>
-        <div className="d-flex align-items-center justify-content-between mt-2">
+        {/* <div className="d-flex align-items-center justify-content-between mt-2">
         <button
       type="button"
       style={{
@@ -139,13 +139,13 @@ const Builder = () => {
     </button>
 
   <p className='me-5' style={{ margin: "0"}}>Posted 5 days ago</p>
-</div>
+</div> */}
 
           
            
           </Card.Body>
         </Card>
-        <Card className="mt-5"style={{ width: '1170px', border: ' 1px solid #D7242A' }}>
+        {/* <Card className="mt-5"style={{ width: '1170px', border: ' 1px solid #D7242A' }}>
           <Card.Body>
 <p className='ms-3 mt-2'style={{color:"#2D2D2D",fontSize:"24px",fontWeight:"700"}}>Why buy in this project?</p>
           <ul className="ms-3">
@@ -155,7 +155,7 @@ const Builder = () => {
           </ul>
            
           </Card.Body>
-        </Card>
+        </Card> */}
         <Card className="mt-5"style={{ width: '1170px', border: ' 1px solid #D7242A' }}>
           <Card.Body>
 <p className='ms-3 mt-2'style={{color:"#2D2D2D",fontSize:"20px",fontWeight:"600",fontFamily:'Poppins'}}>More Details</p>
@@ -178,8 +178,29 @@ the industry's standard dummy text ever since the 1500s, when an unknown printer
 scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing...... </span></div>
           </Card.Body>
         </Card>
-  
+          <div className="d-flex justify-content-between mt-2 me-5">
+        <button
+      type="button"
+      style={{
+        color: "#FFFFFF",
+        backgroundColor: "#D7242A",
+        border: "none",
+        borderRadius: "30px",
+        width: "328px"
+      }}
+      className="btn btn-lg"
+      disabled={false}
+      onClick={handleContact}
+    >
+      Contact Number
+    </button>
+
+    <p className='me-5'>Posted 5 days ago</p>
+
+
+</div>
       </div>
+      
   <Footer/>
     </div>
        

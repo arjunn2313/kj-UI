@@ -19,6 +19,8 @@ import Budget from './Components/Budget';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Newotp from './Components/Newotp';
+import Rent from './Components/Rent';
+import Lease from './Components/Lease';
 function App() {
   return (
     <div className="App">
@@ -28,7 +30,8 @@ function App() {
   
   <Routes>
     <Route path="/" element={<Home/>} />
-   
+    <Route path="/Rent" element={<Rent/>} />
+    <Route path="/Lease" element={<Lease/>} />
     <Route path="/builder" element={<Builder />} />
     <Route path="/myproperties" element={<Myproperties />} />
     <Route path="/detail" element={<Mypropertiesdetail/>} />
