@@ -2826,7 +2826,7 @@ import { Baseurl, UserConfig } from "./request";
 const Commerciallease = ({
   activeButton,
   user,
-  first,
+  
   second,
   selectedPropType,
 }) => {
@@ -3161,6 +3161,7 @@ const Commerciallease = ({
     leaseprice: "",
     advanceAmount: "",
     description: "",
+    agentCommision:""
   });
 
   //onchange function
@@ -3216,6 +3217,9 @@ const Commerciallease = ({
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
+    if (!data.agentCommision.trim()) {
+      errors.agentCommision = "Please enter agentCommision";
+    }
     return errors;
   };
 
@@ -3246,6 +3250,8 @@ const Commerciallease = ({
     formData.append("commercial.commercial_type", "office");
     formData.append("you_are_here_to", second.toLowerCase());
     formData.append("owner", activeButton === "Owner");
+    formData.append("agent", activeButton === "Agent");
+    formData.append("builder", activeButton === "Builder");
     formData.append("title", formValue?.propertyName);
     formData.append("showroom.built_up_area", parseInt(formValue?.area));
     formData.append("showroom.built_up_area_unit", "sqft");
@@ -3270,6 +3276,9 @@ const Commerciallease = ({
     formData.append("showroom.floor_number", formValue?.floorNumber);
     formData.append("lease_amount", parseInt(formValue?.leaseprice));
     formData.append("advance", formValue?.advanceAmount);
+    if (activeButton === "Agent") {
+      formData.append("agent_commission", formValue?.agentCommision);
+    }
     data.forEach((element, index) => {
       formData.append(
         `showroom.indoor_facilities[${index}]facility.name`,
@@ -3830,6 +3839,9 @@ const Commerciallease = ({
                     value={formValue.agentCommision}
                     onChange={handleChange}
                   />
+                   <Form.Control.Feedback type="invalid">
+                  {errors.agentCommision}
+                </Form.Control.Feedback>
                 </Form.Group>
               </Col>
             )}

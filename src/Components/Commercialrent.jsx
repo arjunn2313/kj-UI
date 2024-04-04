@@ -1569,14 +1569,6 @@ const Commercialrent = ({
       );
     }
   };
-  const [buttonAdd, setButtonAdd] = useState({
-    "Car Parking": false,
-    Security: false,
-    "Street Lights": false,
-    "Avenue Trees": false,
-    Compound: false,
-  });
-
   const newvalue = [
     "Car Parking",
     "Security",
@@ -1585,6 +1577,15 @@ const Commercialrent = ({
 
     "Compound",
   ];
+  const [buttonAdd, setButtonAdd] = useState({
+    "Car Parking": false,
+    Security: false,
+    "Street Lights": false,
+    "Avenue Trees": false,
+    Compound: false,
+  });
+
+ 
 
   const [data, setData] = useState([]);
   const [input, setInput] = useState("");
@@ -1747,6 +1748,7 @@ const Commercialrent = ({
     rentprice: "",
     advanceAmount: "",
     description: "",
+    agentCommision:""
   });
 
   //onchange function
@@ -1802,6 +1804,9 @@ const Commercialrent = ({
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
+    if (!data.agentCommision.trim()) {
+      errors.agentCommision = "Please enter agentCommision";
+    }
     return errors;
   };
 
@@ -1832,6 +1837,8 @@ const Commercialrent = ({
     formData.append("commercial.commercial_type", "office");
     formData.append("you_are_here_to", second.toLowerCase());
     formData.append("owner", activeButton === "Owner");
+    formData.append("agent", activeButton === "Agent");
+    formData.append("builder", activeButton === "Builder");
     formData.append("title", formValue?.propertyName);
     formData.append("showroom.built_up_area", parseInt(formValue?.area));
     formData.append("showroom.built_up_area_unit", "sqft");
@@ -1856,6 +1863,9 @@ const Commercialrent = ({
     formData.append("showroom.floor_number", formValue?.floorNumber);
     formData.append("rent", parseInt(formValue?.rentprice));
     formData.append("advance", formValue?.advanceAmount);
+    if (activeButton === "Agent") {
+      formData.append("agent_commission", formValue?.agentCommision);
+    }
     data.forEach((element, index) => {
       formData.append(
         `showroom.indoor_facilities[${index}]facility.name`,
@@ -2412,13 +2422,16 @@ const Commercialrent = ({
                   </h5>
                   <Form.Control
                     type="number"
-                    placeholder="Agent Commision"
+                    placeholder="Rs"
                     style={formControlStyle}
                     name="agentCommision"
                     isInvalid={!!errors.agentCommision}
                     value={formValue.agentCommision}
                     onChange={handleChange}
                   />
+                  <Form.Control.Feedback type="invalid">
+                  {errors.agentCommision}
+                </Form.Control.Feedback>
                 </Form.Group>
               </Col>
             )}

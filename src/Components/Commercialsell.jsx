@@ -1413,8 +1413,8 @@ const Commercialsell = ({
     "Washroom",
     "Toilet",
 
-    "AirConditioning",
-    "PowerBackup",
+    "Air Conditioning",
+    "Power Backup",
     "WIFI",
     "Lift",
     "Coffee Bar",
@@ -1427,7 +1427,8 @@ const Commercialsell = ({
     "Power Backup": false,
     WIFI: false,
     Lift: false,
-    " Coffee Bar": false,
+    "Coffee Bar": false,
+    Lobby: false
   });
   const [count, setCount] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -1467,13 +1468,6 @@ const Commercialsell = ({
       );
     }
   };
-  const [buttonAdd, setButtonAdd] = useState({
-    "Car Parking": false,
-    Security: false,
-    "Street Lights": false,
-    "Avenue Trees": false,
-    Compound: false,
-  });
 
   const newvalue = [
     "Car Parking",
@@ -1484,6 +1478,15 @@ const Commercialsell = ({
     "Compound",
   ];
 
+  const [buttonAdd, setButtonAdd] = useState({
+    "Car Parking": false,
+    Security: false,
+    "Street Lights": false,
+    "Avenue Trees": false,
+    Compound: false,
+  });
+
+  
   const [data, setData] = useState([]);
   const [input, setInput] = useState("");
 
@@ -1645,6 +1648,7 @@ const Commercialsell = ({
     salePrice: "",
     advanceAmount: "",
     description: "",
+    agentCommision:""
   });
 
   //onchange function
@@ -1700,9 +1704,15 @@ const Commercialsell = ({
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
+    if(activeButton === "Agent"){
+    if (!data.agentCommision.trim()) {
+      errors.agentCommision = "Please enter agentCommision";
+    }
+  }
+   
     return errors;
   };
-
+ 
   // form submition request
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -1730,6 +1740,8 @@ const Commercialsell = ({
     formData.append("commercial.commercial_type", "office");
     formData.append("you_are_here_to", second.toLowerCase());
     formData.append("owner", activeButton === "Owner");
+    formData.append("agent", activeButton === "Agent");
+    formData.append("builder", activeButton === "Builder");
     formData.append("title", formValue?.propertyName);
     formData.append("showroom.built_up_area", parseInt(formValue?.area));
     formData.append("showroom.built_up_area_unit", "sqft");
@@ -1754,6 +1766,9 @@ const Commercialsell = ({
     formData.append("showroom.floor_number", formValue?.floorNumber);
     formData.append("sale_price", formValue?.salePrice);
     formData.append("advance", formValue?.advanceAmount);
+    if (activeButton === "Agent") {
+      formData.append("agent_commission", formValue?.agentCommision);
+    }
     data.forEach((element, index) => {
       formData.append(
         `showroom.indoor_facilities[${index}]facility.name`,
@@ -1793,7 +1808,7 @@ const Commercialsell = ({
       formData.append(`showroom_images[${4}]section`, "location_map");
       formData.append(`showroom_images[${4}]image`, selectedmap);
     }
-    if (selectedLogo) {
+    if (selectedLogo) {//ask irfan about logo keyboard
       formData.append(`showroom_images[${5}]section`, "logo");
       formData.append(`showroom_images[${5}]image`, selectedLogo);
     }
@@ -2295,13 +2310,16 @@ const Commercialsell = ({
                   </h5>
                   <Form.Control
                     type="number"
-                    placeholder="Agent Commision"
+                    placeholder="Rs"
                     style={formControlStyle}
                     name="agentCommision"
                     isInvalid={!!errors.agentCommision}
                     value={formValue.agentCommision}
                     onChange={handleChange}
                   />
+                       <Form.Control.Feedback type="invalid">
+                  {errors.agentCommision}
+                </Form.Control.Feedback>
                 </Form.Group>
               </Col>
             )}

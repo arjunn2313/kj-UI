@@ -1615,13 +1615,13 @@ const Servicesell = ({
 
   const newArray = [
     "Officeroom",
-    "EmployeeQuarter",
+    "EmployeeQuarters",
     "AirConditioning",
     "CoffeeBar",
     "WIFI",
     "Lift",
-    " PowerBackup",
-    " Labourrooms",
+    "PowerBackup",
+    "Labourrooms",
   ];
   const [buttonValue, setButtonvalue] = useState({
     Officeroom: false,
@@ -1671,6 +1671,18 @@ const Servicesell = ({
       );
     }
   };
+  const newvalue = [
+    "Car Parking",
+    "Security",
+    "Street Lights",
+    "Avenue Trees",
+
+    "Compound",
+    "Club House",
+    "Community Hall",
+    "Saloon",
+    "Pool",
+  ];
   const [buttonAdd, setButtonAdd] = useState({
     "Car Parking": false,
     Security: false,
@@ -1684,18 +1696,7 @@ const Servicesell = ({
     Pool: false,
   });
 
-  const newvalue = [
-    "Car Parking",
-    "Security",
-    "Street Lights",
-    "Avenue Trees",
 
-    "Compound",
-    "ClubHouse",
-    "Community Hall",
-    "Saloon",
-    " Pool",
-  ];
 
   const [data, setData] = useState([]);
   const [input, setInput] = useState("");
@@ -1738,15 +1739,15 @@ const Servicesell = ({
     "Residential",
     "Commercial",
     "Industrial",
-    " Agricultural:",
-    " GovtUse",
-    "  Lift",
+    "Agricultural",
+    "GovtUse",
+    "Lift",
     "PublicUtilities",
-    "Special Economic",
-    "Natural Conservation",
-    "  Transport",
-    "  Communication",
-    " OpenSpace",
+    "SpecialEconomic",
+    "NaturalConservation",
+    "Transport",
+    "Communication",
+    "OpenSpace",
     "Public&Semi-Publicuse",
   ];
   const [buttonStates, setButtonStates] = useState({
@@ -1794,7 +1795,7 @@ const Servicesell = ({
 
   const handleRemoveContent = (itemToRemove) => {
     if (newData.includes(itemToRemove)) {
-      setButtonAdd((prevStates) => ({
+      setButtonStates((prevStates) => ({
         ...prevStates,
         [itemToRemove]: false,
       }));
@@ -1927,6 +1928,7 @@ const Servicesell = ({
     salePrice: "",
     advanceAmount: "",
     description: "",
+    agentCommision:""
   });
   //onchange function
   const handleChange = (event) => {
@@ -1974,6 +1976,9 @@ const Servicesell = ({
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
+    if (!data.agentCommision.trim()) {
+      errors.agentCommision = "Please enter agentCommision";
+    }
     return errors;
   };
 
@@ -2005,6 +2010,8 @@ const Servicesell = ({
     formData.append("commercial.commercial_type", "industrialbuilding");
     formData.append("you_are_here_to", second.toLowerCase());
     formData.append("owner", activeButton === "Owner");
+    formData.append("agent", activeButton === "Agent");
+    formData.append("builder", activeButton === "Builder");
     formData.append("title", formValue?.propertyName);
     formData.append(
       "industrialbuilding.built_up_area",
@@ -2033,8 +2040,11 @@ const Servicesell = ({
     formData.append("location", formValue?.propertyLocation);
     formData.append("city", formValue?.city);
     formData.append("industrialbuilding.floor_number", formValue?.floorNumber);
-    formData.append("sale_price", formValue?.salePrice);
+    formData.append("sale_price",formValue?.salePrice);
     formData.append("advance", formValue?.advanceAmount);
+    if (activeButton === "Agent") {
+      formData.append("agent_commission", formValue?.agentCommision);
+    }
     data.forEach((element, index) => {
       formData.append(
         `industrialbuilding.outdoor_facilities[${index}]facility.name`,
@@ -2162,7 +2172,8 @@ const Servicesell = ({
                 <Form.Label>Building Built Up Area</Form.Label>
                 <div
                   className="rounded-pill"
-                  style={{ position: "relative", display: "inline-block" }}
+                  style={{ position: "relative",
+                   display: "inline-block" }}
                 >
                   <Form.Control
                     type="number"
@@ -2620,12 +2631,15 @@ const Servicesell = ({
                     value={formValue.agentCommision}
                     onChange={handleChange}
                   />
+                     <Form.Control.Feedback type="invalid">
+                  {errors.agentCommision}
+                </Form.Control.Feedback>
                 </Form.Group>
               </Col>
             )}
             <Col>
               <Form.Group controlId="formGroup4">
-                {/* Placeholder */}
+               
               </Form.Group>
             </Col>
           </Row>
@@ -2651,6 +2665,12 @@ const Servicesell = ({
         {errors.description && (
           <div className="text-danger">{errors.description}</div>
         )}
+
+
+   
+   
+
+
         <h5 className="mt-5 gy-3">Upload Photos</h5>
         <Card
           className="mt-5"
