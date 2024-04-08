@@ -99,12 +99,12 @@ const FactorySell = ({ activeButton,
   };
   const newArray = [
     "Officeroom" ,
-    "EmployeeQuarter" ,
+    "EmployeeQuarters" ,
     'AirConditioning' ,
      "CoffeeBar",
      "WIFI",
      "Lift",
-    " PowerBackup",
+    "PowerBackup",
     "Labourrooms",
    ];
    const [buttonValue, setButtonvalue] = useState({
@@ -444,7 +444,9 @@ const FactorySell = ({ activeButton,
     advanceAmount: "",
     description: "",
     typeoffactory: "",
-    agentCommision:""
+    agentCommision:"",
+    age:"",
+    month:""
   });
  //onchange function
  const handleChange = (event) => {
@@ -494,9 +496,12 @@ const FactorySell = ({ activeButton,
     if (!data.typeoffactory.trim()) {
       errors.typeoffactory = "Please enter factory";
     }
-    if (!data.agentCommision.trim()) {
-      errors.agentCommision = "Please enter agentCommision";
+    if(activeButton === "Agent"){
+      if (!data.agentCommision.trim()) {
+        errors.agentCommision = "Please enter agentCommision";
+      }
     }
+     
 
    
    
@@ -563,6 +568,8 @@ const FactorySell = ({ activeButton,
 
   // ddddd
   formData.append("factory.condition", formValue?.condition);
+  formData.append("factory.age", formValue?.age);
+  formData.append("factory.under_construction_months", formValue?.month);
   formData.append("factory.status", formValue?.status);
   formData.append("description", formValue?.description);
   formData.append("location", formValue?.propertyLocation);
@@ -931,7 +938,7 @@ const FactorySell = ({ activeButton,
             <input
               className="inp"
               placeholder="other if any..."
-              name="category"
+              name="age"
               onChange={handleChange}
             />
           </div>
@@ -1021,7 +1028,7 @@ const FactorySell = ({ activeButton,
               className="inp text-start"
               placeholder="If under construction...."
               onChange={handleChange}
-              name="condition"
+              name="month"
             />
           </div>
         </div>

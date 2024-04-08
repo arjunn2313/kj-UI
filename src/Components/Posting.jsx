@@ -49,7 +49,7 @@ const Posting = () => {
 
   const navLinkHoverStyle = {
     Color: "#D7242A",
-    transition: "background-color 0.2s ease",
+    transition: "background-color 0.4s ease",
   };
   const handleMouseEnter = (e) => {
     e.target.style.Color = navLinkHoverStyle.Color;
@@ -132,6 +132,8 @@ const Posting = () => {
     plotdeveloper: "",
   });
 
+ 
+
   const [selectedPropType, setSelectedPropType] = useState("plot");
 
   const handleplotClick = (items) => {
@@ -184,6 +186,7 @@ const Posting = () => {
     setFour(values);
   };
 
+ 
   const [activeButton, setActiveButton] = useState("Owner");
 
   const handleClicks = (buttonType) => {
@@ -400,9 +403,9 @@ const Posting = () => {
         </div>
 
         <div className="text-start mt-5 ms-4">Property Type</div>
-        <Card
-          className="my-4"
-          style={{ width: "1170px", height: "280px", borderRadius: "30px" }}
+        <Card 
+          className="my-4 my-card"
+          style={{ width: "1170px", height: "300px", borderRadius: "30px" }}
         >
           <nav className="navbar navbar-expand-lg mx-lg-5">
             <div className="container" style={navbarStyle}>
@@ -1322,7 +1325,8 @@ const Posting = () => {
           four &&
           second === "Sell" &&
           four !== "ServiceApartment" &&
-          four !== "Industrial Building/shed" &&
+          four !== "Industrial Building" &&
+          four !== "Industrial shed" &&
           four !== "Factory" &&
           four !== "PG Home" &&
           four !== "PG Hostel" && (
@@ -1338,7 +1342,8 @@ const Posting = () => {
           four &&
           second === "Rent" &&
           four !== "ServiceApartment" &&
-          four !== "Industrial Building/shed" &&
+          four !== "Industrial Building" &&
+          four !== "Industrial shed" &&
           four !== "Factory" &&
           four !== "PG Home" &&
           four !== "PG Hostel" && (
@@ -1355,7 +1360,8 @@ const Posting = () => {
           four &&
           second === "Lease" &&
           four !== "ServiceApartment" &&
-          four !== "Industrial Building/shed" &&
+          four !== "Industrial Building" &&
+          four !== "Industrial shed" &&
           four !== "Factory" &&
           four !== "PG Home" &&
           four !== "PG Hostel" && (

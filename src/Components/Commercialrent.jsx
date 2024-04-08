@@ -1412,7 +1412,7 @@ import { Baseurl, UserConfig } from "./request";
 const Commercialrent = ({
   activeButton,
   user,
-  first,
+  four,
   second,
   selectedPropType,
 }) => {
@@ -1584,6 +1584,7 @@ const Commercialrent = ({
     "Avenue Trees": false,
     Compound: false,
   });
+ 
 
  
 
@@ -1748,7 +1749,9 @@ const Commercialrent = ({
     rentprice: "",
     advanceAmount: "",
     description: "",
-    agentCommision:""
+    agentCommision:"",
+    age:"",
+    month:""
   });
 
   //onchange function
@@ -1804,8 +1807,10 @@ const Commercialrent = ({
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
-    if (!data.agentCommision.trim()) {
-      errors.agentCommision = "Please enter agentCommision";
+    if(activeButton === "Agent"){
+      if (!data.agentCommision.trim()) {
+        errors.agentCommision = "Please enter agentCommision";
+      }
     }
     return errors;
   };
@@ -1826,15 +1831,16 @@ const Commercialrent = ({
     submitForm(formValue);
   };
 
-  console.log(input);
+
+  console.log();
   // form submittion after validation
   const submitForm = async (formValue) => {
     const formData = new FormData();
     formData.append("name", user?.userName);
     formData.append("phone", `+${user?.phone}`);
     formData.append("email", user?.email);
-    formData.append("property_type", selectedPropType);
-    formData.append("commercial.commercial_type", "office");
+    formData.append("property_type", selectedPropType)
+    formData.append("commercial.commercial_type",four);
     formData.append("you_are_here_to", second.toLowerCase());
     formData.append("owner", activeButton === "Owner");
     formData.append("agent", activeButton === "Agent");
@@ -1856,6 +1862,8 @@ const Commercialrent = ({
     formData.append("unit", "sqft");
     // ddddd
     formData.append("showroom.condition", formValue?.condition);
+    formData.append("showroom.age", formValue?.age);
+    formData.append("showroom.under_construction_months", formValue?.month);
     formData.append("showroom.status", formValue?.status);
     formData.append("description", formValue?.description);
     formData.append("location", formValue?.propertyLocation);
@@ -2156,8 +2164,9 @@ const Commercialrent = ({
             <input
               className="inp"
               placeholder="other if any..."
-              name="category"
+              
               onChange={handleChange}
+              name="age"
             />
           </div>
         </div>
@@ -2247,7 +2256,7 @@ const Commercialrent = ({
               className="inp text-start"
               placeholder="If under construction...."
               onChange={handleChange}
-              name="condition"
+              name="month"
             />
           </div>
         </div>

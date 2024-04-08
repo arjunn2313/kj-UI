@@ -6,7 +6,8 @@ import { FaTimes } from 'react-icons/fa';
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Baseurl, UserConfig } from "./request";
-const Servicelease = ({ activeButton,  user,
+const Servicelease = ({ 
+  activeButton,  user,
   four,
     second,
     selectedPropType,}) => {
@@ -434,7 +435,9 @@ const Servicelease = ({ activeButton,  user,
      leasePrice: "",
      advanceAmount: "",
      description: "",
-     agentCommision:""
+     agentCommision:"",
+     age:"",
+     month:""
    });
    //onchange function
    const handleChange = (event) => {
@@ -482,9 +485,12 @@ const Servicelease = ({ activeButton,  user,
      if (!data.description.trim()) {
        errors.description = "Please enter description";
      }
-     if (!data.agentCommision.trim()) {
-      errors.agentCommision = "Please enter agentCommision";
+     if(activeButton === "Agent"){
+      if (!data.agentCommision.trim()) {
+        errors.agentCommision = "Please enter agentCommision";
+      }
     }
+     
      return errors;
    };
  
@@ -541,6 +547,8 @@ const Servicelease = ({ activeButton,  user,
  
      // ddddd
      formData.append("industrialbuilding.condition", formValue?.condition);
+     formData.append("industrialbuilding.age", formValue?.age);
+    formData.append("industrialbuilding.under_construction_months", formValue?.month);
      formData.append("industrialbuilding.status", formValue?.status);
      formData.append("description", formValue?.description);
      formData.append("location", formValue?.propertyLocation);
@@ -851,7 +859,7 @@ const Servicelease = ({ activeButton,  user,
           <div className="flex-grow-1 me-2">
             <input className="inp" 
             placeholder="other if any..."
-            name="category"
+            name="age"
             onChange={handleChange} />
           </div>
         </div>
@@ -940,7 +948,7 @@ const Servicelease = ({ activeButton,  user,
             <input className="inp text-start" 
             placeholder="If under construction...." 
             onChange={handleChange}
-            name="condition"/>
+            name="month"/>
           </div>
         </div>
 

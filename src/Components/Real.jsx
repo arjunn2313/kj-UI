@@ -5,10 +5,10 @@ import { Card } from 'react-bootstrap';
 const Real = ({curate}) => {
   return (
     <div className='container'>
-    <div className='mt-5 pt-5 ms-2 my-5 d-flex row'>
+    <div className='ms-2 my-5 d-flex row'>
       <div className='col'>
         <h3 className='mt-5 pt-5 mx-1 text-lg-start bigvalue underline'>
-        Curated rental collections
+        Total Properties
         </h3>
       </div>
       <div className='col'>

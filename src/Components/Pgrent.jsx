@@ -193,7 +193,7 @@ const Pgrent = ({ activeButton,
     "Canteen",
     "Store",
     "Saloon",
-    " Pool",
+    "Pool",
     "Pharmacy",
     "Coffee Bar",
     "Gym"
@@ -245,7 +245,7 @@ const Pgrent = ({ activeButton,
     "NonVeg",
     "VegAndNonveg",
     "SelfCooking",
-    " Kitchen",
+    "Kitchen",
 
 
 
@@ -491,7 +491,8 @@ const Pgrent = ({ activeButton,
     description: "",
     deposit: "",
     singleroompermonth: "",
-    agentCommision:""
+    agentCommision:"",
+    age:""
   });
   //onchange function
   const handleChange = (event) => {
@@ -566,9 +567,12 @@ const Pgrent = ({ activeButton,
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
-    if (!data.agentCommision.trim()) {
-      errors.agentCommision = "Please enter agentCommision";
+    if(activeButton === "Agent"){
+      if (!data.agentCommision.trim()) {
+        errors.agentCommision = "Please enter agentCommision";
+      }
     }
+     
     return errors;
   };
   // form submition request
@@ -625,7 +629,7 @@ const Pgrent = ({ activeButton,
     formData.append("pgcolony.gender", formValue?.gender);
     formData.append("pgcolony.tenants_preferred", formValue?.tenants);
     formData.append("pgcolony.status", formValue?.status);
-
+    formData.append("pgcolony.age", formValue?.age);
     formData.append("pgcolony.room_types", formValue?.room);
     formData.append("description", formValue?.description);
     formData.append("location", formValue?.propertylocation);
@@ -869,7 +873,7 @@ const Pgrent = ({ activeButton,
               type="radio"
               name="category"
               id="exampleRadio2"
-              value="old"
+              value="existing"
             />
             <label className="form-check-label" htmlFor="exampleRadio2">
               Existing
@@ -879,8 +883,8 @@ const Pgrent = ({ activeButton,
         </div>
         <div className="flex-grow-1 me-2">
           <input className="inp" placeholder="If existing, Age of the property..."
-            name="category"
-            onChange={handleChange} />
+            onChange={handleChange}
+            name="age" />
         </div>
 
 
@@ -1352,7 +1356,7 @@ const Pgrent = ({ activeButton,
 
               <Form.Control
                 type="number"
-                placeholder="Rs"
+                placeholder="for A/C Room(Rs)"
                 style={formControlllStyle}
                 name="singleroomac"
                 isInvalid={!!errors.singleroomac}
@@ -1368,7 +1372,7 @@ const Pgrent = ({ activeButton,
           <Col md={4}>
             <Form.Group controlId="formGroup2">
 
-              <Form.Control type="number" placeholder="Rs."
+              <Form.Control type="number" placeholder="for Non A/C Room(Rs)"
                 style={formControlllStyle}
                 name="singleroomnonac"
                 isInvalid={!!errors.singleroomnonac}
@@ -1416,7 +1420,7 @@ const Pgrent = ({ activeButton,
           <Col md={4}>
             <Form.Group controlId="formGroup1">
               <Form.Control
-                type="number" placeholder="Rs."
+                type="number" placeholder="for A/C Room(Rs)"
                 style={formControlllStyle}
                 name="doubleroomac"
                 isInvalid={!!errors.doubleroomac}
@@ -1432,7 +1436,8 @@ const Pgrent = ({ activeButton,
           <Col md={4}>
             <Form.Group controlId="formGroup2">
 
-              <Form.Control type="number" placeholder="Rs" style={formControlllStyle}
+              <Form.Control type="number" placeholder="for Non A/C Room(Rs)" 
+              style={formControlllStyle}
                 name="doubleroomnonac"
                 isInvalid={!!errors.doubleroomnonac}
                 value={formValue.doubleroomnonac}
@@ -1476,7 +1481,7 @@ const Pgrent = ({ activeButton,
             <Form.Group controlId="formGroup1">
 
               <Form.Control
-                type="number" placeholder="Rs."
+                type="number" placeholder="for A/C Room(Rs)"
                 style={formControlllStyle}
                 name="multisharingroomac"
                 isInvalid={!!errors.multisharingroomac}
@@ -1496,7 +1501,7 @@ const Pgrent = ({ activeButton,
 
               <Form.Control
                 type="number"
-                placeholder="Rs."
+                placeholder="for Non A/C Room(Rs)"
                 style={formControlllStyle}
                 name="multisharingroomnonac"
                 isInvalid={!!errors.multisharingroomnonac}

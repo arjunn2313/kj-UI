@@ -9,7 +9,8 @@ import { log } from "util";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Baseurl, UserConfig } from "./request";
-const Apartmentlease= ({ activeButton, user,
+const Apartmentlease= ({
+     activeButton, user,
     first,
     second,
     selectedPropType,}) => {
@@ -496,8 +497,11 @@ agentCommision:""
         if (!data.description.trim()) {
             errors.description = "Please enter description";
         }
-        if (!data.agentCommision.trim()) {
-            errors.agentCommision = "Please enter agentCommision";
+     
+          if(activeButton === "Agent"){
+            if (!data.agentCommision.trim()) {
+              errors.agentCommision = "Please enter agentCommision";
+            }
           }
         return errors;
     };
@@ -710,7 +714,7 @@ console.log(formValue);
                  style={{ position: 'relative',
                   display: 'inline-block' }}>
             <Form.Control
-              type="text"
+              type="number"
               placeholder="Area"
               style={{ ...formControlStyle }}
               className="form-select"
@@ -1084,7 +1088,7 @@ console.log(formValue);
                   </h5>
                   <Form.Control
                     type="number"
-                    placeholder="Agent Commision"
+                    placeholder="Rs"
                     style={formControlStyle}
                     name="agentCommision"
                     isInvalid={!!errors.agentCommision}

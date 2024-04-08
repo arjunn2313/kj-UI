@@ -1307,6 +1307,7 @@ import { log } from "util";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Baseurl, UserConfig } from "./request";
+import { useNavigate } from 'react-router-dom';
 const Commercialsell = ({
   activeButton,
   user,
@@ -1314,6 +1315,7 @@ const Commercialsell = ({
   second,
   selectedPropType,
 }) => {
+  const navigate = useNavigate(); 
   const [plot, setPlot] = useState(false);
   const [land, setLand] = useState(false);
   const [residential, setResidential] = useState(false);
@@ -1648,7 +1650,9 @@ const Commercialsell = ({
     salePrice: "",
     advanceAmount: "",
     description: "",
-    agentCommision:""
+    agentCommision:"",
+    age:"",
+    month:""
   });
 
   //onchange function
@@ -1737,7 +1741,7 @@ const Commercialsell = ({
     formData.append("phone", `+${user?.phone}`);
     formData.append("email", user?.email);
     formData.append("property_type", selectedPropType);
-    formData.append("commercial.commercial_type", "office");
+    formData.append("commercial.commercial_type", "showroom");
     formData.append("you_are_here_to", second.toLowerCase());
     formData.append("owner", activeButton === "Owner");
     formData.append("agent", activeButton === "Agent");
@@ -1759,6 +1763,8 @@ const Commercialsell = ({
     formData.append("unit", "sqft");
     // ddddd
     formData.append("showroom.condition", formValue?.condition);
+    formData.append("showroom.age", formValue?.age);
+    formData.append("showroom.under_construction_months", formValue?.month);
     formData.append("showroom.status", formValue?.status);
     formData.append("description", formValue?.description);
     formData.append("location", formValue?.propertyLocation);
@@ -1819,10 +1825,12 @@ const Commercialsell = ({
         UserConfig
       );
       console.log(response);
+      navigate('/check'); 
       toast.success("Submitted", {
         hideProgressBar: true,
         position: "top-center",
       });
+     
     } catch (error) {
       console.error("Server error", error);
       toast.error("something went wrong", {
@@ -1843,11 +1851,14 @@ const Commercialsell = ({
                 <Form.Control
                   type="text"
                   placeholder="Enter Name"
-                  style={{ ...formControllStyle }}
+                  style={{ ...formControllStyle}}
                   name="propertyName"
                   isInvalid={!!errors.propertyName}
                   value={formValue.propertyName}
                   onChange={handleChange}
+                  maxLength={20}
+                 
+
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.propertyName}
@@ -1856,7 +1867,7 @@ const Commercialsell = ({
             </Col>
           </Row>
           <Row className="mt-5">
-            <Col md={6}>
+            <Col md={6} sm={12}>
               <Form.Group controlId="formGroup3">
                 <Form.Label>Property Location</Form.Label>
                 <Form.Control
@@ -1873,7 +1884,7 @@ const Commercialsell = ({
                 </Form.Control.Feedback>
               </Form.Group>
             </Col>
-            <Col md={6}>
+            <Col>
               <Form.Group controlId="formGroup4">
                 <Form.Label>City</Form.Label>
                 <Form.Control
@@ -1894,7 +1905,7 @@ const Commercialsell = ({
 
           <Row className="gx-md-3 mt-5">
             {/* Third Row */}
-            <Col md={6}>
+            <Col md={6} sm={12}>
               <Form.Group controlId="formGroup5">
                 <Form.Label>Built Up Area of a Flat</Form.Label>
                 <div
@@ -1930,7 +1941,7 @@ const Commercialsell = ({
                 )}
               </Form.Group>
             </Col>
-            <Col md={6}>
+            <Col>
               <Form.Group controlId="formGroup6">
                 <Form.Label>Availabe Floors</Form.Label>
                 <Form.Control
@@ -1950,7 +1961,7 @@ const Commercialsell = ({
           </Row>
           <Row className="gx-md-3 mt-5">
             {/* Third Row */}
-            <Col md={6}>
+            <Col md={6} sm={12}>
               <Form.Group controlId="formGroup5">
                 <Form.Label>Floor Number</Form.Label>
                 <Form.Control
@@ -1967,7 +1978,7 @@ const Commercialsell = ({
                 </Form.Control.Feedback>
               </Form.Group>
             </Col>
-            <Col md={6}>
+            <Col>
               <Form.Group controlId="formGroup6">
                 <Form.Label>Total Floors</Form.Label>
                 <Form.Control
@@ -1987,7 +1998,7 @@ const Commercialsell = ({
           </Row>
           <Row className="gx-md-3 mt-5">
             {/* Third Row */}
-            <Col md={6}>
+            <Col md={6} sm={12}>
               <Form.Group controlId="formGroup5">
                 <Form.Label>Number of Two Wheeler Parking</Form.Label>
                 <Form.Control
@@ -2004,7 +2015,7 @@ const Commercialsell = ({
                 </Form.Control.Feedback>
               </Form.Group>
             </Col>
-            <Col md={6}>
+            <Col>
               <Form.Group controlId="formGroup6">
                 <Form.Label>Number of Car Parking</Form.Label>
                 <Form.Control
@@ -2059,7 +2070,7 @@ const Commercialsell = ({
             <input
               className="inp"
               placeholder="other if any..."
-              name="category"
+              name="age"
               onChange={handleChange}
             />
           </div>
@@ -2150,7 +2161,7 @@ const Commercialsell = ({
               className="inp text-start"
               placeholder="If under construction...."
               onChange={handleChange}
-              name="condition"
+              name="month"
             />
           </div>
         </div>

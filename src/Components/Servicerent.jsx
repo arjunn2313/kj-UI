@@ -2850,7 +2850,7 @@ four,
     "Avenue Trees": false,
     Compound: false,
 
-    "Club House": false,
+    "ClubHouse": false,
     "Community Hall": false,
     Saloon: false,
     Pool: false,
@@ -2899,12 +2899,12 @@ four,
     "Residential",
     "Commercial",
     "Industrial",
-    "Agricultural:",
+    "Agricultural",
     "GovtUse",
     "Lift",
     "PublicUtilities",
-    "Special Economic",
-    "Natural Conservation",
+    "SpecialEconomic",
+    "NaturalConservation",
     "Transport",
     "Communication",
     "OpenSpace",
@@ -3088,7 +3088,9 @@ four,
     rentPrice: "",
     advanceAmount: "",
     description: "",
-    agentCommision:""
+    agentCommision:"",
+    age:"",
+    month:""
   });
   //onchange function
   const handleChange = (event) => {
@@ -3136,8 +3138,10 @@ four,
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
-    if (!data.agentCommision.trim()) {
-      errors.agentCommision = "Please enter agentCommision";
+    if(activeButton === "Agent"){
+      if (!data.agentCommision.trim()) {
+        errors.agentCommision = "Please enter agentCommision";
+      }
     }
     return errors;
   };
@@ -3195,6 +3199,8 @@ four,
 
     // ddddd
     formData.append("industrialbuilding.condition", formValue?.condition);
+    formData.append("industrialbuilding.age", formValue?.age);
+    formData.append("industrialbuilding.under_construction_months", formValue?.month);
     formData.append("industrialbuilding.status", formValue?.status);
     formData.append("description", formValue?.description);
     formData.append("location", formValue?.propertyLocation);
@@ -3536,7 +3542,7 @@ four,
             <input
               className="inp"
               placeholder="other if any..."
-              name="category"
+              name="age"
               onChange={handleChange}
             />
           </div>
@@ -3627,7 +3633,7 @@ four,
               className="inp text-start"
               placeholder="If under construction...."
               onChange={handleChange}
-              name="condition"
+              name="month"
             />
           </div>
         </div>

@@ -440,6 +440,9 @@ const FactoryLease = ({
     description: "",
     typeoffactory: "",
     leasePeriod: "",
+    agentCommision:"",
+    age:"",
+    month:""
   });
   //onchange function
   const handleChange = (event) => {
@@ -493,8 +496,10 @@ const FactoryLease = ({
     if (!data.leasePeriod.trim()) {
       errors.leasePeriod = "Please enter leasePeriod";
     }
-    if (!data.agentCommision.trim()) {
-      errors.agentCommision = "Please enter agentCommision";
+    if(activeButton === "Agent"){
+      if (!data.agentCommision.trim()) {
+        errors.agentCommision = "Please enter agentCommision";
+      }
     }
     // if (!data.leasePricepermonth.trim()) {
     //   errors.leasePricepermonth = "Please enter leasePricepermonth";
@@ -569,6 +574,8 @@ const submitForm = async (formValue) => {
   formData.append("location", formValue?.propertyLocation);
   formData.append("city", formValue?.city);
   formData.append("factory.floor_number", formValue?.floorNumber);
+  formData.append("factory.age", formValue?.age);
+  formData.append("factory.under_construction_months", formValue?.month);
   formData.append("lease_amount", formValue?.leasePrice);
   formData.append("lease_amount_per", formValue?.leasePricepermonth);
   formData.append("lease_period", formValue?.leasePeriod);
@@ -880,7 +887,7 @@ return (
         <div className="flex-grow-1 me-2">
           <input className="inp"
             placeholder="other if any..."
-            name="category"
+            name="age"
             onChange={handleChange} />
         </div>
       </div>
@@ -970,7 +977,7 @@ return (
           <input className="inp text-start"
             placeholder="If under construction...."
             onChange={handleChange}
-            name="condition" />
+            name="month" />
         </div>
       </div>
 

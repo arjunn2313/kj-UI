@@ -1598,6 +1598,9 @@ const FactoryRent = ({ activeButton,
     advanceAmount: "",
     description: "",
     typeoffactory: "",
+    agentCommision:"",
+    age:"",
+    month:""
   });
  //onchange function
  const handleChange = (event) => {
@@ -1647,7 +1650,11 @@ const FactoryRent = ({ activeButton,
     if (!data.typeoffactory.trim()) {
       errors.typeoffactory = "Please enter factory";
     }
-
+    if(activeButton === "Agent"){
+      if (!data.agentCommision.trim()) {
+        errors.agentCommision = "Please enter agentCommision";
+      }
+    }
    
    
 
@@ -1713,6 +1720,8 @@ const FactoryRent = ({ activeButton,
 
   // ddddd
   formData.append("factory.condition", formValue?.condition);
+  formData.append("factory.age", formValue?.age);
+  formData.append("factory.under_construction_months", formValue?.month);
   formData.append("factory.status", formValue?.status);
   formData.append("description", formValue?.description);
   formData.append("location", formValue?.propertyLocation);
@@ -2082,7 +2091,7 @@ const FactoryRent = ({ activeButton,
             <input
               className="inp"
               placeholder="other if any..."
-              name="category"
+              name="age"
               onChange={handleChange}
             />
           </div>
@@ -2172,7 +2181,7 @@ const FactoryRent = ({ activeButton,
               className="inp text-start"
               placeholder="If under construction...."
               onChange={handleChange}
-              name="condition"
+              name="month"
             />
           </div>
         </div>

@@ -2929,8 +2929,8 @@ const Commerciallease = ({
     "Washroom",
     "Toilet",
 
-    "AirConditioning",
-    "PowerBackup",
+    "Air Conditioning",
+    "Power Backup",
     "WIFI",
     "Lift",
     "Coffee Bar",
@@ -3161,7 +3161,9 @@ const Commerciallease = ({
     leaseprice: "",
     advanceAmount: "",
     description: "",
-    agentCommision:""
+    agentCommision:"",
+    age:"",
+    month:""
   });
 
   //onchange function
@@ -3217,9 +3219,12 @@ const Commerciallease = ({
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
-    if (!data.agentCommision.trim()) {
-      errors.agentCommision = "Please enter agentCommision";
+    if(activeButton === "Agent"){
+      if (!data.agentCommision.trim()) {
+        errors.agentCommision = "Please enter agentCommision";
+      }
     }
+     
     return errors;
   };
 
@@ -3269,6 +3274,8 @@ const Commerciallease = ({
     formData.append("unit", "sqft");
     // ddddd
     formData.append("showroom.condition", formValue?.condition);
+    formData.append("showroom.age", formValue?.age);
+    formData.append("showroom.under_construction_months", formValue?.month);
     formData.append("showroom.status", formValue?.status);
     formData.append("description", formValue?.description);
     formData.append("location", formValue?.propertyLocation);
@@ -3569,7 +3576,7 @@ const Commerciallease = ({
             <input
               className="inp"
               placeholder="other if any..."
-              name="category"
+              name="age"
               onChange={handleChange}
             />
           </div>
@@ -3660,7 +3667,10 @@ const Commerciallease = ({
               className="inp text-start"
               placeholder="If under construction...."
               onChange={handleChange}
-              name="condition"
+              name="month"
+              
+
+
             />
           </div>
         </div>
@@ -3832,7 +3842,7 @@ const Commerciallease = ({
                   </h5>
                   <Form.Control
                     type="number"
-                    placeholder="Agent Commision"
+                    placeholder="Rs"
                     style={formControlStyle}
                     name="agentCommision"
                     isInvalid={!!errors.agentCommision}

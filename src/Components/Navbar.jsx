@@ -145,7 +145,8 @@ const Navbar = () => {
       <ToastContainer />
     </div>
           </ul>
-        <button className='d-lg-flex ms-3 rounded-pill gap-2' style={{width:'250px',height:'40px',border:'none'}} onClick={handlepost}> <p className='mt-1 ms-3' style={{fontSize:'20px',fontWeight:'500'}}>Post Your Property</p><span className='rounded-pill mt-2' style={{backgroundColor:"#FEC72B",fontSize:'13px'}}> free</span>
+        <button className='d-lg-flex ms-3 rounded-pill gap-2' 
+        style={{width:'250px',height:'40px',border:'none'}} onClick={handlepost}> <p className='mt-1 ms-3' style={{fontSize:'20px',fontWeight:'500'}}>Post Your Property</p><span className='rounded-pill mt-2' style={{backgroundColor:"#FEC72B",fontSize:'13px'}}> free</span>
         </button>
           {/* <form className=" d-lg-flex ms-2">
             <input

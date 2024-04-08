@@ -453,6 +453,8 @@ const Apartmentrent = ({ activeButton, user,
         rentprice: "",
         advanceAmount: "",
         description: "",
+        age:"",
+        month:""
     });
 
     //onchange function
@@ -510,6 +512,11 @@ const Apartmentrent = ({ activeButton, user,
         if (!data.description.trim()) {
             errors.description = "Please enter description";
         }
+        if(activeButton === "Agent"){
+          if (!data.agentCommision.trim()) {
+            errors.agentCommision = "Please enter agentCommision";
+          }
+        }
         return errors;
     };
     // form submition request
@@ -559,6 +566,8 @@ const Apartmentrent = ({ activeButton, user,
         // ddddd
 
         formData.append("service_apartment.status", formValue?.status);
+        formData.append("service_apartment.age", formValue?.age);
+        formData.append("service_apartment.under_construction_months", formValue?.month);
         formData.append("service_apartment.no_of_flats", formValue?.Noofflats);
         formData.append("description", formValue?.description);
         formData.append("location", formValue?.propertylocation);
@@ -726,7 +735,7 @@ const Apartmentrent = ({ activeButton, user,
                                 <div className='rounded-pill'
                                     style={{ position: 'relative', display: 'inline-block' }}>
                                     <Form.Control
-                                        type="text"
+                                        type="number"
                                         placeholder="Area"
                                         style={{ ...formControlStyle }}
                                         className="form-select"
@@ -1107,13 +1116,16 @@ const Apartmentrent = ({ activeButton, user,
                   </h5>
                   <Form.Control
                     type="number"
-                    placeholder="Agent Commision"
+                    placeholder="Rs"
                     style={formControlStyle}
                     name="agentCommision"
                     isInvalid={!!errors.agentCommision}
                     value={formValue.agentCommision}
                     onChange={handleChange}
                   />
+                    <Form.Control.Feedback type="invalid">
+                  {errors.agentCommision}
+                </Form.Control.Feedback>
                 </Form.Group>
               </Col>
             )}
