@@ -984,7 +984,15 @@ const Posting = () => {
         )}
         {activeButton === "Owner" &&
           third === "bottom" &&
-          second === "Sell" && <Flatapartsell />}
+          second === "Sell" && <Flatapartsell 
+          activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton}
+          />}
           
         {activeButton === "Owner" && third === "Top" && second === "Rent" && (
           <Restland
@@ -998,14 +1006,35 @@ const Posting = () => {
         )}
         {activeButton === "Owner" &&
           third === "bottom" &&
-          second === "Rent" && <Flatapartrent />}
+          second === "Rent" && <Flatapartrent  activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton}/>}
         {activeButton === "Owner" && third === "Top" && second === "Lease" && (
-          <Restlease />
+          <Restlease
+          activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton}
+           />
+       
         )}
 
         {activeButton === "Owner" &&
           third === "bottom" &&
-          second === "Lease" && <Flatapartlease />}
+          second === "Lease" && <Flatapartlease  activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton}/>}
 
         {activeButton === "Agent" && first && second === "Sell" && (
           <Sellform
@@ -1024,6 +1053,7 @@ const Posting = () => {
             first={first}
             second={second}
             selectedPropType={selectedPropType}
+            restbutton={restbutton}
           />
         )}
 
@@ -1037,24 +1067,67 @@ const Posting = () => {
           />
         )}
         {activeButton === "Agent" && third === "Top" && second === "Sell" && (
-          <Restform activeButton={activeButton} />
+          <Restform activeButton={activeButton} 
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          restbutton={restbutton}
+          
+          
+          />
         )}
         {activeButton === "Agent" && third === "Top" && second === "Rent" && (
-          <Restland activeButton={activeButton} />
+          <Restland     activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton}
+           />
         )}
         {activeButton === "Agent" && third === "Top" && second === "Lease" && (
-          <Restlease activeButton={activeButton} />
+          <Restlease 
+          activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton}
+           />
+         
         )}
         {activeButton === "Agent" &&
           third === "bottom" &&
-          second === "Sell" && <Flatapartsell activeButton={activeButton} />}
+          second === "Sell" && <Flatapartsell activeButton={activeButton} 
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton}
+          />}
         {activeButton === "Agent" &&
           third === "bottom" &&
-          second === "Rent" && <Flatapartrent activeButton={activeButton} />}
+          second === "Rent" && <Flatapartrent  activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton} />}
 
         {activeButton === "Agent" &&
           third === "bottom" &&
-          second === "Lease" && <Flatapartlease activeButton={activeButton} />}
+          second === "Lease" && <Flatapartlease  activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton} />}
 
         {activeButton === "Agent" &&
           four &&
@@ -1120,7 +1193,14 @@ const Posting = () => {
           />
         )}
         {activeButton === "Builder" && third === "Top" && second === "Sell" && (
-          <Restform activeButton={activeButton} />
+          <Restform activeButton={activeButton} 
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          restbutton={restbutton}
+          
+          />
         )}
         {activeButton === "Builder" && third === "Top" && second === "Rent" && (
           <Restland activeButton={activeButton} />
@@ -1131,14 +1211,32 @@ const Posting = () => {
 
         {activeButton === "Builder" &&
           third === "bottom" &&
-          second === "Sell" && <Flatapartsell activeButton={activeButton} />}
+          second === "Sell" && <Flatapartsell          activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton}/>}
         {activeButton === "Builder" &&
           third === "bottom" &&
-          second === "Rent" && <Flatapartrent activeButton={activeButton} />}
+          second === "Rent" && <Flatapartrent  activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton} />}
 
         {activeButton === "Builder" &&
           third === "bottom" &&
-          second === "Lease" && <Flatapartlease activeButton={activeButton} />}
+          second === "Lease" && <Flatapartlease  activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton} />}
 
         {activeButton === "Builder" &&
           four &&

@@ -15,7 +15,14 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { Baseurl, UserConfig } from "./request";
 
-const Restform = ({ activeButton, user, first, second, selectedPropType,restbutton}) => {
+const Restform = ({
+  activeButton,
+  user,
+  first,
+  second,
+  selectedPropType,
+  restbutton,
+}) => {
   const [plot, setPlot] = useState(false);
   const [land, setLand] = useState(false);
   const [residential, setResidential] = useState(false);
@@ -243,43 +250,43 @@ const Restform = ({ activeButton, user, first, second, selectedPropType,restbutt
   const handleImageChange = (event) => {
     const file = event.target.files[0];
 
-    setSelectedImage(file);
+    setSelectedImage(file); //ex
   };
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setSelectedFile(file);
+    setSelectedFile(file); //in
   };
   const handleImagevalue = (event) => {
     const file = event.target.files[0];
 
-    setselectedvalue(file);
+    setselectedvalue(file); //bed
   };
   const handleImagerooms = (event) => {
     const file = event.target.files[0];
 
-    setselectedroom(file);
+    setselectedroom(file); //bath
   };
- 
+
   const handleFileKitchen = (event) => {
     const file = event.target.files[0];
 
-    setselectedKitchen(file);
+    setselectedKitchen(file); //ki6t
   };
 
   const handleImageplan = (event) => {
     const file = event.target.files[0];
 
-    setselectedPlan(file);
+    setselectedPlan(file); //buld
   };
   const handleImagemap = (event) => {
     const file = event.target.files[0];
-    setselectedmap(file);
+    setselectedmap(file); //loc
   };
 
   const handleImageLogo = (event) => {
     const file = event.target.files[0];
 
-    setselectedLogo(file);
+    setselectedLogo(file); //logo
   };
   const removeSelectedImage = () => {
     setSelectedImage("");
@@ -308,7 +315,7 @@ const Restform = ({ activeButton, user, first, second, selectedPropType,restbutt
   const removeSelectedLogo = () => {
     setselectedLogo("");
   };
-
+  console.log(second);
   ////////////// api integration///////
 
   const [errors, setErrors] = useState({});
@@ -325,6 +332,7 @@ const Restform = ({ activeButton, user, first, second, selectedPropType,restbutt
     salePrice: "",
     advanceAmount: "",
     description: "",
+    agentCommision: "",
   });
 
   //onchange function
@@ -371,7 +379,6 @@ const Restform = ({ activeButton, user, first, second, selectedPropType,restbutt
     return errors;
   };
 
- 
   // form submition request
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -394,26 +401,29 @@ const Restform = ({ activeButton, user, first, second, selectedPropType,restbutt
     formData.append("phone", `+${user?.phone}`);
     formData.append("email", user?.email);
     formData.append("property_type", selectedPropType);
-    formData.append("residential.residential_type",restbutton);
+    formData.append("residential.residential_type", restbutton);
     formData.append("you_are_here_to", second.toLowerCase());
     formData.append("owner", activeButton === "Owner");
     formData.append("agent", activeButton === "Agent");
     formData.append("builder", activeButton === "Builder");
     formData.append("title", formValue?.propertyName);
-    formData.append("house.available_bhk",formValue?.bhk);
+    formData.append("house.available_bhk", formValue?.bhk);
     formData.append("house.built_up_area", parseInt(formValue?.area));
     formData.append("house.built_up_area_unit", "sqft");
     formData.append("house.unit", "sqft");
-    formData.append("house.no_of_units_in_project", parseInt(formValue?.noOfUnit));
+    formData.append(
+      "house.no_of_units_in_project",
+      parseInt(formValue?.noOfUnit)
+    );
     formData.append("house.total_floors", formValue?.totalFloor);
     formData.append("house.category_of_project", formValue?.category);
-    
+
     // dummy data to avoid errors
     formData.append("area_sqft", 10);
     formData.append("unit", "sqft");
     // ddddd
     if (activeButton === "Agent") {
-      formData.append("agentCommission", formValue?.agentCommision);
+      formData.append("agent_commission", formValue?.agentCommision);
     }
     formData.append("house.condition", formValue?.condition);
     formData.append("house.status", formValue?.status);
@@ -440,24 +450,33 @@ const Restform = ({ activeButton, user, first, second, selectedPropType,restbutt
       formData.append(`house_images[${0}]image`, selectedImage);
     }
     if (selectedFile) {
-      formData.append(`house_images[${1}]section`, "interior_view");
+      formData.append(`house_images[${1}]section`, "livingroom");
       formData.append(`house_images[${1}]image`, selectedFile);
     }
+    if (selectedvalue) {
+      formData.append(`house_images[${2}]section`, "bedrooms");
+      formData.append(`house_images[${2}]image`, selectedvalue);
+    }
     if (selectedroom) {
-      formData.append(`house_images[${2}]section`, "washroom");
-      formData.append(`house_images[${2}]image`, selectedroom);
+      formData.append(`house_images[${3}]section`, "bathrooms");
+      formData.append(`house_images[${3}]image`, selectedroom);
     }
     if (selectedKitchen) {
-      formData.append(`house_images[${3}]section`, "washroom");
-      formData.append(`house_images[${3}]image`, selectedKitchen);
+      formData.append(`house_images[${4}]section`, "kitchen");
+      formData.append(`house_images[${4}]image`, selectedKitchen);
+    }
+
+    if (selectedPlan) {
+      formData.append(`house_images[${5}]section`, "building_plan");
+      formData.append(`house_images[${5}]image`, selectedPlan);
     }
     if (selectedmap) {
-      formData.append(`house_images[${4}]section`, "washroom");
-      formData.append(`house_images[${4}]image`, selectedmap);
+      formData.append(`house_images[${6}]section`, "location_map");
+      formData.append(`house_images[${6}]image`, selectedmap);
     }
     if (selectedLogo) {
-      formData.append(`house_images[${5}]section`, "washroom");
-      formData.append(`house_images[${5}]image`, selectedLogo);
+      formData.append(`house_images[${7}]section`, "logo");
+      formData.append(`house_images[${7}]image`, selectedLogo);
     }
     try {
       const response = await axios.post(
@@ -470,6 +489,29 @@ const Restform = ({ activeButton, user, first, second, selectedPropType,restbutt
         hideProgressBar: true,
         position: "top-center",
       });
+      setFormValue({
+        propertyName: "",
+        propertyLocation: "",
+        bhk: "1BHK",
+        area: "",
+        noOfUnit: "",
+        totalFloor: "",
+        category: "",
+        status: "",
+        condition: "",
+        salePrice: "",
+        advanceAmount: "",
+        description: "",
+        agentCommision: "",
+      });
+      setSelectedImage("");
+      setSelectedFile("");
+      setselectedvalue("");
+      setselectedroom("");
+      setselectedKitchen("");
+      setselectedPlan("");
+      setselectedmap("");
+      setselectedLogo("");
     } catch (error) {
       console.error("Server error", error);
       toast.error("something went wrong", {
@@ -658,7 +700,7 @@ const Restform = ({ activeButton, user, first, second, selectedPropType,restbutt
       </div>
 
       <h5 className="mt-4">Status</h5>
-      <div className="custom-radio d-flex mt-4">
+      <div className="custom-radio d-flex mt-4" onChange={handleChange}>
         <div className="flex-grow-1">
           <div className="form-check">
             <input
