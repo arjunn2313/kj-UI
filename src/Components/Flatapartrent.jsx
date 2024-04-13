@@ -165,7 +165,7 @@ const Flatapartrent = ({activeButton}) => {
     "Parks",
     "Stores",
     "Club House",
-    " Community Hall",
+    "Community Hall",
     "Saloon",
     "Pool",
     "Pharmacy",

@@ -1412,7 +1412,7 @@ import { Baseurl, UserConfig } from "./request";
 const Commercialrent = ({
   activeButton,
   user,
-  first,
+  four,
   second,
   selectedPropType,
 }) => {
@@ -1569,14 +1569,6 @@ const Commercialrent = ({
       );
     }
   };
-  const [buttonAdd, setButtonAdd] = useState({
-    "Car Parking": false,
-    Security: false,
-    "Street Lights": false,
-    "Avenue Trees": false,
-    Compound: false,
-  });
-
   const newvalue = [
     "Car Parking",
     "Security",
@@ -1585,6 +1577,16 @@ const Commercialrent = ({
 
     "Compound",
   ];
+  const [buttonAdd, setButtonAdd] = useState({
+    "Car Parking": false,
+    Security: false,
+    "Street Lights": false,
+    "Avenue Trees": false,
+    Compound: false,
+  });
+ 
+
+ 
 
   const [data, setData] = useState([]);
   const [input, setInput] = useState("");
@@ -1747,6 +1749,9 @@ const Commercialrent = ({
     rentprice: "",
     advanceAmount: "",
     description: "",
+    agentCommision:"",
+    age:"",
+    month:""
   });
 
   //onchange function
@@ -1802,6 +1807,11 @@ const Commercialrent = ({
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
+    if(activeButton === "Agent"){
+      if (!data.agentCommision.trim()) {
+        errors.agentCommision = "Please enter agentCommision";
+      }
+    }
     return errors;
   };
 
@@ -1821,17 +1831,20 @@ const Commercialrent = ({
     submitForm(formValue);
   };
 
-  console.log(input);
+
+  console.log();
   // form submittion after validation
   const submitForm = async (formValue) => {
     const formData = new FormData();
     formData.append("name", user?.userName);
     formData.append("phone", `+${user?.phone}`);
     formData.append("email", user?.email);
-    formData.append("property_type", selectedPropType);
-    formData.append("commercial.commercial_type", "office");
+    formData.append("property_type", selectedPropType)
+    formData.append("commercial.commercial_type",four);
     formData.append("you_are_here_to", second.toLowerCase());
     formData.append("owner", activeButton === "Owner");
+    formData.append("agent", activeButton === "Agent");
+    formData.append("builder", activeButton === "Builder");
     formData.append("title", formValue?.propertyName);
     formData.append("showroom.built_up_area", parseInt(formValue?.area));
     formData.append("showroom.built_up_area_unit", "sqft");
@@ -1849,6 +1862,8 @@ const Commercialrent = ({
     formData.append("unit", "sqft");
     // ddddd
     formData.append("showroom.condition", formValue?.condition);
+    formData.append("showroom.age", formValue?.age);
+    formData.append("showroom.under_construction_months", formValue?.month);
     formData.append("showroom.status", formValue?.status);
     formData.append("description", formValue?.description);
     formData.append("location", formValue?.propertyLocation);
@@ -1856,6 +1871,9 @@ const Commercialrent = ({
     formData.append("showroom.floor_number", formValue?.floorNumber);
     formData.append("rent", parseInt(formValue?.rentprice));
     formData.append("advance", formValue?.advanceAmount);
+    if (activeButton === "Agent") {
+      formData.append("agent_commission", formValue?.agentCommision);
+    }
     data.forEach((element, index) => {
       formData.append(
         `showroom.indoor_facilities[${index}]facility.name`,
@@ -2146,8 +2164,9 @@ const Commercialrent = ({
             <input
               className="inp"
               placeholder="other if any..."
-              name="category"
+              
               onChange={handleChange}
+              name="age"
             />
           </div>
         </div>
@@ -2237,7 +2256,7 @@ const Commercialrent = ({
               className="inp text-start"
               placeholder="If under construction...."
               onChange={handleChange}
-              name="condition"
+              name="month"
             />
           </div>
         </div>
@@ -2412,13 +2431,16 @@ const Commercialrent = ({
                   </h5>
                   <Form.Control
                     type="number"
-                    placeholder="Agent Commision"
+                    placeholder="Rs"
                     style={formControlStyle}
                     name="agentCommision"
                     isInvalid={!!errors.agentCommision}
                     value={formValue.agentCommision}
                     onChange={handleChange}
                   />
+                  <Form.Control.Feedback type="invalid">
+                  {errors.agentCommision}
+                </Form.Control.Feedback>
                 </Form.Group>
               </Col>
             )}

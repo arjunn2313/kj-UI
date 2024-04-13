@@ -1,8 +1,18 @@
+// import React from 'react'
+
+// const Postcheck = () => {
+//   return (
+//     <div>Postcheck</div>
+//   )
+// }
+
+// export default Postcheck
 import React from 'react'
 import { Button, Card, Form } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
 import { FaRegHeart } from "react-icons/fa";
 import { RiShareForwardLine } from "react-icons/ri";
+import { FiArrowLeft } from "react-icons/fi";
 import l1 from '../Images/l1.png';
 import l2 from '../Images/l2.png';
 import l3 from '../Images/l3.png';
@@ -15,14 +25,17 @@ import b6 from "../Images/b6.png";
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import Navbar from './Navbar';
-const Builder = () => {
+const  Postcheck = () => {
   const navigate = useNavigate(); 
 
   const handleContact = () => {
 
     navigate('/mobile'); 
   };
-
+  const handleClick = () => {
+    // Navigate to a different page
+    navigate('/');
+  };
   const data = [
     ['Super Built-Up Area', 'Developer', 'Project', 'Transaction Type'],
     ['1662 sqft', 'Risland India', 'VGN Fairmont', 'New Property'],
@@ -69,6 +82,18 @@ const Builder = () => {
 
 
       <div className="container pt-5" >
+     
+    <FiArrowLeft
+      className='mt-5'
+      style={{
+        width:'40px',
+        height:'31px',
+        color:'#D7242A',
+        cursor: 'pointer'
+      }}
+      onClick={handleClick}
+    />
+
         <Card className ="mt-5"style={{ width: '1170px', border: ' 1px solid #D7242A' }}>
           <Row className="mx-3" style={{ color: "#D7242A" }}>
             <Col xs={6}>
@@ -195,7 +220,7 @@ scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of t
         backgroundColor: "#D7242A",
         border: "none",
         borderRadius: "30px",
-        width:"320px",
+        width:"270px",
         height: "60px",
         
       }}
@@ -203,7 +228,7 @@ scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of t
       disabled={false}
       onClick={handleContact} 
     >
-      Contact Number
+     Delete
     </button>
 
         </Card.Body>
@@ -219,4 +244,4 @@ scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of t
   )
 }
 
-export default Builder
+export default  Postcheck

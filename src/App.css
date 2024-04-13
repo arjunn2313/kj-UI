@@ -27,13 +27,7 @@
   padding: 5px 20px;
 }
 
-.navbar-custom1 {
-  background-color: #D7242A;
 
-
-
-
-}
 
 .custom-border-radius {
   border-radius: 20px;
@@ -251,3 +245,51 @@ border-color:  #D7242A;
     height: 50px;
   }
 }
+@media (max-width: 992px) {
+ 
+  .navbar-nav {
+    flex-direction:row; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start of the container */
+    justify-content: space-between;
+  }
+  .nav-item {
+    margin-right: 0; /* Remove right margin */
+    margin-bottom: 0; /* Remove bottom margin */
+  }
+
+  @media (min-width: 576px) and (max-width: 991px) {
+    .my-card {
+      width: 100%;
+      
+    }
+    .navbar-nav {
+     
+      flex-direction: row;
+      align-items: flex-start!important;
+      justify-content: space-between!important; 
+     
+    }
+  
+    .nav-item {
+      margin-right: 0; 
+      margin-bottom: 0px;
+    }
+  }
+  
+ 
+}
+
+
+@media (max-width: 1024px) {
+  .bg-image {
+.bg-image {
+      width: 100%;
+      height: calc(100% - 50px);
+      object-fit: cover; 
+      background-position: center; 
+      margin-top: 50px; 
+    }
+    
+  }
+}
+

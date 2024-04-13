@@ -11,7 +11,7 @@ import { Dropdown,Card, DropdownToggle} from 'react-bootstrap';
 
 import { useState } from 'react';
 import Budget from './Budget';
-
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 const Navigation = () => {
   const navigate = useNavigate(); 
@@ -87,7 +87,7 @@ const [Gender, setGender] = useState('');
 const [selectedOption, setSelectedOption] = useState(null);
 const [activeLink, setActiveLink] = useState('');
 const [price, setprice] = useState(false);
-const [link, setlink] = useState('Buy')
+const [link, setLink] = useState('Buy'); // State to track active link
   const handleDropdownClick = (dropdown) => {
     setActiveDropdown(dropdown);
     setActiveLink(dropdown);
@@ -145,46 +145,47 @@ const handleGender =(Gender) =>{
   setGender(Gender);
 }
 const handleBudget =(budget)=>{
-  setprice(budget);
+  setprice(prevPrice => !prevPrice);
   setPropertyType(false);
   setActiveDropdown(false);
   }
 
   const handleLinkClick = (link) => {
-    setlink(link);
+    setLink(link); 
   };
   return (
-    <div className='navbar-custom1' style={navStyle}>
+    <div className='bg-image' style={navStyle}>
       <nav className="navbar navbar-expand-lg ">
         <div className="" style={navbarStyle}>
-          <ul className="navbar-nav d-flex justify-content-between mx-lg-5">
+          {/* <ul className="navbar-nav d-flex justify-content-between mx-5">
           <li className="nav-item">
-              <a className="nav-link active" href="" style={link === 'Buy' ? activeLinkStyle : navLinkStyle} onClick={() => handleLinkClick('Buy')} onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}>
+              <a className="nav-link " href="/" style={link === 'Buy' ? activeLinkStyle : navLinkStyle}
+               onClick={() => handleLinkClick('Buy')} 
+               >
                 Buy
               </a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/Rent"  style={link === 'Rent' ? activeLinkStyle : navLinkStyle} onClick={() => handleLinkClick('Rent')}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}>
+             >
                 Rent
               </a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/Lease" style={link === ' Lease' ? activeLinkStyle : navLinkStyle} onClick={() => handleLinkClick('Lease')}
                
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}>
+               >
                 Lease
               </a>
             </li>
          
       
             <li className="nav-item">
-              <a className="nav-link" href="#" style={navLinkStyle}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}>
+              <a className="nav-link" 
+              style={link === 'Help' ? activeLinkStyle : navLinkStyle} 
+              onClick={() => handleLinkClick('Help')}
+              
+             >
                Help
               </a>
             </li>
@@ -192,7 +193,31 @@ const handleBudget =(budget)=>{
           
           
            
-          </ul>
+          </ul> */}
+
+<ul className="navbar-nav d-flex justify-content-between mx-5">
+  <li className="nav-item">
+    <Link to="/" className="nav-link" style={link === 'Buy' ? activeLinkStyle : navLinkStyle} onClick={() => handleLinkClick('Buy')}>
+      Buy
+    </Link>
+  </li>
+  <li className="nav-item">
+    <Link to="/Rent" className="nav-link" style={link === 'Rent' ? activeLinkStyle : navLinkStyle} onClick={() => handleLinkClick('Rent')}>
+      Rent
+    </Link>
+  </li>
+  <li className="nav-item">
+    <Link to="/Lease" className="nav-link" style={link === 'Lease' ? activeLinkStyle : navLinkStyle} onClick={() => handleLinkClick('Lease')}>
+      Lease
+    </Link>
+  </li>
+  <li className="nav-item">
+    <Link to="/Help" className="nav-link" style={link === 'Help' ? activeLinkStyle : navLinkStyle} onClick={() => handleLinkClick('Help')}>
+      Help
+    </Link>
+  </li>
+</ul>
+
         </div>
       </nav>
       <h1 className="text-center my-5 text-white-50">Welcome back, Let’s continue Your Search </h1>
@@ -200,7 +225,7 @@ const handleBudget =(budget)=>{
       <div className="card bg-light text-dark custom-border-radius mx-auto  pb-5 w-50">
       <nav className="navbar navbar-expand-lg">
           <div className="container" style={{backgroundColor: '#FFFFFF4D', width: '100%'}}>
-            <ul className="navbar-nav value d-flex justify-content-between w-100">
+            <ul className="navbar-nav d-flex justify-content-between w-100 value">
               <li className="nav-item ">
                 <a  className={`nav-link ${activeLink === 'Plot' ? 'design' : ''}`}
                  style={{color: '#000000'}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={() => handleDropdownClick('Plot')}>

@@ -1307,13 +1307,16 @@ import { log } from "util";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Baseurl, UserConfig } from "./request";
+import { useNavigate } from 'react-router-dom';
 const Commercialsell = ({
   activeButton,
   user,
   first,
   second,
   selectedPropType,
+  four
 }) => {
+  const navigate = useNavigate(); 
   const [plot, setPlot] = useState(false);
   const [land, setLand] = useState(false);
   const [residential, setResidential] = useState(false);
@@ -1413,8 +1416,8 @@ const Commercialsell = ({
     "Washroom",
     "Toilet",
 
-    "AirConditioning",
-    "PowerBackup",
+    "Air Conditioning",
+    "Power Backup",
     "WIFI",
     "Lift",
     "Coffee Bar",
@@ -1427,7 +1430,8 @@ const Commercialsell = ({
     "Power Backup": false,
     WIFI: false,
     Lift: false,
-    " Coffee Bar": false,
+    "Coffee Bar": false,
+    Lobby: false
   });
   const [count, setCount] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -1467,13 +1471,6 @@ const Commercialsell = ({
       );
     }
   };
-  const [buttonAdd, setButtonAdd] = useState({
-    "Car Parking": false,
-    Security: false,
-    "Street Lights": false,
-    "Avenue Trees": false,
-    Compound: false,
-  });
 
   const newvalue = [
     "Car Parking",
@@ -1484,6 +1481,15 @@ const Commercialsell = ({
     "Compound",
   ];
 
+  const [buttonAdd, setButtonAdd] = useState({
+    "Car Parking": false,
+    Security: false,
+    "Street Lights": false,
+    "Avenue Trees": false,
+    Compound: false,
+  });
+
+  
   const [data, setData] = useState([]);
   const [input, setInput] = useState("");
 
@@ -1645,6 +1651,9 @@ const Commercialsell = ({
     salePrice: "",
     advanceAmount: "",
     description: "",
+    agentCommision:"",
+    age:"",
+    month:""
   });
 
   //onchange function
@@ -1700,9 +1709,15 @@ const Commercialsell = ({
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
+    if(activeButton === "Agent"){
+    if (!data.agentCommision.trim()) {
+      errors.agentCommision = "Please enter agentCommision";
+    }
+  }
+   
     return errors;
   };
-
+ 
   // form submition request
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -1727,9 +1742,11 @@ const Commercialsell = ({
     formData.append("phone", `+${user?.phone}`);
     formData.append("email", user?.email);
     formData.append("property_type", selectedPropType);
-    formData.append("commercial.commercial_type", "office");
+    formData.append("commercial.commercial_type",four);
     formData.append("you_are_here_to", second.toLowerCase());
     formData.append("owner", activeButton === "Owner");
+    formData.append("agent", activeButton === "Agent");
+    formData.append("builder", activeButton === "Builder");
     formData.append("title", formValue?.propertyName);
     formData.append("showroom.built_up_area", parseInt(formValue?.area));
     formData.append("showroom.built_up_area_unit", "sqft");
@@ -1742,11 +1759,9 @@ const Commercialsell = ({
       formValue?.twoParking
     );
     formData.append("showroom.no_of_car_parking", formValue?.carParking);
-    // dummy data to avoid errors
-    formData.append("area_sqft", 10);
-    formData.append("unit", "sqft");
-    // ddddd
     formData.append("showroom.condition", formValue?.condition);
+    formData.append("showroom.age", formValue?.age);
+    formData.append("showroom.under_construction_months", formValue?.month);
     formData.append("showroom.status", formValue?.status);
     formData.append("description", formValue?.description);
     formData.append("location", formValue?.propertyLocation);
@@ -1754,6 +1769,9 @@ const Commercialsell = ({
     formData.append("showroom.floor_number", formValue?.floorNumber);
     formData.append("sale_price", formValue?.salePrice);
     formData.append("advance", formValue?.advanceAmount);
+    if (activeButton === "Agent") {
+      formData.append("agent_commission", formValue?.agentCommision);
+    }
     data.forEach((element, index) => {
       formData.append(
         `showroom.indoor_facilities[${index}]facility.name`,
@@ -1770,12 +1788,6 @@ const Commercialsell = ({
       formData.append(`showroom_images[${0}]section`, "exterior_view");
       formData.append(`showroom_images[${0}]image`, selectedImage);
     }
-    // if (selectedImage) {
-    //   selectedImage.forEach((selectedImage, index) => {
-    //     formData.append(`showroom_images[${index}]section`, "exterior_view");
-    //     formData.append(`showroom_images[${index}]image`, selectedImage);
-    //   });
-    // }
     
     if (selectedFile) {
       formData.append(`showroom_images[${1}]section`, "interior");
@@ -1793,7 +1805,7 @@ const Commercialsell = ({
       formData.append(`showroom_images[${4}]section`, "location_map");
       formData.append(`showroom_images[${4}]image`, selectedmap);
     }
-    if (selectedLogo) {
+    if (selectedLogo) {//ask irfan about logo keyboard
       formData.append(`showroom_images[${5}]section`, "logo");
       formData.append(`showroom_images[${5}]image`, selectedLogo);
     }
@@ -1804,10 +1816,12 @@ const Commercialsell = ({
         UserConfig
       );
       console.log(response);
+      navigate('/check'); 
       toast.success("Submitted", {
         hideProgressBar: true,
         position: "top-center",
       });
+     
     } catch (error) {
       console.error("Server error", error);
       toast.error("something went wrong", {
@@ -1818,7 +1832,7 @@ const Commercialsell = ({
   };
 
   return (
-    <div>
+    <div> 
       <div>
         <Form className="mx-3">
           <Row className="gx-md-3">
@@ -1828,11 +1842,14 @@ const Commercialsell = ({
                 <Form.Control
                   type="text"
                   placeholder="Enter Name"
-                  style={{ ...formControllStyle }}
+                  style={{ ...formControllStyle}}
                   name="propertyName"
                   isInvalid={!!errors.propertyName}
                   value={formValue.propertyName}
                   onChange={handleChange}
+                  maxLength={20}
+                 
+
                 />
                 <Form.Control.Feedback type="invalid">
                   {errors.propertyName}
@@ -1841,7 +1858,7 @@ const Commercialsell = ({
             </Col>
           </Row>
           <Row className="mt-5">
-            <Col md={6}>
+            <Col md={6} sm={12}>
               <Form.Group controlId="formGroup3">
                 <Form.Label>Property Location</Form.Label>
                 <Form.Control
@@ -1858,7 +1875,7 @@ const Commercialsell = ({
                 </Form.Control.Feedback>
               </Form.Group>
             </Col>
-            <Col md={6}>
+            <Col>
               <Form.Group controlId="formGroup4">
                 <Form.Label>City</Form.Label>
                 <Form.Control
@@ -1879,7 +1896,7 @@ const Commercialsell = ({
 
           <Row className="gx-md-3 mt-5">
             {/* Third Row */}
-            <Col md={6}>
+            <Col md={6} sm={12}>
               <Form.Group controlId="formGroup5">
                 <Form.Label>Built Up Area of a Flat</Form.Label>
                 <div
@@ -1915,7 +1932,7 @@ const Commercialsell = ({
                 )}
               </Form.Group>
             </Col>
-            <Col md={6}>
+            <Col>
               <Form.Group controlId="formGroup6">
                 <Form.Label>Availabe Floors</Form.Label>
                 <Form.Control
@@ -1935,7 +1952,7 @@ const Commercialsell = ({
           </Row>
           <Row className="gx-md-3 mt-5">
             {/* Third Row */}
-            <Col md={6}>
+            <Col md={6} sm={12}>
               <Form.Group controlId="formGroup5">
                 <Form.Label>Floor Number</Form.Label>
                 <Form.Control
@@ -1952,7 +1969,7 @@ const Commercialsell = ({
                 </Form.Control.Feedback>
               </Form.Group>
             </Col>
-            <Col md={6}>
+            <Col>
               <Form.Group controlId="formGroup6">
                 <Form.Label>Total Floors</Form.Label>
                 <Form.Control
@@ -1972,7 +1989,7 @@ const Commercialsell = ({
           </Row>
           <Row className="gx-md-3 mt-5">
             {/* Third Row */}
-            <Col md={6}>
+            <Col md={6} sm={12}>
               <Form.Group controlId="formGroup5">
                 <Form.Label>Number of Two Wheeler Parking</Form.Label>
                 <Form.Control
@@ -1989,7 +2006,7 @@ const Commercialsell = ({
                 </Form.Control.Feedback>
               </Form.Group>
             </Col>
-            <Col md={6}>
+            <Col>
               <Form.Group controlId="formGroup6">
                 <Form.Label>Number of Car Parking</Form.Label>
                 <Form.Control
@@ -2044,7 +2061,7 @@ const Commercialsell = ({
             <input
               className="inp"
               placeholder="other if any..."
-              name="category"
+              name="age"
               onChange={handleChange}
             />
           </div>
@@ -2135,7 +2152,7 @@ const Commercialsell = ({
               className="inp text-start"
               placeholder="If under construction...."
               onChange={handleChange}
-              name="condition"
+              name="month"
             />
           </div>
         </div>
@@ -2295,13 +2312,16 @@ const Commercialsell = ({
                   </h5>
                   <Form.Control
                     type="number"
-                    placeholder="Agent Commision"
+                    placeholder="Rs"
                     style={formControlStyle}
                     name="agentCommision"
                     isInvalid={!!errors.agentCommision}
                     value={formValue.agentCommision}
                     onChange={handleChange}
                   />
+                       <Form.Control.Feedback type="invalid">
+                  {errors.agentCommision}
+                </Form.Control.Feedback>
                 </Form.Group>
               </Col>
             )}

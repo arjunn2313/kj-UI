@@ -17,14 +17,14 @@ const Properties = () => {
   };
   return (
     <div className='container'>
-      <div className='mt-5 pt-5 ms-2 my-5 d-flex row'>
+      <div className='mt-5 pt-5 ms-2 d-flex row'>
         <div className='col'>
           <h3 className='mt-5 pt-5 mx-1 text-lg-start bigvalue underline'>
             Recommended Properties
           </h3>
         </div>
-        <div className='col'>
-          <p className='mt-3 pt-3 mx-1 text-lg-end' style={{ color: '#D7242A',cursor: 'pointer' }} onClick={()=>{handleViewDetailss()}}>
+        <div className='col text-lg-end'>
+          <p className='mt-3 pt-3' style={{ color: '#D7242A',cursor: 'pointer' }} onClick={()=>{handleViewDetailss()}}>
             See all Projects <FaArrowRight />
           </p>
         </div>

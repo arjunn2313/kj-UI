@@ -732,27 +732,27 @@ const Posting = () => {
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "Office" ? "rest" : ""
+                      four === "office" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("Office")}
+                    onClick={() => handlecommercial("office")}
                   >
                     Office
                   </Button>
                   <Button
                     type="button"
                     className={`btn btn-outline-light  customplot rounded-pill ${
-                      four === "Shop" ? "rest" : ""
+                      four === "shop" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("Shop")}
+                    onClick={() => handlecommercial("shop")}
                   >
                     Shop
                   </Button>
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "Showroom" ? "rest" : ""
+                      four === "showroom" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("Showroom")}
+                    onClick={() => handlecommercial("showroom")}
                   >
                     Showroom
                   </Button>
@@ -760,18 +760,18 @@ const Posting = () => {
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "Godown" ? "rest" : ""
+                      four === "godown" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("Godown")}
+                    onClick={() => handlecommercial("godown")}
                   >
                     Godown
                   </Button>
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "Shed" ? "rest" : ""
+                      four === "shed" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("Shed")}
+                    onClick={() => handlecommercial("shed")}
                   >
                     Shed
                   </Button>
@@ -779,54 +779,54 @@ const Posting = () => {
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "Co-working Space" ? "rest" : ""
+                      four === "co-working Space" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("Co-working Space")}
+                    onClick={() => handlecommercial("co-working Space")}
                   >
                     Co-working Space
                   </Button>
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "Commercial complex" ? "rest" : ""
+                      four === "commercial complex" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("Commercial complex")}
+                    onClick={() => handlecommercial("commercial complex")}
                   >
                     Commercial complex
                   </Button>
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "Industrial Building" ? "rest" : ""
+                      four === "industrial building" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("Industrial Building")}
+                    onClick={() => handlecommercial("industrial building")}
                   >
                     Industrial Building
                   </Button>
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "Industrial shed" ? "rest" : ""
+                      four === "industrial shed" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("Industrial shed")}
+                    onClick={() => handlecommercial("industrial shed")}
                   >
                     Industrial shed
                   </Button>
                   <Button
                     type="button"
                     className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                      four === "Factory" ? "rest" : ""
+                      four === "factory" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("Factory")}
+                    onClick={() => handlecommercial("factory")}
                   >
                     Factory
                   </Button>
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "ServiceApartment" ? "rest" : ""
+                      four === "service apartment" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("ServiceApartment")}
+                    onClick={() => handlecommercial("service apartment")}
                     disabled={second === "Sell"}
                   >
                     Service Apartment
@@ -887,64 +887,145 @@ const Posting = () => {
           />
         )}
 
-        {four === "Industrial Building" && second === "Sell" && (
-          <Servicesell  
-          activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
+        {/* /ujud */}
+
+        {four === "industrial building" && second === "Sell" && (
+          <Servicesell
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four}
           />
         )}
-        {four === "Industrial Building" && second === "Rent" && (
-          <Servicerent activeButton={activeButton} />
+        {four === "industrial building" && second === "Rent" && (
+          <Servicerent
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four}
+          />
         )}
-        {four === "Industrial Building" && second === "Lease" && (
-          <Servicelease activeButton={activeButton} />
+        {four === "industrial building" && second === "Lease" && (
+          <Servicelease
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four}
+          />
         )}
-        {four === "Industrial shed" && second === "Sell" && (
-          <Servicesell activeButton={activeButton} />
+        {four === "industrial shed" && second === "Sell" && (
+          <Servicesell
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four}
+          />
         )}
-        {four === "Industrial shed" && second === "Rent" && (
-          <Servicerent activeButton={activeButton} />
+        {four === "industrial shed" && second === "Rent" && (
+          <Servicerent
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four}
+          />
         )}
-        {four === "Industrial shed" && second === "Lease" && (
-          <Servicelease activeButton={activeButton} />
+        {four === "industrial shed" && second === "Lease" && (
+          <Servicelease
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four}
+          />
         )}
 
-        {four === "Factory" && second === "Sell" && (
+        {four === "factory" && second === "Sell" && (
           <FactorySell activeButton={activeButton} />
         )}
-        {four === "Factory" && second === "Rent" && (
-          <FactoryRent activeButton={activeButton} />
+        {four === "factory" && second === "Rent" && (
+          <FactoryRent
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four}
+          />
         )}
 
-        {four === "Factory" && second === "Lease" && (
-          <FactoryLease activeButton={activeButton} />
+        {four === "factory" && second === "Lease" && (
+          <FactoryLease
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four}
+          />
         )}
-        {four === "ServiceApartment" && second === "Rent" && (
-          <Apartmentrent activeButton={activeButton} />
+        {four === "service apartment" && second === "Rent" && (
+          <Apartmentrent
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four}
+          />
         )}
 
-        {four === "ServiceApartment" && second === "Lease" && (
-          <Apartmentlease activeButton={activeButton} />
+        {four === "service apartment" && second === "Lease" && (
+          <Apartmentlease
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four}
+          />
         )}
         {four === "PG Home" && second === "Rent" && (
-          <Pgrent activeButton={activeButton} />
+          <Pgrent
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four}
+          />
         )}
         {four === "PG Hostel" && second === "Rent" && (
-          <Pgrent activeButton={activeButton} />
+          <Pgrent
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four}
+          />
         )}
         {activeButton === "Owner" &&
           four &&
           second === "Sell" &&
-          four !== "ServiceApartment" &&
-          four !== "Industrial Building" &&
-          four !== "Industrial shed" &&
-          four !== "Factory" &&
+          four !== "service apartment" &&
+          four !== "industrial building" &&
+          four !== "industrial shed" &&
+          four !== "factory" &&
           four !== "PG Home" &&
           four !== "PG Hostel" && (
             <Commercialsell
+              four={four}
               activeButton={activeButton}
               user={user}
               first={first}
@@ -955,22 +1036,30 @@ const Posting = () => {
         {activeButton === "Owner" &&
           four &&
           second === "Rent" &&
-          four !== "ServiceApartment" &&
-          four !== "Industrial Building" &&
-          four !== "Industrial shed" &&
-          four !== "Factory" &&
+          four !== "service apartment" &&
+          four !== "industrial building" &&
+          four !== "industrial shed" &&
+          four !== "factory" &&
           four !== "PG Home" &&
-          four !== "PG Hostel" && <Commercialrent />}
+          four !== "PG Hostel" && <Commercialrent   activeButton={activeButton}  user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          four={four}/>}
         {activeButton === "Owner" &&
           four &&
           second === "Lease" &&
-          four !== "ServiceApartment" &&
-          four !== "Industrial Building" &&
-          four !== "Industrial shed" &&
-          four !== "Industrial shed" &&
-          four !== "Factory" &&
+          four !== "service apartment" &&
+          four !== "industrial building" &&
+          four !== "industrial shed" &&
+          four !== "industrial shed" &&
+          four !== "factory" &&
           four !== "PG Home" &&
-          four !== "PG Hostel" && <Commerciallease />}
+          four !== "PG Hostel" && <Commerciallease   activeButton={activeButton}  user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          four={four}/>}
 
         {activeButton === "Owner" && third === "Top" && second === "Sell" && (
           <Restform
@@ -984,16 +1073,18 @@ const Posting = () => {
         )}
         {activeButton === "Owner" &&
           third === "bottom" &&
-          second === "Sell" && <Flatapartsell 
-          activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
-          setSelectedPropType={setSelectedPropType}
-          restbutton={restbutton}
-          />}
-          
+          second === "Sell" && (
+            <Flatapartsell
+              activeButton={activeButton}
+              user={user}
+              first={first}
+              second={second}
+              selectedPropType={selectedPropType}
+              setSelectedPropType={setSelectedPropType}
+              restbutton={restbutton}
+            />
+          )}
+
         {activeButton === "Owner" && third === "Top" && second === "Rent" && (
           <Restland
             activeButton={activeButton}
@@ -1006,35 +1097,42 @@ const Posting = () => {
         )}
         {activeButton === "Owner" &&
           third === "bottom" &&
-          second === "Rent" && <Flatapartrent  activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
-          setSelectedPropType={setSelectedPropType}
-          restbutton={restbutton}/>}
+          second === "Rent" && (
+            <Flatapartrent
+              activeButton={activeButton}
+              user={user}
+              first={first}
+              second={second}
+              selectedPropType={selectedPropType}
+              setSelectedPropType={setSelectedPropType}
+              restbutton={restbutton}
+            />
+          )}
         {activeButton === "Owner" && third === "Top" && second === "Lease" && (
           <Restlease
-          activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
-          setSelectedPropType={setSelectedPropType}
-          restbutton={restbutton}
-           />
-       
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            setSelectedPropType={setSelectedPropType}
+            restbutton={restbutton}
+          />
         )}
 
         {activeButton === "Owner" &&
           third === "bottom" &&
-          second === "Lease" && <Flatapartlease  activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
-          setSelectedPropType={setSelectedPropType}
-          restbutton={restbutton}/>}
+          second === "Lease" && (
+            <Flatapartlease
+              activeButton={activeButton}
+              user={user}
+              first={first}
+              second={second}
+              selectedPropType={selectedPropType}
+              setSelectedPropType={setSelectedPropType}
+              restbutton={restbutton}
+            />
+          )}
 
         {activeButton === "Agent" && first && second === "Sell" && (
           <Sellform
@@ -1067,102 +1165,124 @@ const Posting = () => {
           />
         )}
         {activeButton === "Agent" && third === "Top" && second === "Sell" && (
-          <Restform activeButton={activeButton} 
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
-          restbutton={restbutton}
-          
-          
+          <Restform
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            restbutton={restbutton}
           />
         )}
         {activeButton === "Agent" && third === "Top" && second === "Rent" && (
-          <Restland     activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
-          setSelectedPropType={setSelectedPropType}
-          restbutton={restbutton}
-           />
+          <Restland
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            setSelectedPropType={setSelectedPropType}
+            restbutton={restbutton}
+          />
         )}
         {activeButton === "Agent" && third === "Top" && second === "Lease" && (
-          <Restlease 
-          activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
-          setSelectedPropType={setSelectedPropType}
-          restbutton={restbutton}
-           />
-         
+          <Restlease
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            setSelectedPropType={setSelectedPropType}
+            restbutton={restbutton}
+          />
         )}
         {activeButton === "Agent" &&
           third === "bottom" &&
-          second === "Sell" && <Flatapartsell activeButton={activeButton} 
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
-          setSelectedPropType={setSelectedPropType}
-          restbutton={restbutton}
-          />}
+          second === "Sell" && (
+            <Flatapartsell
+              activeButton={activeButton}
+              user={user}
+              first={first}
+              second={second}
+              selectedPropType={selectedPropType}
+              setSelectedPropType={setSelectedPropType}
+              restbutton={restbutton}
+            />
+          )}
         {activeButton === "Agent" &&
           third === "bottom" &&
-          second === "Rent" && <Flatapartrent  activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
-          setSelectedPropType={setSelectedPropType}
-          restbutton={restbutton} />}
+          second === "Rent" && (
+            <Flatapartrent
+              activeButton={activeButton}
+              user={user}
+              first={first}
+              second={second}
+              selectedPropType={selectedPropType}
+              setSelectedPropType={setSelectedPropType}
+              restbutton={restbutton}
+            />
+          )}
 
         {activeButton === "Agent" &&
           third === "bottom" &&
-          second === "Lease" && <Flatapartlease  activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
-          setSelectedPropType={setSelectedPropType}
-          restbutton={restbutton} />}
-
+          second === "Lease" && (
+            <Flatapartlease
+              activeButton={activeButton}
+              user={user}
+              first={first}
+              second={second}
+              selectedPropType={selectedPropType}
+              setSelectedPropType={setSelectedPropType}
+              restbutton={restbutton}
+            />
+          )}
+{/* sd */}
         {activeButton === "Agent" &&
           four &&
           second === "Sell" &&
-          four !== "ServiceApartment" &&
-          four !== "Industrial Building " &&
-          four !== "Industrialshed" &&
-          four !== "Factory" &&
+          four !== "service apartment" &&
+          four !== "industrial building " &&
+          four !== "industrial shed" &&
+          four !== "factory" &&
           four !== "PG Home" &&
           four !== "PG Hostel" && (
-            <Commercialsell activeButton={activeButton} />
+            <Commercialsell activeButton={activeButton}  user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four}/>
           )}
 
         {activeButton === "Agent" &&
           four &&
           second === "Rent" &&
-          four !== "ServiceApartment" &&
-          four !== "Industrial Building " &&
-          four !== "Industrialshed" &&
-          four !== "Factory" &&
+          four !== "service apartment" &&
+          four !== "industrial building " &&
+          four !== "industrial shed" &&
+          four !== "factory" &&
           four !== "PG Home" &&
           four !== "PG Hostel" && (
-            <Commercialrent activeButton={activeButton} />
+            <Commercialrent activeButton={activeButton}  user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four} />
           )}
 
         {activeButton === "Agent" &&
           four &&
           second === "Lease" &&
-          four !== "ServiceApartment" &&
-          four !== "Industrial Building " &&
-          four !== "Industrialshed" &&
-          four !== "Factory" &&
+          four !== "service apartment" &&
+          four !== "industrial building " &&
+          four !== "industrial shed" &&
+          four !== "factory" &&
           four !== "PG Home" &&
           four !== "PG Hostel" && (
-            <Commerciallease activeButton={activeButton} />
+            <Commerciallease activeButton={activeButton}  user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four} />
           )}
 
         {activeButton === "Builder" && first && second === "Sell" && (
@@ -1193,13 +1313,13 @@ const Posting = () => {
           />
         )}
         {activeButton === "Builder" && third === "Top" && second === "Sell" && (
-          <Restform activeButton={activeButton} 
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
-          restbutton={restbutton}
-          
+          <Restform
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            restbutton={restbutton}
           />
         )}
         {activeButton === "Builder" && third === "Top" && second === "Rent" && (
@@ -1211,64 +1331,88 @@ const Posting = () => {
 
         {activeButton === "Builder" &&
           third === "bottom" &&
-          second === "Sell" && <Flatapartsell          activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
-          setSelectedPropType={setSelectedPropType}
-          restbutton={restbutton}/>}
+          second === "Sell" && (
+            <Flatapartsell
+              activeButton={activeButton}
+              user={user}
+              first={first}
+              second={second}
+              selectedPropType={selectedPropType}
+              setSelectedPropType={setSelectedPropType}
+              restbutton={restbutton}
+            />
+          )}
         {activeButton === "Builder" &&
           third === "bottom" &&
-          second === "Rent" && <Flatapartrent  activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
-          setSelectedPropType={setSelectedPropType}
-          restbutton={restbutton} />}
+          second === "Rent" && (
+            <Flatapartrent
+              activeButton={activeButton}
+              user={user}
+              first={first}
+              second={second}
+              selectedPropType={selectedPropType}
+              setSelectedPropType={setSelectedPropType}
+              restbutton={restbutton}
+            />
+          )}
 
         {activeButton === "Builder" &&
           third === "bottom" &&
-          second === "Lease" && <Flatapartlease  activeButton={activeButton}
-          user={user}
-          first={first}
-          second={second}
-          selectedPropType={selectedPropType}
-          setSelectedPropType={setSelectedPropType}
-          restbutton={restbutton} />}
+          second === "Lease" && (
+            <Flatapartlease
+              activeButton={activeButton}
+              user={user}
+              first={first}
+              second={second}
+              selectedPropType={selectedPropType}
+              setSelectedPropType={setSelectedPropType}
+              restbutton={restbutton}
+            />
+          )}
 
         {activeButton === "Builder" &&
           four &&
           second === "Sell" &&
-          four !== "ServiceApartment" &&
-          four !== "Industrial Building/shed" &&
-          four !== "Factory" &&
+          four !== "service apartment" &&
+          four !== "industrial building/shed" &&
+          four !== "factory" &&
           four !== "PG Home" &&
           four !== "PG Hostel" && (
-            <Commercialsell activeButton={activeButton} />
+            <Commercialsell activeButton={activeButton}  user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four} />
           )}
 
         {activeButton === "Builder" &&
           four &&
           second === "Rent" &&
           four !== "ServiceApartment" &&
-          four !== "Industrial Building/shed" &&
-          four !== "Factory" &&
+          four !== "industrial building/shed" &&
+          four !== "factory" &&
           four !== "PG Home" &&
           four !== "PG Hostel" && (
-            <Commercialrent activeButton={activeButton} />
+            <Commercialrent activeButton={activeButton}  user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four}/>
           )}
 
         {activeButton === "Builder" &&
           four &&
           second === "Lease" &&
-          four !== "ServiceApartment" &&
-          four !== "Industrial Building/shed" &&
-          four !== "Factory" &&
+          four !== "service apartment" &&
+          four !== "industrial building/shed" &&
+          four !== "factory" &&
           four !== "PG Home" &&
           four !== "PG Hostel" && (
-            <Commerciallease activeButton={activeButton} />
+            <Commerciallease  activeButton={activeButton}  user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            four={four} />
           )}
       </div>
 

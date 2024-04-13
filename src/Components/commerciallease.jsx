@@ -2826,7 +2826,7 @@ import { Baseurl, UserConfig } from "./request";
 const Commerciallease = ({
   activeButton,
   user,
-  first,
+  
   second,
   selectedPropType,
 }) => {
@@ -2929,8 +2929,8 @@ const Commerciallease = ({
     "Washroom",
     "Toilet",
 
-    "AirConditioning",
-    "PowerBackup",
+    "Air Conditioning",
+    "Power Backup",
     "WIFI",
     "Lift",
     "Coffee Bar",
@@ -3161,6 +3161,9 @@ const Commerciallease = ({
     leaseprice: "",
     advanceAmount: "",
     description: "",
+    agentCommision:"",
+    age:"",
+    month:""
   });
 
   //onchange function
@@ -3216,6 +3219,12 @@ const Commerciallease = ({
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
+    if(activeButton === "Agent"){
+      if (!data.agentCommision.trim()) {
+        errors.agentCommision = "Please enter agentCommision";
+      }
+    }
+     
     return errors;
   };
 
@@ -3246,6 +3255,8 @@ const Commerciallease = ({
     formData.append("commercial.commercial_type", "office");
     formData.append("you_are_here_to", second.toLowerCase());
     formData.append("owner", activeButton === "Owner");
+    formData.append("agent", activeButton === "Agent");
+    formData.append("builder", activeButton === "Builder");
     formData.append("title", formValue?.propertyName);
     formData.append("showroom.built_up_area", parseInt(formValue?.area));
     formData.append("showroom.built_up_area_unit", "sqft");
@@ -3263,6 +3274,8 @@ const Commerciallease = ({
     formData.append("unit", "sqft");
     // ddddd
     formData.append("showroom.condition", formValue?.condition);
+    formData.append("showroom.age", formValue?.age);
+    formData.append("showroom.under_construction_months", formValue?.month);
     formData.append("showroom.status", formValue?.status);
     formData.append("description", formValue?.description);
     formData.append("location", formValue?.propertyLocation);
@@ -3270,6 +3283,9 @@ const Commerciallease = ({
     formData.append("showroom.floor_number", formValue?.floorNumber);
     formData.append("lease_amount", parseInt(formValue?.leaseprice));
     formData.append("advance", formValue?.advanceAmount);
+    if (activeButton === "Agent") {
+      formData.append("agent_commission", formValue?.agentCommision);
+    }
     data.forEach((element, index) => {
       formData.append(
         `showroom.indoor_facilities[${index}]facility.name`,
@@ -3560,7 +3576,7 @@ const Commerciallease = ({
             <input
               className="inp"
               placeholder="other if any..."
-              name="category"
+              name="age"
               onChange={handleChange}
             />
           </div>
@@ -3651,7 +3667,10 @@ const Commerciallease = ({
               className="inp text-start"
               placeholder="If under construction...."
               onChange={handleChange}
-              name="condition"
+              name="month"
+              
+
+
             />
           </div>
         </div>
@@ -3823,13 +3842,16 @@ const Commerciallease = ({
                   </h5>
                   <Form.Control
                     type="number"
-                    placeholder="Agent Commision"
+                    placeholder="Rs"
                     style={formControlStyle}
                     name="agentCommision"
                     isInvalid={!!errors.agentCommision}
                     value={formValue.agentCommision}
                     onChange={handleChange}
                   />
+                   <Form.Control.Feedback type="invalid">
+                  {errors.agentCommision}
+                </Form.Control.Feedback>
                 </Form.Group>
               </Col>
             )}

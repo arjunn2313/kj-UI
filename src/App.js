@@ -21,6 +21,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Newotp from './Components/Newotp';
 import Rent from './Components/Rent';
 import Lease from './Components/Lease';
+import Postcheck from './Components/Postcheck';
 function App() {
   return (
     <div className="App">
@@ -41,6 +42,7 @@ function App() {
   <Route path="/result" element={<Result/>} />
   <Route path="/budget" element={<Budget/>} />
   <Route path="/new-path" element={<Newotp/>} />
+  <Route path="/check" element={<Postcheck/>} />
   </Routes>
 </Router>
 <ToastContainer />
