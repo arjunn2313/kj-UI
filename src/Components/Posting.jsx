@@ -73,7 +73,7 @@ const Posting = () => {
 
   // Function to handle phone number changes
   const handlePhoneChange = (e) => {
-     setUser({...user,phone:e})
+    setUser({ ...user, phone: e });
   };
 
   const handleImageChange = (event) => {
@@ -158,7 +158,7 @@ const Posting = () => {
       setPlot(false);
       setCommercial(false);
       setResidential(true);
-      setSelectedPropType("residential property");
+      setSelectedPropType("residential");
     } else if (items === 4) {
       setLand(false);
       setPlot(false);
@@ -176,10 +176,11 @@ const Posting = () => {
     setSecond(view);
   };
   const handlerest = (rest, name) => {
-    console.log("Handlerest called with:", rest);
+    console.log("Handlerest called with:", name);
     setThird(rest);
     setRestbutton(name);
   };
+
   const handlecommercial = (values) => {
     setFour(values);
   };
@@ -335,8 +336,6 @@ const Posting = () => {
                       borderRadius: "4px",
                     }}
                   />
-
-
                 </Form.Group>
               </Col>
               <Col md={4} className="ms-5">
@@ -466,18 +465,18 @@ const Posting = () => {
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "commercial" ? "rest" : ""
+                    first === "commercial_plot" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("commercial")}
+                  onClick={() => handleButtonClicks("commercial_plot")}
                 >
                   Commercial Plot
                 </Button>
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "industrial" ? "rest" : ""
+                    first === "industrial_plot" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("industrial")}
+                  onClick={() => handleButtonClicks("industrial_plot")}
                 >
                   Industrial Plot
                 </Button>
@@ -490,54 +489,54 @@ const Posting = () => {
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "residentialLand" ? "rest" : ""
+                    first === "residential_land" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("residentialLand")}
+                  onClick={() => handleButtonClicks("residential_land")}
                 >
                   Residential Land
                 </Button>
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "Industrial Land" ? "rest" : ""
+                    first === "industrial_land" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("Industrial Land")}
+                  onClick={() => handleButtonClicks("industrial_land")}
                 >
                   Industrial Land
                 </Button>
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "Agricultural  Land" ? "rest" : ""
+                    first === "agricultural_land" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("Agricultural  Land")}
+                  onClick={() => handleButtonClicks("agricultural_land")}
                 >
                   Agricultural Land
                 </Button>
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "Plantation" ? "rest" : ""
+                    first === "plantation" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("Plantation")}
+                  onClick={() => handleButtonClicks("plantation")}
                 >
                   Plantation
                 </Button>
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "Estate" ? "rest" : ""
+                    first === "estate" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("Estate")}
+                  onClick={() => handleButtonClicks("estate")}
                 >
                   Estate
                 </Button>
                 <Button
                   type="button"
                   className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                    first === "Farm  Land" ? "rest" : ""
+                    first === "farm_land" ? "rest" : ""
                   }`}
-                  onClick={() => handleButtonClicks("Farm  Land")}
+                  onClick={() => handleButtonClicks("farm_land")}
                 >
                   Farm Land
                 </Button>
@@ -559,63 +558,63 @@ const Posting = () => {
                     <Button
                       type="button"
                       className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                        restbutton === "House" ? "rest" : ""
+                        restbutton === "house" ? "rest" : ""
                       }`}
-                      onClick={() => handlerest("Top", "House")}
+                      onClick={() => handlerest("Top", "house")}
                     >
                       House
                     </Button>
                     <Button
                       type="button"
                       className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                        restbutton === "Villa" ? "rest" : ""
+                        restbutton === "villa" ? "rest" : ""
                       }`}
-                      onClick={() => handlerest("Top", "Villa")}
+                      onClick={() => handlerest("Top", "villa")}
                     >
                       Villa
                     </Button>
                     <Button
                       type="button"
                       className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                        restbutton === "Bungalow" ? "rest" : ""
+                        restbutton === "bungalow" ? "rest" : ""
                       }`}
-                      onClick={() => handlerest("Top", "Bungalow")}
+                      onClick={() => handlerest("Top", "bungalow")}
                     >
                       Bungalow
                     </Button>
                     <Button
                       type="button"
                       className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                        restbutton === "Duplex House" ? "rest" : ""
+                        restbutton === "duplex_house" ? "rest" : ""
                       }`}
-                      onClick={() => handlerest("Top", "Duplex House")}
+                      onClick={() => handlerest("Top", "duplex_house")}
                     >
                       Duplex House
                     </Button>
                     <Button
                       type="button"
                       className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                        restbutton === "Row House" ? "rest" : ""
+                        restbutton === "row_house" ? "rest" : ""
                       }`}
-                      onClick={() => handlerest("Top", "Row House")}
+                      onClick={() => handlerest("Top", "row_house")}
                     >
                       Row House
                     </Button>
                     <Button
                       type="button"
                       className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                        restbutton === "Pant House" ? "rest" : ""
+                        restbutton === "plant_house" ? "rest" : ""
                       }`}
-                      onClick={() => handlerest("Top", "Pant House")}
+                      onClick={() => handlerest("Top", "plant_house")}
                     >
                       Pant House
                     </Button>
                     <Button
                       type="button"
                       className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                        restbutton === "Farm house" ? "rest" : ""
+                        restbutton === "farm_house" ? "rest" : ""
                       }`}
-                      onClick={() => handlerest("Top", "Farm house")}
+                      onClick={() => handlerest("Top", "farm_house")}
                     >
                       Farm house
                     </Button>
@@ -625,18 +624,18 @@ const Posting = () => {
                     <Button
                       type="button"
                       className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                        restbutton === "Flat" ? "rest" : ""
+                        restbutton === "flat" ? "rest" : ""
                       }`}
-                      onClick={() => handlerest("bottom", "Flat")}
+                      onClick={() => handlerest("bottom", "flat")}
                     >
                       Flat
                     </Button>
                     <Button
                       type="button"
                       className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                        restbutton === "Apartment" ? "rest" : ""
+                        restbutton === "apartment" ? "rest" : ""
                       }`}
-                      onClick={() => handlerest("bottom", "Apartment")}
+                      onClick={() => handlerest("bottom", "apartment")}
                     >
                       Apartment
                     </Button>
@@ -733,18 +732,18 @@ const Posting = () => {
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "office" ? "rest" : ""
+                      four === "Office" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("office")}
+                    onClick={() => handlecommercial("Office")}
                   >
                     Office
                   </Button>
                   <Button
                     type="button"
                     className={`btn btn-outline-light  customplot rounded-pill ${
-                      four === "shop" ? "rest" : ""
+                      four === "Shop" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("shop")}
+                    onClick={() => handlecommercial("Shop")}
                   >
                     Shop
                   </Button>
@@ -761,9 +760,9 @@ const Posting = () => {
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "godown" ? "rest" : ""
+                      four === "Godown" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("godown")}
+                    onClick={() => handlecommercial("Godown")}
                   >
                     Godown
                   </Button>
@@ -780,18 +779,18 @@ const Posting = () => {
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "co_working_space" ? "rest" : ""
+                      four === "Co-working Space" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("co_working_space")}
+                    onClick={() => handlecommercial("Co-working Space")}
                   >
                     Co-working Space
                   </Button>
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
-                      four === "commercial_complex" ? "rest" : ""
+                      four === "Commercial complex" ? "rest" : ""
                     }`}
-                    onClick={() => handlecommercial("commercial_complex")}
+                    onClick={() => handlecommercial("Commercial complex")}
                   >
                     Commercial complex
                   </Button>
@@ -869,18 +868,33 @@ const Posting = () => {
           />
         )}
 
-        {activeButton === "Owner" && first && second === "Rent" && <Rentform />}
+        {activeButton === "Owner" && first && second === "Rent" && (
+          <Rentform
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+          />
+        )}
         {activeButton === "Owner" && first && second === "Lease" && (
-          <Leaseform />
+          <Leaseform
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+          />
         )}
 
         {four === "Industrial Building" && second === "Sell" && (
-          <Servicesell 
+          <Servicesell  
           activeButton={activeButton}
           user={user}
-          four={four}
+          first={first}
           second={second}
-          selectedPropType={selectedPropType}/>
+          selectedPropType={selectedPropType}
+          />
         )}
         {four === "Industrial Building" && second === "Rent" && (
           <Servicerent activeButton={activeButton} />
@@ -889,12 +903,7 @@ const Posting = () => {
           <Servicelease activeButton={activeButton} />
         )}
         {four === "Industrial shed" && second === "Sell" && (
-          <Servicesell 
-          activeButton={activeButton}
-          user={user}
-          four={four}
-          second={second}
-          selectedPropType={selectedPropType} />
+          <Servicesell activeButton={activeButton} />
         )}
         {four === "Industrial shed" && second === "Rent" && (
           <Servicerent activeButton={activeButton} />
@@ -904,12 +913,7 @@ const Posting = () => {
         )}
 
         {four === "Factory" && second === "Sell" && (
-          <FactorySell 
-          activeButton={activeButton}
-          user={user}
-          four={four}
-          second={second}
-          selectedPropType={selectedPropType}  />
+          <FactorySell activeButton={activeButton} />
         )}
         {four === "Factory" && second === "Rent" && (
           <FactoryRent activeButton={activeButton} />
@@ -939,12 +943,15 @@ const Posting = () => {
           four !== "Industrial shed" &&
           four !== "Factory" &&
           four !== "PG Home" &&
-          four !== "PG Hostel" && <Commercialsell 
-          activeButton={activeButton}
-          user={user}
-          four={four}
-          second={second}
-          selectedPropType={selectedPropType}/>}
+          four !== "PG Hostel" && (
+            <Commercialsell
+              activeButton={activeButton}
+              user={user}
+              first={first}
+              second={second}
+              selectedPropType={selectedPropType}
+            />
+          )}
         {activeButton === "Owner" &&
           four &&
           second === "Rent" &&
@@ -953,12 +960,7 @@ const Posting = () => {
           four !== "Industrial shed" &&
           four !== "Factory" &&
           four !== "PG Home" &&
-          four !== "PG Hostel" && <Commercialrent
-          activeButton={activeButton}
-          user={user}
-          four={four}
-          second={second}
-          selectedPropType={selectedPropType}/>}
+          four !== "PG Hostel" && <Commercialrent />}
         {activeButton === "Owner" &&
           four &&
           second === "Lease" &&
@@ -968,32 +970,71 @@ const Posting = () => {
           four !== "Industrial shed" &&
           four !== "Factory" &&
           four !== "PG Home" &&
-          four !== "PG Hostel" && <Commerciallease
-          activeButton={activeButton}
-          user={user}
-          four={four}
-          second={second}
-          selectedPropType={selectedPropType} />}
+          four !== "PG Hostel" && <Commerciallease />}
 
         {activeButton === "Owner" && third === "Top" && second === "Sell" && (
-          <Restform />
+          <Restform
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            restbutton={restbutton}
+          />
         )}
         {activeButton === "Owner" &&
           third === "bottom" &&
-          second === "Sell" && <Flatapartsell />}
+          second === "Sell" && <Flatapartsell 
+          activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton}
+          />}
+          
         {activeButton === "Owner" && third === "Top" && second === "Rent" && (
-          <Restland />
+          <Restland
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            restbutton={restbutton}
+          />
         )}
         {activeButton === "Owner" &&
           third === "bottom" &&
-          second === "Rent" && <Flatapartrent />}
+          second === "Rent" && <Flatapartrent  activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton}/>}
         {activeButton === "Owner" && third === "Top" && second === "Lease" && (
-          <Restlease />
+          <Restlease
+          activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton}
+           />
+       
         )}
 
         {activeButton === "Owner" &&
           third === "bottom" &&
-          second === "Lease" && <Flatapartlease />}
+          second === "Lease" && <Flatapartlease  activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton}/>}
 
         {activeButton === "Agent" && first && second === "Sell" && (
           <Sellform
@@ -1001,36 +1042,92 @@ const Posting = () => {
             user={user}
             first={first}
             second={second}
+            selectedPropType={selectedPropType}
           />
         )}
 
         {activeButton === "Agent" && first && second === "Rent" && (
-          <Rentform activeButton={activeButton} 
+          <Rentform
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+            restbutton={restbutton}
           />
         )}
 
         {activeButton === "Agent" && first && second === "Lease" && (
-          <Leaseform activeButton={activeButton} />
+          <Leaseform
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+          />
         )}
         {activeButton === "Agent" && third === "Top" && second === "Sell" && (
-          <Restform activeButton={activeButton} />
+          <Restform activeButton={activeButton} 
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          restbutton={restbutton}
+          
+          
+          />
         )}
         {activeButton === "Agent" && third === "Top" && second === "Rent" && (
-          <Restland activeButton={activeButton} />
+          <Restland     activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton}
+           />
         )}
         {activeButton === "Agent" && third === "Top" && second === "Lease" && (
-          <Restlease activeButton={activeButton} />
+          <Restlease 
+          activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton}
+           />
+         
         )}
         {activeButton === "Agent" &&
           third === "bottom" &&
-          second === "Sell" && <Flatapartsell activeButton={activeButton} />}
+          second === "Sell" && <Flatapartsell activeButton={activeButton} 
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton}
+          />}
         {activeButton === "Agent" &&
           third === "bottom" &&
-          second === "Rent" && <Flatapartrent activeButton={activeButton} />}
+          second === "Rent" && <Flatapartrent  activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton} />}
 
         {activeButton === "Agent" &&
           third === "bottom" &&
-          second === "Lease" && <Flatapartlease activeButton={activeButton} />}
+          second === "Lease" && <Flatapartlease  activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton} />}
 
         {activeButton === "Agent" &&
           four &&
@@ -1041,12 +1138,7 @@ const Posting = () => {
           four !== "Factory" &&
           four !== "PG Home" &&
           four !== "PG Hostel" && (
-            <Commercialsell 
-            activeButton={activeButton}
-            user={user}
-            four={four}
-            second={second}
-            selectedPropType={selectedPropType} />
+            <Commercialsell activeButton={activeButton} />
           )}
 
         {activeButton === "Agent" &&
@@ -1079,16 +1171,36 @@ const Posting = () => {
             user={user}
             first={first}
             second={second}
+            selectedPropType={selectedPropType}
           />
         )}
         {activeButton === "Builder" && first && second === "Rent" && (
-          <Rentform activeButton={activeButton} />
+          <Rentform
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+          />
         )}
         {activeButton === "Builder" && first && second === "Lease" && (
-          <Leaseform activeButton={activeButton} />
+          <Leaseform
+            activeButton={activeButton}
+            user={user}
+            first={first}
+            second={second}
+            selectedPropType={selectedPropType}
+          />
         )}
         {activeButton === "Builder" && third === "Top" && second === "Sell" && (
-          <Restform activeButton={activeButton} />
+          <Restform activeButton={activeButton} 
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          restbutton={restbutton}
+          
+          />
         )}
         {activeButton === "Builder" && third === "Top" && second === "Rent" && (
           <Restland activeButton={activeButton} />
@@ -1099,14 +1211,32 @@ const Posting = () => {
 
         {activeButton === "Builder" &&
           third === "bottom" &&
-          second === "Sell" && <Flatapartsell activeButton={activeButton} />}
+          second === "Sell" && <Flatapartsell          activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton}/>}
         {activeButton === "Builder" &&
           third === "bottom" &&
-          second === "Rent" && <Flatapartrent activeButton={activeButton} />}
+          second === "Rent" && <Flatapartrent  activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton} />}
 
         {activeButton === "Builder" &&
           third === "bottom" &&
-          second === "Lease" && <Flatapartlease activeButton={activeButton} />}
+          second === "Lease" && <Flatapartlease  activeButton={activeButton}
+          user={user}
+          first={first}
+          second={second}
+          selectedPropType={selectedPropType}
+          setSelectedPropType={setSelectedPropType}
+          restbutton={restbutton} />}
 
         {activeButton === "Builder" &&
           four &&
