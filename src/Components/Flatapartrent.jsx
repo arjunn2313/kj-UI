@@ -391,6 +391,14 @@ const Flatapartrent = ({  activeButton,
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
+    if (activeButton == "Agent") {
+      if (!formValue.agentCommision) {
+        errors.agentCommision = "*Please enter agent commision";
+      }
+    }
+   if(selectedImage.length === 0){
+    errors.image = "*please upload at least 1 image"
+   }
     return errors;
   };
 
@@ -503,29 +511,29 @@ const Flatapartrent = ({  activeButton,
         position: "top-center",
       });
 
-      setFormValue({
-        propertyName: "",
-        propertyLocation: "",
-        bhk: "1BHK",
-        area: "",
-        noOfUnit: "",
-        totalFloor: "",
-        category: "",
-        status: "",
-        condition: "",
-        rentPrice: "",
-        advanceAmount: "",
-        description: "",
-        agentCommision: "",
-      });
-      setSelectedImage("");
-      setSelectedFile("");
-      setselectedvalue("");
-      setselectedroom("");
-      setselectedKitchen("");
-      setselectedPlan("");
-      setselectedmap("");
-      setselectedLogo("");
+      // setFormValue({
+      //   propertyName: "",
+      //   propertyLocation: "",
+      //   bhk: "1BHK",
+      //   area: "",
+      //   noOfUnit: "",
+      //   totalFloor: "",
+      //   category: "",
+      //   status: "",
+      //   condition: "",
+      //   rentPrice: "",
+      //   advanceAmount: "",
+      //   description: "",
+      //   agentCommision: "",
+      // });
+      // setSelectedImage("");
+      // setSelectedFile("");
+      // setselectedvalue("");
+      // setselectedroom("");
+      // setselectedKitchen("");
+      // setselectedPlan("");
+      // setselectedmap("");
+      // setselectedLogo("");
     } catch (error) {
       console.error("Server error", error);
       toast.error("something went wrong", {
@@ -1520,6 +1528,7 @@ const Flatapartrent = ({  activeButton,
         </Card>
       </div>
       <div className="d-flex justify-content-center">
+      {errors.image && <div className="text-danger">{errors.image}</div>}
         <button
           type="button"
           className="buttonmobile mt-5"

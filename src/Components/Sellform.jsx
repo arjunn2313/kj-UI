@@ -95,14 +95,14 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
     if (!formValue.plotBreadth) {
       errors.plotBreadth = "*Please enter plot bredth";
     }
-    if (!formValue.AreaUnit) {
-      errors.AreaUnit = "*Please enter plot area";
-    }
     if (!formValue.roadWidth) {
       errors.roadWidth = "*Please enter plot road width";
     }
     if (!formValue.salePrice) {
       errors.salePrice = "*Please enter sale price";
+    }
+    if (!formValue.totalArea) {
+      errors.totalArea = "*Please enter total area";
     }
     if (!formValue.advanceAmout) {
       errors.advanceAmout = "*Please enter advance amount";
@@ -110,106 +110,24 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
     if (!formValue.description) {
       errors.description = "*Please enter description";
     }
-    // if (selectedImage.length != 6) {
-    //   toast.warning("recommented to upload 6 site view images");
-    //   errors.selectedImage = "*Please";
-    // }
+    if (activeButton == "Agent") {
+      if (!formValue.agentCommision) {
+        errors.agentCommision = "*Please enter agent commision";
+      }
+    }
+   if(selectedImage.length === 0){
+    errors.image = "*please upload at least 1 image"
+   }
 
     return errors;
   };
 
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const errors = validateForm();
-    if (Object.keys(errors).length === 0) {
-      try {
-        const formData = new FormData();
-        formData.append("name", user?.userName);
-        formData.append("phone", `+${user?.phone}`);
-        formData.append("email", user?.email);
-        if (selectedPropType === "plot") {
-          formData.append("property_type", selectedPropType);
-          formData.append("plot.plot_type", first);
-          formData.append("plot.length", parseInt(formValue?.plotSize));
-          formData.append("plot.breadth", parseInt(formValue?.plotBreadth));
-          formData.append("plot.road_width", parseInt(formValue?.roadWidth));
-          formData.append("plot.direction_facing", formValue?.direction);
-          formData.append("plot.approval", formValue?.category);
-          content.forEach((element, index) => {
-            formData.append(`plot.facilities[${index}]name`, element);
-          });
-        }
-        if (selectedPropType === "land") {
-          formData.append("property_type", selectedPropType);
-          formData.append("land.land_type", first);
-          formData.append("land.length", parseInt(formValue?.plotSize));
-          formData.append("land.breadth", parseInt(formValue?.plotBreadth));
-          formData.append("land.road_width", parseInt(formValue?.roadWidth));
-          formData.append("land.direction_facing", formValue?.direction);
-          formData.append("land.approval", formValue?.category);
-          formData.append("land.total_area",parseInt(formValue?.totalArea));
-          content.forEach((element, index) => {
-            formData.append(`land.facilities[${index}]name`, element);
-          });
-        }
-        formData.append("you_are_here_to", second.toLowerCase());
-        formData.append("owner", activeButton === "Owner");
-        formData.append("agent", activeButton === "Agent");
-        formData.append("builder", activeButton === "Builder");
-        formData.append("area_sqft", parseInt(formValue?.totalArea));
-        formData.append("title", formValue?.propertyName);
-        formData.append("description", formValue?.description);
-        formData.append("location", formValue?.propertyLocation);
-        formData.append("sale_price", formValue?.salePrice);
-        if (activeButton === "Agent") {
-          formData.append("agent_commission", formValue?.agentCommision);
-        }
-
-        formData.append("advance", formValue?.advanceAmout);
-        formData.append("unit", formValue?.AreaUnit);
-      
-
-        if (selectedImage) {
-          selectedImage.forEach((image, index) => {
-            formData.append(`plot_images[${index}]section`, "siteview");
-            formData.append(`plot_images[${index}]image`, image);
-          });
-        }
-        if (selectedFile) {
-          formData.append(`plot_images[${7}]section`, "FMB");
-          formData.append(`plot_images[${7}]image`, selectedFile);
-        }
-        if (selectedvalue) {
-          formData.append(`plot_images[${8}]section`, "location_map");
-          formData.append(`plot_images[${8}]image`, selectedvalue);
-        }
-        if (activeButton === "Builder" && selectedLogo) {
-          formData.append(`plot_images[${9}]section`, "logo");
-          formData.append(`plot_images[${9}]image`, selectedLogo);
-        }
-
-        const response = await axios.post(
-          `${Baseurl}createproperty/`,
-          formData,
-          UserConfig
-        );
-        console.log(response.data);
-        toast.success("Submitted", {
-          hideProgressBar: true,
-          position: "top-center",
-        });
-      } catch (error) {
-        console.error("Server error", error);
-        toast.error("something went wrong", {
-          hideProgressBar: true,
-          position: "top-center",
-        });
-      }
-    } else {
-      setErrors(errors); // Set validation errors in state
-    }
-  };
+  const [units, setUnits] = useState({
+    breadthUnit: "ft",
+    lengthUnit: "ft",
+    roadWidthUnit: "ft",
+    totalAreaUnit: "sqft",
+  });
 
   const formControlStyle = {
     borderColor: "#D7242A",
@@ -424,6 +342,136 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
     });
   };
 
+  const handleUnit = (e) => {
+    setUnits({
+      ...units,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const errors = validateForm();
+    if (Object.keys(errors).length === 0) {
+      try {
+        const formData = new FormData();
+        formData.append("name", user?.userName);
+        formData.append("phone", `+${user?.phone}`);
+        formData.append("email", user?.email);
+        if (selectedPropType === "plot") {
+          formData.append("property_type", selectedPropType);
+          formData.append("plot.plot_type", first);
+          formData.append("plot.length", parseInt(formValue?.plotSize));
+          formData.append("plot.breadth", parseInt(formValue?.plotBreadth));
+          formData.append("plot.road_width", parseInt(formValue?.roadWidth));
+          formData.append("plot.direction_facing", formValue?.direction);
+          formData.append("plot.approval", formValue?.category);
+          formData.append("plot.total_area", formValue?.totalArea);
+          formData.append("plot.breadth_unit", units.breadthUnit);
+          formData.append("plot.length_unit", units.lengthUnit);
+          formData.append("plot.road_width_unit", units.roadWidthUnit);
+          formData.append("plot.total_area_unit", units.totalAreaUnit);
+          content.forEach((element, index) => {
+            formData.append(`plot.facilities[${index}]name`, element);
+          });
+
+          if (selectedImage) {
+            selectedImage.forEach((image, index) => {
+              formData.append(`plot_images[${index}]section`, "siteview");
+              formData.append(`plot_images[${index}]image`, image);
+            });
+          }
+          if (selectedFile) {
+            formData.append(`plot_images[${7}]section`, "FMB");
+            formData.append(`plot_images[${7}]image`, selectedFile);
+          }
+          if (selectedvalue) {
+            formData.append(`plot_images[${8}]section`, "location_map");
+            formData.append(`plot_images[${8}]image`, selectedvalue);
+          }
+          if (activeButton === "Builder" && selectedLogo) {
+            formData.append(`plot_images[${9}]section`, "logo");
+            formData.append(`plot_images[${9}]image`, selectedLogo);
+          }
+        }
+        if (selectedPropType === "land") {
+          formData.append("property_type", selectedPropType);
+          formData.append("land.land_type", first);
+          formData.append("land.length", parseInt(formValue?.plotSize));
+          formData.append("land.breadth", parseInt(formValue?.plotBreadth));
+          formData.append("land.road_width", parseInt(formValue?.roadWidth));
+          formData.append("land.direction_facing", formValue?.direction);
+          formData.append("land.approval", formValue?.category);
+          formData.append("land.total_area", parseInt(formValue?.totalArea));
+          formData.append("land.breadth_unit", units.breadthUnit);
+          formData.append("land.length_unit", units.lengthUnit);
+          formData.append("land.road_width_unit", units.roadWidthUnit);
+          formData.append("land.total_area_unit", units.totalAreaUnit);
+          content.forEach((element, index) => {
+            formData.append(`land.facilities[${index}]name`, element);
+          });
+
+          if (selectedImage) {
+            selectedImage.forEach((image, index) => {
+              formData.append(`land_images[${index}]section`, "siteview");
+              formData.append(`land_images[${index}]image`, image);
+            });
+          }
+          if (selectedFile) {
+            formData.append(`land_images[${7}]section`, "FMB");
+            formData.append(`land_images[${7}]image`, selectedFile);
+          }
+          if (selectedvalue) {
+            formData.append(`land_images[${8}]section`, "location_map");
+            formData.append(`land_images[${8}]image`, selectedvalue);
+          }
+          if (activeButton === "Builder" && selectedLogo) {
+            formData.append(`land_images[${9}]section`, "logo");
+            formData.append(`land_images[${9}]image`, selectedLogo);
+          }
+        }
+
+        formData.append("you_are_here_to", second.toLowerCase());
+        formData.append("owner", activeButton === "Owner");
+        formData.append("agent", activeButton === "Agent");
+        formData.append("builder", activeButton === "Builder");
+        // formData.append("area_sqft", parseInt(formValue?.totalArea));
+        formData.append("title", formValue?.propertyName);
+        formData.append("description", formValue?.description);
+        formData.append("location", formValue?.propertyLocation);
+        formData.append("sale_price", formValue?.salePrice);
+        if (activeButton === "Agent") {
+          formData.append("agent_commission", formValue?.agentCommision);
+        }
+
+        formData.append("advance", formValue?.advanceAmout);
+
+        const response = await axios.post(
+          `${Baseurl}createproperty/`,
+          formData,
+          UserConfig
+        );
+        console.log(response);
+        toast.success("Submitted", {
+          hideProgressBar: true,
+          position: "top-center",
+        });
+      } catch (error) {
+        console.error("Server error", error);
+        toast.error("something went wrong", {
+          hideProgressBar: true,
+          position: "top-center",
+        });
+      }
+    } else {
+      setErrors(errors); // Set validation errors in state
+      toast.error("please fill required field before submiting", {
+        hideProgressBar: true,
+      });
+    }
+  };
+
   return (
     <div>
       <Form className="mx-3">
@@ -490,9 +538,11 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
                     width: "100px",
                     height: "100%",
                   }}
+                  name="lengthUnit"
+                  onChange={handleUnit}
                 >
-                  <option>ft</option>
-                  <option>mt</option>
+                  <option value="ft">ft</option>
+                  <option value="mt">mt</option>
                 </select>
               </div>
               {errors.plotSize && (
@@ -525,9 +575,11 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
                     width: "100px",
                     height: "100%",
                   }}
+                  name="breadthUnit"
+                  onChange={handleUnit}
                 >
-                  <option>ft</option>
-                  <option>mt</option>
+                  <option value="ft">ft</option>
+                  <option value="mt">mt</option>
                 </select>
               </div>
               {errors.plotBreadth && (
@@ -556,8 +608,6 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
                 />
                 <select
                   className="rounded-end down border-start-0 ps-5"
-                  onChange={handleChange}
-                  name="AreaUnit"
                   style={{
                     position: "absolute",
                     top: 0,
@@ -565,14 +615,14 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
                     width: "100px",
                     height: "100%",
                   }}
+                  name="totalAreaUnit"
+                  onChange={handleUnit}
                 >
-                  <option value="ft">ft</option>
-                  <option value="mt">mt</option>
                   <option value="sqft">sqft</option>
                 </select>
               </div>
-              {errors.AreaUnit && (
-                <div className="text-danger">{errors.AreaUnit}</div>
+              {errors.totalArea && (
+                <div className="text-danger">{errors.totalArea}</div>
               )}
             </Form.Group>
           </Col>
@@ -601,9 +651,11 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
                     width: "100px",
                     height: "100%",
                   }}
+                  name="roadWidthUnit"
+                  onChange={handleUnit}
                 >
-                  <option>ft</option>
-                  <option>mt</option>
+                  <option value="ft">ft</option>
+                  <option value="mt">mt</option>
                 </select>
               </div>
               {errors.roadWidth && (
@@ -1114,14 +1166,7 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
           </Card.Body>
         </Card>
         <div className="d-flex justify-content-center">
-          {/* <button
-          type="button"
-          className="buttonmobile mt-5"
-          style={{ width: "370px" }}
-          onClick={() => handleview("Post Property")}
-        >
-          Post Property
-        </button> */}
+      {errors.image && <div className="text-danger">{errors.image}</div>}
           <button
             type="button"
             className="buttonmobile mt-5"

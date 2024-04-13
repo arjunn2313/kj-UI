@@ -366,10 +366,10 @@ const Restlease = ({
       errors.noOfUnit = "Please enter number of unit";
     }
     if (!data.floorNumber.trim()) {
-      errors.totalFloor = "Please enter floor number";
+      errors.floorNumber = "Please enter floor number";
     }
     if (!data.totalFloors.trim()) {
-      errors.totalFloor = "Please enter total floors";
+      errors.totalFloors = "Please enter total floors";
     }
     if (!data.lease.trim()) {
       errors.lease = "Please enter rent amount";
@@ -380,6 +380,14 @@ const Restlease = ({
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
+    if (activeButton == "Agent") {
+      if (!formValue.agentCommision) {
+        errors.agentCommision = "*Please enter agent commision";
+      }
+    }
+   if(selectedImage.length === 0){
+    errors.image = "*please upload at least 1 image"
+   }
     return errors;
   };
 
@@ -490,29 +498,29 @@ const Restlease = ({
         position: "top-center",
       });
 
-      setFormValue({
-        propertyName: "",
-        propertyLocation: "",
-        bhk: "1BHK",
-        area: "",
-        noOfUnit: "",
-        totalFloor: "",
-        category: "",
-        status: "",
-        condition: "",
-        salePrice: "",
-        advanceAmount: "",
-        description: "",
-        agentCommision: "",
-      });
-      setSelectedImage("");
-      setSelectedFile("");
-      setselectedvalue("");
-      setselectedroom("");
-      setselectedKitchen("");
-      setselectedPlan("");
-      setselectedmap("");
-      setselectedLogo("");
+      // setFormValue({
+      //   propertyName: "",
+      //   propertyLocation: "",
+      //   bhk: "1BHK",
+      //   area: "",
+      //   noOfUnit: "",
+      //   totalFloor: "",
+      //   category: "",
+      //   status: "",
+      //   condition: "",
+      //   salePrice: "",
+      //   advanceAmount: "",
+      //   description: "",
+      //   agentCommision: "",
+      // });
+      // setSelectedImage("");
+      // setSelectedFile("");
+      // setselectedvalue("");
+      // setselectedroom("");
+      // setselectedKitchen("");
+      // setselectedPlan("");
+      // setselectedmap("");
+      // setselectedLogo("");
     } catch (error) {
       console.error("Server error", error);
       toast.error("something went wrong", {
@@ -524,7 +532,7 @@ const Restlease = ({
 
   return (
     <div>
-      lease
+ 
       <Form className="mx-3">
         <Row className="gx-md-3">
           <Col md={6}>
@@ -665,7 +673,7 @@ const Restlease = ({
                 placeholder="Total Floors"
                 style={{ ...formControlStyle }}
                 name="totalFloors"
-                isInvalid={!!errors.totalFloor}
+                isInvalid={!!errors.totalFloors}
                 value={formValue.totalFloors}
                 onChange={handleChange}
               />
@@ -927,6 +935,9 @@ const Restlease = ({
                 value={formValue.lease}
                 onChange={handleChange}
               />
+               <Form.Control.Feedback type="invalid">
+                {errors.lease}
+              </Form.Control.Feedback>
             </Form.Group>
           </Col>
           <Col>
@@ -962,6 +973,9 @@ const Restlease = ({
                   value={formValue.agentCommision}
                   onChange={handleChange}
                 />
+                   <Form.Control.Feedback type="invalid">
+                {errors.agentCommision}
+              </Form.Control.Feedback>
               </Form.Group>
             </Col>
           )}
@@ -1471,6 +1485,7 @@ const Restlease = ({
         </Card.Body>
       </Card>
       <div className="d-flex justify-content-center">
+      {errors.image && <div className="text-danger">{errors.image}</div>}
         <button
           type="button"
           className="buttonmobile mt-5"

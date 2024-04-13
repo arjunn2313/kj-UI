@@ -222,7 +222,7 @@ const Rentform = ({ activeButton, user, first, second, selectedPropType }) => {
     setselectedLogo(file);
   };
 
-const removeSelectedImage = (indexToRemove) => {
+  const removeSelectedImage = (indexToRemove) => {
     setSelectedImage((prevSelectedImages) =>
       prevSelectedImages.filter((_, index) => index !== indexToRemove)
     );
@@ -249,28 +249,29 @@ const removeSelectedImage = (indexToRemove) => {
     rentAmount: "",
     advanceAmount: "",
     description: "",
-    agentCommision:""
+    agentCommision: "",
   });
 
   const [errors, setErrors] = useState({});
   const handleSubmit = (event) => {
     event.preventDefault();
-  
+
     const newErrors = validateFormData(formData);
-  
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      toast.error("Please fill required fields beforte submiting",{
+        hideProgressBar:true
+      })
       return;
     }
-  
+
     submitForm(formData);
   };
 
- 
-  
   const validateFormData = (data) => {
     const errors = {};
-  
+
     if (!data.propertyName.trim()) {
       errors.propertyName = "Please enter a property name";
     }
@@ -298,12 +299,34 @@ const removeSelectedImage = (indexToRemove) => {
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
-  
+    if (activeButton == "Agent") {
+      if (!data.agentCommision) {
+        errors.agentCommision = "*Please enter agent commision";
+      }
+    }
+    if(selectedImage.length === 0){
+      errors.image = "*please upload at least 1 image"
+     }
+
     return errors;
   };
-  
-  const submitForm = async(formData) => {
-    console.log(formData);
+
+  const [units, setUnits] = useState({
+    breadthUnit: "ft",
+    lengthUnit: "ft",
+    roadWidthUnit: "ft",
+    totalAreaUnit: "sqft",
+  });
+
+  const handleUnit = (e) => {
+    setUnits({
+      ...units,
+      [e.target.name]: e.target.value,
+    });
+  };
+ 
+
+  const submitForm = async (formData) => {
     const formValue = new FormData();
     formValue.append("name", user?.userName);
     formValue.append("phone", `+${user?.phone}`);
@@ -316,9 +339,33 @@ const removeSelectedImage = (indexToRemove) => {
       formValue.append("plot.road_width", parseInt(formData?.ploatWidth));
       formValue.append("plot.direction_facing", formData?.direction);
       formValue.append("plot.approval", formData?.category);
+      formValue.append("plot.total_area", parseInt(formData?.ploatArea));
+      formValue.append("plot.breadth_unit", units.breadthUnit);
+      formValue.append("plot.length_unit", units.lengthUnit);
+      formValue.append("plot.road_width_unit", units.roadWidthUnit);
+      formValue.append("plot.total_area_unit", units.totalAreaUnit);
       content.forEach((element, index) => {
         formValue.append(`plot.facilities[${index}]name`, element);
       });
+
+      if (selectedImage) {
+        selectedImage.forEach((image, index) => {
+          formValue.append(`plot_images[${index}]section`, "siteview");
+          formValue.append(`plot_images[${index}]image`, image);
+        });
+      }
+      if (selectedFile) {
+        formValue.append(`plot_images[${7}]section`, "FMB");
+        formValue.append(`plot_images[${7}]image`, selectedFile);
+      }
+      if (selectedvalue) {
+        formValue.append(`plot_images[${8}]section`, "location_map");
+        formValue.append(`plot_images[${8}]image`, selectedvalue);
+      }
+      if (activeButton === "Builder" && selectedLogo) {
+        formValue.append(`plot_images[${9}]section`, "logo");
+        formValue.append(`plot_images[${9}]image`, selectedLogo);
+      }
     }
     if (selectedPropType === "land") {
       formValue.append("property_type", selectedPropType);
@@ -328,27 +375,47 @@ const removeSelectedImage = (indexToRemove) => {
       formValue.append("land.road_width", parseInt(formData?.roadWidth));
       formValue.append("land.direction_facing", formData?.direction);
       formValue.append("land.approval", formData?.category);
-      formValue.append("land.total_area",parseInt(formData?.totalArea));
+      formValue.append("land.total_area", parseInt(formData?.totalArea));
+      formValue.append("land.breadth_unit", units.breadthUnit);
+      formValue.append("land.length_unit", units.lengthUnit);
+      formValue.append("land.road_width_unit", units.roadWidthUnit);
+      formValue.append("land.total_area_unit", units.totalAreaUnit);
       content.forEach((element, index) => {
         formValue.append(`land.facilities[${index}]name`, element);
       });
+
+      if (selectedImage) {
+        selectedImage.forEach((image, index) => {
+          formValue.append(`land_images[${index}]section`, "siteview");
+          formValue.append(`land_images[${index}]image`, image);
+        });
+      }
+      if (selectedFile) {
+        formValue.append(`land_images[${7}]section`, "FMB");
+        formValue.append(`land_images[${7}]image`, selectedFile);
+      }
+      if (selectedvalue) {
+        formValue.append(`land_images[${8}]section`, "location_map");
+        formValue.append(`land_images[${8}]image`, selectedvalue);
+      }
+      if (activeButton === "Builder" && selectedLogo) {
+        formValue.append(`land_images[${9}]section`, "logo");
+        formValue.append(`land_images[${9}]image`, selectedLogo);
+      }
     }
- 
+
     formValue.append("you_are_here_to", second.toLowerCase());
     formValue.append("owner", activeButton === "Owner");
     formValue.append("agent", activeButton === "Agent");
     formValue.append("builder", activeButton === "Builder");
-    formValue.append("area_sqft", parseInt(formData?.ploatArea));
     formValue.append("title", formData?.propertyName);
     formValue.append("description", formData?.description);
     formValue.append("location", formData?.propertyLocation);
-    formValue.append("sale_price", formData?.rentAmount);
     formValue.append("rent", formData?.rentAmount);
     if (activeButton === "Agent") {
       formValue.append("agent_commission", formData?.agentCommision);
     }
     formValue.append("advance", formData?.advanceAmount);
-    formValue.append("unit", formData?.AreaUnit);
     content.forEach((element, index) => {
       formValue.append(`plot.facilities[${index}]name`, element);
     });
@@ -356,62 +423,42 @@ const removeSelectedImage = (indexToRemove) => {
       console.log(`${key}: ${value}`);
     });
 
-    if (selectedImage) {
-      selectedImage.forEach((image, index) => {
-        formValue.append(`plot_images[${index}]section`, "siteview");
-        formValue.append(`plot_images[${index}]image`, image);
+    try {
+      const response = await axios.post(
+        `${Baseurl}createproperty/`,
+        formValue,
+        UserConfig
+      );
+      console.log(response.data);
+      toast.success("Submitted", {
+        hideProgressBar: true,
+        position: "top-center",
+      });
+      // setFormData({
+      //   propertyName: "",
+      //   propertyLocation: "",
+      //   plotSize: "",
+      //   ploatBreadth: "",
+      //   ploatArea: "",
+      //   ploatWidth: "",
+      //   rentAmount: "",
+      //   advanceAmount: "",
+      //   description: "",
+      //   AreaUnit:"",
+      //   category:""
+      // })
+      // setContent([])
+      // setSelectedImage([])
+      // setSelectedFile("")
+      // setselectedvalue("")
+    } catch (error) {
+      console.error("Server error", error);
+      toast.error("something went wrong", {
+        hideProgressBar: true,
+        position: "top-center",
       });
     }
-    if (selectedFile) {
-      formValue.append(`plot_images[${7}]section`, "FMB");
-      formValue.append(`plot_images[${7}]image`, selectedFile);
-    }
-    if (selectedvalue) {
-      formValue.append(`plot_images[${8}]section`, "location_map");
-      formValue.append(`plot_images[${8}]image`, selectedvalue);
-    }
-    if (activeButton === "Builder" && selectedLogo) {
-      formValue.append(`plot_images[${9}]section`,"logo");
-      formValue.append(`plot_images[${9}]image`, selectedLogo);
-    }
-   try{
-    const response = await axios.post(
-      `${Baseurl}createproperty/`,
-      formValue,
-      UserConfig
-    );
-    console.log(response.data);
-    toast.success("Submitted", {
-      hideProgressBar: true,
-      position: "top-center",
-    });
-    setFormData({
-      propertyName: "",
-      propertyLocation: "",
-      plotSize: "",
-      ploatBreadth: "",
-      ploatArea: "",
-      ploatWidth: "",
-      rentAmount: "",
-      advanceAmount: "",
-      description: "",
-      AreaUnit:"",
-      category:""
-    })
-    setContent([])
-    setSelectedImage([])
-    setSelectedFile("")
-    setselectedvalue("")
-  } catch (error) {
-    console.error("Server error", error);
-    toast.error("something went wrong", {
-      hideProgressBar: true,
-      position: "top-center",
-    });
-  }
   };
-  
- 
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -421,10 +468,9 @@ const removeSelectedImage = (indexToRemove) => {
     });
     setErrors({
       ...errors,
-      [name] : ""
-    })
+      [name]: "",
+    });
   };
-
 
   return (
     <div>
@@ -496,9 +542,11 @@ const removeSelectedImage = (indexToRemove) => {
                     height: "100%",
                     overflow: "hidden",
                   }}
+                  name="lengthUnit"
+                  onChange={handleUnit}
                 >
-                  <option>ft</option>
-                  <option>m</option>
+                  <option value="ft">ft</option>
+                  <option value="mt">mt</option>
                 </select>
               </div>
               {errors.plotSize && (
@@ -532,9 +580,11 @@ const removeSelectedImage = (indexToRemove) => {
                     width: "100px",
                     height: "100%",
                   }}
+                  name="breadthUnit"
+                  onChange={handleUnit}
                 >
-                  <option>ft</option>
-                  <option>m</option>
+                  <option value="ft">ft</option>
+                  <option value="mt">mt</option>
                 </select>
               </div>
               {errors.ploatBreadth && (
@@ -572,12 +622,9 @@ const removeSelectedImage = (indexToRemove) => {
                     width: "100px",
                     height: "100%",
                   }}
-                  onChange={handleChange}
-                  name="AreaUnit"
-                   
+                  name="totalAreaUnit"
+                  onChange={handleUnit}
                 >
-                  <option value="sqft">ft</option>
-                  <option value="sqft">m</option>
                   <option value="sqft">sqft</option>
                 </select>
               </div>
@@ -612,9 +659,11 @@ const removeSelectedImage = (indexToRemove) => {
                     width: "100px",
                     height: "100%",
                   }}
+                  name="roadWidthUnit"
+                  onChange={handleUnit}
                 >
-                  <option>ft</option>
-                  <option>m</option>
+                  <option value="ft">ft</option>
+                  <option value="mt">mt</option>
                 </select>
               </div>
               {errors.ploatWidth && (
@@ -837,10 +886,13 @@ const removeSelectedImage = (indexToRemove) => {
                   placeholder="Rs"
                   style={formControlStyle}
                   name="agentCommision"
-                isInvalid={!!errors.agentCommision}
-                value={formData.agentCommision}
-                onChange={handleChange}
+                  isInvalid={!!errors.agentCommision}
+                  value={formData.agentCommision}
+                  onChange={handleChange}
                 />
+                 {errors.agentCommision && (
+                  <div className="text-danger">{errors.agentCommision}</div>
+                )}
               </Form.Group>
             </Col>
           )}
@@ -1076,52 +1128,53 @@ const removeSelectedImage = (indexToRemove) => {
               )}
             </div>
           )}
-             {upload === "Logo" && (
-              <div>
-                <div className="file-input d-flex justify-content-center align-items-center">
-                  <input
-                    type="file"
-                    name="file-input"
-                    id="file-input"
-                    className="file-input__input"
-                    accept="image/*"
-                    onChange={handleImageLogo}
-                  />
-                  <label className="file-input__label" htmlFor="file-input">
-                    <span>Upload file</span>
-                  </label>
-                </div>
-
-                {selectedLogo && (
-                  <div className="mt-3 text-center">
-                    <img
-                      src={URL.createObjectURL(selectedLogo)}
-                      alt={selectedLogo ? selectedLogo.name : "upload image"}
-                      style={{
-                        width: "200px",
-                        maxHeight: "100px",
-                        borderRadius: "10px",
-                        border: "1px solid",
-                      }}
-                    />
-                    <button
-                      onClick={removeSelectedLogo}
-                      className="btn btn-danger btn-sm mt-2"
-                    >
-                      <i className="fas fa-times"></i> Remove
-                    </button>
-                  </div>
-                )}
+          {upload === "Logo" && (
+            <div>
+              <div className="file-input d-flex justify-content-center align-items-center">
+                <input
+                  type="file"
+                  name="file-input"
+                  id="file-input"
+                  className="file-input__input"
+                  accept="image/*"
+                  onChange={handleImageLogo}
+                />
+                <label className="file-input__label" htmlFor="file-input">
+                  <span>Upload file</span>
+                </label>
               </div>
-            )}
+
+              {selectedLogo && (
+                <div className="mt-3 text-center">
+                  <img
+                    src={URL.createObjectURL(selectedLogo)}
+                    alt={selectedLogo ? selectedLogo.name : "upload image"}
+                    style={{
+                      width: "200px",
+                      maxHeight: "100px",
+                      borderRadius: "10px",
+                      border: "1px solid",
+                    }}
+                  />
+                  <button
+                    onClick={removeSelectedLogo}
+                    className="btn btn-danger btn-sm mt-2"
+                  >
+                    <i className="fas fa-times"></i> Remove
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </Card.Body>
       </Card>
-      {Object.keys(errors).length > 0 && (
+      {/* {Object.keys(errors).length > 0 && (
         <div className="text-danger text-center pt-3">
           **Please fill required field before submiting**
         </div>
-      )}
+      )} */}
       <div className="d-flex justify-content-center">
+      {errors.image && <div className="text-danger">{errors.image}</div>}
         <button
           type="button"
           onClick={handleSubmit}

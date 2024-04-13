@@ -393,6 +393,14 @@ const Flatapartlease = ({
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
+    if (activeButton == "Agent") {
+      if (!formValue.agentCommision) {
+        errors.agentCommision = "*Please enter agent commision";
+      }
+    }
+   if(selectedImage.length === 0){
+    errors.image = "*please upload at least 1 image"
+   }
     return errors;
   };
 
@@ -973,7 +981,7 @@ const Flatapartlease = ({
                   onChange={handleChange}
                 />
                 <Form.Control.Feedback type="invalid">
-                  {errors.salePrice}
+                  {errors.leasePrice}
                 </Form.Control.Feedback>
               </Form.Group>
             </Col>
@@ -1527,6 +1535,7 @@ const Flatapartlease = ({
         </Card>
       </div>
       <div className="d-flex justify-content-center">
+      {errors.image && <div className="text-danger">{errors.image}</div>}
         <button
           type="button"
           className="buttonmobile mt-5"

@@ -14,6 +14,7 @@ import { FaTimes } from "react-icons/fa";
 import { Baseurl, UserConfig } from "./request";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { log } from "util";
 const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
   const [plot, setPlot] = useState(false);
   const [land, setLand] = useState(false);
@@ -252,6 +253,20 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
     agentCommision: "",
   });
 
+  const [units, setUnits] = useState({
+    breadthUnit: "ft",
+    lengthUnit: "ft",
+    roadWidthUnit: "ft",
+    totalAreaUnit: "sqft",
+  });
+
+  const handleUnit = (e) => {
+    setUnits({
+      ...units,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const [errors, setErrors] = useState({});
 
   const handleSubmit = (event) => {
@@ -261,6 +276,9 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      toast.error("Please fill required fields beforte submiting", {
+        hideProgressBar: true,
+      });
       return;
     }
 
@@ -297,6 +315,9 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
     if (!data.description.trim()) {
       errors.description = "Please enter description";
     }
+    if (selectedImage.length === 0) {
+      errors.image = "*please upload at least 1 image";
+    }
     if (activeButton === "Agent") {
       if (!data.agentCommision.trim()) {
         errors.agentCommision = "Please enter agent commision";
@@ -306,6 +327,7 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
     return errors;
   };
 
+  console.log(formData);
   const submitForm = async (formData) => {
     console.log(formData);
     const formValue = new FormData();
@@ -320,63 +342,89 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
     if (selectedPropType === "plot") {
       formValue.append("property_type", selectedPropType);
       formValue.append("plot.plot_type", first);
-      formValue.append("plot.length", parseInt(formValue?.plotSize));
-      formValue.append("plot.breadth", parseInt(formValue?.plotBreadth));
-      formValue.append("plot.road_width", parseInt(formValue?.roadWidth));
-      formValue.append("plot.direction_facing", formValue?.direction);
-      formValue.append("plot.approval", formValue?.category);
+      formValue.append("plot.length", parseInt(formData?.plotSize));
+      formValue.append("plot.breadth", parseInt(formData?.ploatBreadth));
+      formValue.append("plot.road_width", parseInt(formData?.ploatWidth));
+      formValue.append("plot.direction_facing", formData?.direction);
+      formValue.append("plot.approval", formData?.category);
+      formValue.append("plot.total_area", parseInt(formData?.ploatArea));
+      formValue.append("plot.breadth_unit", units.breadthUnit);
+      formValue.append("plot.length_unit", units.lengthUnit);
+      formValue.append("plot.road_width_unit", units.roadWidthUnit);
+      formValue.append("plot.total_area_unit", units.totalAreaUnit);
       content.forEach((element, index) => {
         formValue.append(`plot.facilities[${index}]name`, element);
       });
+      if (selectedImage) {
+        selectedImage.forEach((image, index) => {
+          formValue.append(`plot_images[${index}]section`, "siteview");
+          formValue.append(`plot_images[${index}]image`, image);
+        });
+      }
+      if (selectedFile) {
+        formValue.append(`plot_images[${7}]section`, "FMB");
+        formValue.append(`plot_images[${7}]image`, selectedFile);
+      }
+      if (selectedvalue) {
+        formValue.append(`plot_images[${8}]section`, "location_map");
+        formValue.append(`plot_images[${8}]image`, selectedvalue);
+      }
+      if (activeButton === "Builder" && selectedLogo) {
+        formValue.append(`plot_images[${9}]section`, "logo");
+        formValue.append(`plot_images[${9}]image`, selectedLogo);
+      }
     }
     if (selectedPropType === "land") {
       formValue.append("property_type", selectedPropType);
       formValue.append("land.land_type", first);
-      formValue.append("land.length", parseInt(formValue?.plotSize));
-      formValue.append("land.breadth", parseInt(formValue?.plotBreadth));
-      formValue.append("land.road_width", parseInt(formValue?.roadWidth));
-      formValue.append("land.direction_facing", formValue?.direction);
-      formValue.append("land.approval", formValue?.category);
-      formValue.append("land.total_area", parseInt(formValue?.totalArea));
+      formValue.append("land.length", parseInt(formData?.plotSize));
+      formValue.append("land.breadth", parseInt(formData?.ploatBreadth));
+      formValue.append("land.road_width", parseInt(formData?.ploatWidth));
+      formValue.append("land.direction_facing", formData?.direction);
+      formValue.append("land.approval", formData?.category);
+      formValue.append("land.total_area", parseInt(formData?.ploatArea));
+      formValue.append("land.breadth_unit", units.breadthUnit);
+      formValue.append("land.length_unit", units.lengthUnit);
+      formValue.append("land.road_width_unit", units.roadWidthUnit);
+      formValue.append("land.total_area_unit", units.totalAreaUnit);
       content.forEach((element, index) => {
         formValue.append(`land.facilities[${index}]name`, element);
       });
+      if (selectedImage) {
+        selectedImage.forEach((image, index) => {
+          formValue.append(`land_images[${index}]section`, "siteview");
+          formValue.append(`land_images[${index}]image`, image);
+        });
+      }
+      if (selectedFile) {
+        formValue.append(`land_images[${7}]section`, "FMB");
+        formValue.append(`land_images[${7}]image`, selectedFile);
+      }
+      if (selectedvalue) {
+        formValue.append(`land_images[${8}]section`, "location_map");
+        formValue.append(`land_images[${8}]image`, selectedvalue);
+      }
+      if (activeButton === "Builder" && selectedLogo) {
+        formValue.append(`land_images[${9}]section`, "logo");
+        formValue.append(`land_images[${9}]image`, selectedLogo);
+      }
     }
-
-    formValue.append("area_sqft", parseInt(formData?.ploatArea));
 
     formValue.append("title", formData?.propertyName);
     formValue.append("description", formData?.description);
     formValue.append("location", formData?.propertyLocation);
-    formValue.append("sale_price", formData?.leaseAmount); //dummy
+
     formValue.append("lease_amount", formData?.leaseAmount);
     formValue.append("advance", formData?.advanceAmount);
-    formValue.append("unit", formData?.AreaUnit);
-    content.forEach((element, index) => {
-      formValue.append(`plot.facilities[${index}]name`, element);
-    });
+
     formValue.forEach((value, key) => {
       console.log(`${key}: ${value}`);
     });
 
-    if (selectedImage) {
-      selectedImage.forEach((image, index) => {
-        formValue.append(`plot_images[${index}]section`, "siteview");
-        formValue.append(`plot_images[${index}]image`, image);
-      });
+    if (activeButton === "Agent") {
+      formValue.append("agent_commission", formData?.agentCommision);
     }
-    if (selectedFile) {
-      formValue.append(`plot_images[${7}]section`, "FMB");
-      formValue.append(`plot_images[${7}]image`, selectedFile);
-    }
-    if (selectedvalue) {
-      formValue.append(`plot_images[${8}]section`, "location_map");
-      formValue.append(`plot_images[${8}]image`, selectedvalue);
-    }
-    if (activeButton === "Builder" && selectedLogo) {
-      formValue.append(`plot_images[${9}]section`, "logo");
-      formValue.append(`plot_images[${9}]image`, selectedLogo);
-    }
+
     try {
       const response = await axios.post(
         `${Baseurl}createproperty/`,
@@ -388,23 +436,23 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
         hideProgressBar: true,
         position: "top-center",
       });
-      setFormData({
-        propertyName: "",
-        propertyLocation: "",
-        plotSize: "",
-        ploatBreadth: "",
-        ploatArea: "",
-        ploatWidth: "",
-        leaseAmount: "",
-        advanceAmount: "",
-        description: "",
-        AreaUnit: "",
-        category: "",
-      });
-      setContent([]);
-      setSelectedImage([]);
-      setSelectedFile("");
-      setselectedvalue("");
+      // setFormData({
+      //   propertyName: "",
+      //   propertyLocation: "",
+      //   plotSize: "",
+      //   ploatBreadth: "",
+      //   ploatArea: "",
+      //   ploatWidth: "",
+      //   leaseAmount: "",
+      //   advanceAmount: "",
+      //   description: "",
+      //   AreaUnit: "",
+      //   category: "",
+      // });
+      // setContent([]);
+      // setSelectedImage([]);
+      // setSelectedFile("");
+      // setselectedvalue("");
     } catch (error) {
       console.error("Server error", error);
       toast.error("something went wrong", {
@@ -494,9 +542,11 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
                     width: "100px",
                     height: "100%",
                   }}
+                  name="lengthUnit"
+                  onChange={handleUnit}
                 >
-                  <option>ft</option>
-                  <option>mt</option>
+                  <option value="ft">ft</option>
+                  <option value="m">m</option>
                 </select>
               </div>
               {errors.plotSize && (
@@ -530,9 +580,11 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
                     width: "100px",
                     height: "100%",
                   }}
+                  name="breadthUnit"
+                  onChange={handleUnit}
                 >
-                  <option>ft</option>
-                  <option>mt</option>
+                  <option value="ft">ft</option>
+                  <option value="m">m</option>
                 </select>
               </div>
               {errors.ploatBreadth && (
@@ -570,11 +622,9 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
                     width: "100px",
                     height: "100%",
                   }}
-                  onChange={handleChange}
-                  name="AreaUnit"
+                  name="totalAreaUnit"
+                  onChange={handleUnit}
                 >
-                  <option value="sqft">ft</option>
-                  <option value="sqft">m</option>
                   <option value="sqft">sqft</option>
                 </select>
               </div>
@@ -609,9 +659,11 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
                     width: "100px",
                     height: "100%",
                   }}
+                  name="roadWidthUnit"
+                  onChange={handleUnit}
                 >
-                  <option>ft</option>
-                  <option>mt</option>
+                  <option value="ft">ft</option>
+                  <option value="m">m</option>
                 </select>
               </div>
               {errors.ploatWidth && (
@@ -1167,12 +1219,9 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
           )}
         </Card.Body>
       </Card>
-      {Object.keys(errors).length !== 0 && (
-        <div className="text-danger text-center pt-3">
-          **Please fill required field before submiting**
-        </div>
-      )}
+
       <div className="d-flex justify-content-center">
+        {errors.image && <div className="text-danger">{errors.image}</div>}
         <button
           type="button"
           onClick={handleSubmit}

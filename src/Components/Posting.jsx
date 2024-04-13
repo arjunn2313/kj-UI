@@ -642,10 +642,10 @@ const Posting = () => {
                     <Button
                       type="button"
                       className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                        restbutton === "BuilderFloor Apartment" ? "rest" : ""
+                        restbutton === "builder_floor_apartment" ? "rest" : ""
                       }`}
                       onClick={() =>
-                        handlerest("bottom", "BuilderFloor Apartment")
+                        handlerest("bottom", "builder_floor_apartment")
                       }
                     >
                       BuilderFloor Apartment
@@ -653,10 +653,10 @@ const Posting = () => {
                     <Button
                       type="button"
                       className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                        restbutton === "Multi storey Apartment" ? "rest" : ""
+                        restbutton === "multi_storey_apartment" ? "rest" : ""
                       }`}
                       onClick={() =>
-                        handlerest("bottom", "Multi storey Apartment")
+                        handlerest("bottom", "multi_storey_apartment")
                       }
                     >
                       Multi storey Apartment
@@ -664,18 +664,18 @@ const Posting = () => {
                     <Button
                       type="button"
                       className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                        restbutton === "Luxury Apartment" ? "rest" : ""
+                        restbutton === "luxury_apartment" ? "rest" : ""
                       }`}
-                      onClick={() => handlerest("bottom", "Luxury Apartment")}
+                      onClick={() => handlerest("bottom", "luxury_apartment")}
                     >
                       Luxury Apartment
                     </Button>
                     <Button
                       type="button"
                       className={`btn btn-outline-light me-2 customplot rounded-pill ${
-                        restbutton === "Studio Apartment" ? "rest" : ""
+                        restbutton === "studio_apartment" ? "rest" : ""
                       }`}
-                      onClick={() => handlerest("bottom", "Studio Apartment")}
+                      onClick={() => handlerest("bottom", "studio_apartment")}
                     >
                       Studio Apartment
                     </Button>
