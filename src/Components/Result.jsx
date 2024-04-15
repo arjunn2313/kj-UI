@@ -31,22 +31,21 @@ const Result = () => {
 
   const handleViewDetails = () => {
     
-    navigate('/mobile'); 
+    navigate('/builder'); 
   };
   return (
     
      <div>
  <Navbar/>
     <div className="container mt-5" style={{fontSize:'30px'}}>
-     
-    <div className="row">
-  <div className="col-md-6
-  ">
+    <Card style={{ width: '1170px',borderRadius:'10px', border:'none'}}>
+    <div className="d-flex justify-content-between">
+  <div className="">
     <p className="text-start" style={{ fontSize: '30px', marginTop: '100px' }}>9466 results | Flats in Chennai for Sale</p>
   </div>
 
-  <div className="col-md-6 ">
-    <div className='container d-flex justify-content-center  pt-5 mt-5 ms-5'>
+  <div className="">
+    <div className='pt-5 mt-5'>
   <DropdownButton
         id="dropdown-basic-button"
         type="button" 
@@ -67,6 +66,7 @@ const Result = () => {
 </div>
 </div>
 </div>
+</Card>
 
         <Card style={{ width: '1170px',height:'480px',borderRadius:'10px', border:'1px solid #D7242A'}}>
       
@@ -128,7 +128,7 @@ const Result = () => {
 
 </div>
 <div class="row" style={{color: '#717171',fontSize:"20px"}}>
-<div class="col-sm-3 mt-3">
+<div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
    
       <img src={home} className='ms-3' style={{width:'30px',height:'32px'}} alt="Description of the image"/>
@@ -137,19 +137,19 @@ const Result = () => {
   </div>
 </div>
 
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={home} className='ms-3' style={{width:'30px',height:'32px'}} alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Kids Play Area</p>
     </div>
   </div>
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={home} className="ms-3" style={{width:'30px',height:'32px'}}alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Lift Facility</p>
     </div>
   </div>
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={home} className="ms-3"style={{width:'30px',height:'32px'}} alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Car Parking</p>
@@ -164,7 +164,7 @@ Lorem Ipsum is simply dummy text of the printing......</p>
 
   </div>
   <div className= "col text-end">
-  <button style={{ backgroundColor: '#D7242A', color: 'white', border: 'none', padding: '10px 20px', fontSize: '16px', borderRadius: '30px' }} onClick={handleViewDetails}> Contact Details</button>
+  <button style={{ backgroundColor: '#D7242A', color: 'white', border: 'none', padding: '10px 20px', fontSize: '16px', borderRadius: '30px' }} onClick={handleViewDetails}>View Details</button>
   </div>
 </div>
           </div>
@@ -229,7 +229,7 @@ Lorem Ipsum is simply dummy text of the printing......</p>
 
 </div>
 <div class="row" style={{color: '#717171',fontSize:"20px"}}>
-<div class="col-sm-3 mt-3">
+<div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
    
       <img src={home} className="ms-3" style={{width:'30px',height:'32px'}} alt="Description of the image"/>
@@ -238,19 +238,19 @@ Lorem Ipsum is simply dummy text of the printing......</p>
   </div>
 </div>
 
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={home} className ="ms-3"style={{width:'30px',height:'32px'}} alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Kids Play Area</p>
     </div>
   </div>
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={home} className="ms-3" style={{width:'30px',height:'32px'}}alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Lift Facility</p>
     </div>
   </div>
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={home} className='ms-3' style={{width:'30px',height:'32px'}} alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Car Parking</p>
@@ -264,7 +264,7 @@ Lorem Ipsum is simply dummy text of the printing......</p>
 
   </div>
   <div className= "col text-end">
-  <button style={{ backgroundColor: '#D7242A', color: 'white', border: 'none', padding: '10px 20px', fontSize: '16px', borderRadius: '30px' }} onClick={handleViewDetails}> Contact Details</button>
+  <button style={{ backgroundColor: '#D7242A', color: 'white', border: 'none', padding: '10px 20px', fontSize: '16px', borderRadius: '30px' }} onClick={handleViewDetails}>View Details</button>
   </div>
 </div>
     
@@ -333,7 +333,7 @@ Lorem Ipsum is simply dummy text of the printing......</p>
 </div>
 </div>
 <div class="row" style={{color: '#717171',fontSize:"20px"}}>
-<div class="col-sm-3 mt-3">
+<div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
    
       <img src={home} className="ms-3" style={{width:'30px',height:'32px'}} alt="Description of the image"/>
@@ -342,19 +342,19 @@ Lorem Ipsum is simply dummy text of the printing......</p>
   </div>
 </div>
 
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={home} className="ms-3" style={{width:'30px',height:'32px'}} alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Kids Play Area</p>
     </div>
   </div>
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={home} className="ms-3" style={{width:'30px',height:'32px'}}alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Lift Facility</p>
     </div>
   </div>
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={home} className="ms-3" style={{width:'30px',height:'32px'}} alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Car Parking</p>
@@ -369,7 +369,7 @@ Lorem Ipsum is simply dummy text of the printing......</p>
 
   </div>
   <div className= "col text-end">
-  <button style={{ backgroundColor: '#D7242A', color: 'white', border: 'none', padding: '10px 20px', fontSize: '16px', borderRadius: '30px' }} onClick={handleViewDetails}> Contact Details</button>
+  <button style={{ backgroundColor: '#D7242A', color: 'white', border: 'none', padding: '10px 20px', fontSize: '16px', borderRadius: '30px' }} onClick={handleViewDetails}>View Details</button>
   </div>
 </div>
           </div>

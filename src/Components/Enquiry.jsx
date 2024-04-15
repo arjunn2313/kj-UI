@@ -28,41 +28,34 @@ const Enquiry = () => {
 
       </div>
       <Carousel data-bs-theme="dark" style={{ width: '80%', margin: '0 auto' }} >
-
-        <Carousel.Item style={{ width: '100%', height: '400px', background: 'white', boxShadow: '4px 4px 10px 3px rgba(0, 0, 0, 0.25)', borderRadius: 20 }}>
-
+      <Carousel.Item style={{ width: '100%', height: '400px', background: 'white',
+         boxShadow: '4px 4px 10px 3px rgba(0, 0, 0, 0.25)', borderRadius: 20 }}>
           <img
             className="d-block img-fluid rounded-circle mt-4 Enquiry"
             src={T1}
             alt="First slide"
             style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+
           />
-
-
           <Carousel.Caption>
             <div className='my-0 mb-5' style={{
               textAlign: 'center', color: '#474747', fontSize: 18, fontFamily: 'Poppins',
               fontWeight: '400', wordWrap: 'break-word'
-            }}>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-              when an unknown printer took a galley of type and scrambled
-              it to make a type specimen book.</div>
-
+            }}>Lorem Ipsum is simply dummy text of the printing.
+              .</div>
             <ReactStars
               count={5}
               onChange={onChange}
               size={24}
               activeColor='orange'
               value={star}
-              classNames='star-rating mt-5' // Add a class for styling
+              classNames='star-rating mt-5'
             />
-            <div style={{
-              textAlign: 'center', color: '#474747', fontSize: 18, fontFamily: 'Poppins',
-              fontWeight: '700', wordWrap: 'break-word'
-            }}>Jeo James </div>
+            <div style={{ textAlign: 'center', color: '#474747', fontSize: 18, fontFamily: 'Poppins',
+             fontWeight: '700', wordWrap: 'break-word' }}>Jeo James </div>
           </Carousel.Caption>
-
         </Carousel.Item>
+      
         <Carousel.Item style={{ width: '100%', height: '400px', background: 'white',
          boxShadow: '4px 4px 10px 3px rgba(0, 0, 0, 0.25)', borderRadius: 20 }}>
           <img
@@ -110,7 +103,7 @@ const Enquiry = () => {
               size={24}
               activeColor='orange'
               value={star}
-              classNames='star-rating mt-5' // Add a class for styling
+              classNames='star-rating mt-5' 
             />
             <div style={{ textAlign: 'center', color: '#474747', fontSize: 18, fontFamily: 'Poppins',
              fontWeight: '700', wordWrap: 'break-word' }}>Jeo James </div>

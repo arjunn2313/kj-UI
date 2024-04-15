@@ -27,13 +27,7 @@
   padding: 5px 20px;
 }
 
-.navbar-custom1 {
-  background-color: #D7242A;
 
-
-
-
-}
 
 .custom-border-radius {
   border-radius: 20px;
@@ -245,9 +239,127 @@ border-color:  #D7242A;
 .list-unstyled.last.text-black li a:hover {
   color:  #D7242A  !important; 
 }
-@media (max-width: 1440px) {
-  .fixed-image {
-    width: 150px;
-    height: 50px;
+
+/* .bg-image {
+  background-image: url('../src/Images/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+} */
+
+
+
+.right{
+  width: 75% !important;
+}
+
+@media (min-width: 1024px) {
+ .bg-image {
+    width: 100%!important;
+    height: auto; 
+    background-size: 'cover';
+    background-position: 'center';
+   
+  }
+}
+
+.vertical-line {
+  border-left: 1px solid #ccc; 
+  height: 100%; 
+  margin-left: 15px; 
+}
+@media (max-width: 1400px) {
+  .carousel-container {
+    gap: 20px; /* Add gap between carousel items */
+  }
+  
+  .carousel-item {
+    font-size: 14px; /* Adjust font size of carousel items */
+  }
+
+  .bigvalue {
+    text-align: center; /* Center-align the heading */
+  }
+  .properties{
+    width: 175px;
+    height: 210px;
+ 
+
+    border-radius: 20px;
+    border: 1px
+    
+  }
+}
+
+@media (max-width: 1024px) {
+  .carousel-container .carousel-item .card {
+    flex: 0 0 auto;
+    width: calc(100% - 20px); /* Adjust the width to prevent any potential overflow and maintain spacing */
+    margin-right: 10px; /* Adjust margin for spacing between columns */
+    margin-left: 10px;
+  }
+
+  .carousel-container .carousel-item .card-img-top {
+    max-height: 200px; /* or any height you prefer */
+    border-radius: 10px; /* Apply border radius to the card images */
+    object-fit: cover; /* Maintain aspect ratio */
+  }
+
+  .carousel-container.carousel-inner {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 20px; /* Adjust gap between cards */
+  }
+
+  /* Adjust the color of the carousel control next button with .prop class */
+  .carousel-container.carousel-control-next.prop {
+   
+    right: 0px!important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .carousel-value .carousel-item .card {
+    flex: 0 0 auto;
+    width: calc(100% - 20px); /* Adjust the width to prevent any potential overflow and maintain spacing */
+    margin-right: 10px; /* Adjust margin for spacing between columns */
+    margin-left: 10px;
+  }
+
+  .carousel-value .carousel-item .card-img-top {
+    max-height: 200px; 
+    border-radius: 10px; 
+    object-fit: cover; 
+  }
+
+  .carousel-value.carousel-inner {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 20px; /* Adjust gap between cards */
+  }
+
+  .carousel-value .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .carousel-value .card-body {
+    padding: 10px;
+  }
+
+  .carousel-value .btn {
+   height:50px;
+   font-size: 15px;
+  }
+}
+@media (max-width: 1024px) {
+  .total.card-img-top.card-body.center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 }

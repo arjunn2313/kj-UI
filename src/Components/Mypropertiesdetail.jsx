@@ -133,7 +133,7 @@ return (
            
           </Card.Body>
         </Card>
-        <Card className="mt-5"style={{ width: '1170px', border: ' 1px solid #D7242A' }}>
+        {/* <Card className="mt-5"style={{ width: '1170px', border: ' 1px solid #D7242A' }}>
           <Card.Body>
 <p className='ms-3 mt-2'style={{color:"#2D2D2D",fontSize:"24px",fontWeight:"700"}}>Why buy in this project?</p>
           <ul className="ms-3">
@@ -143,7 +143,7 @@ return (
           </ul>
            
           </Card.Body>
-        </Card>
+        </Card> */}
         <Card className="mt-5"style={{ width: '1170px', border: ' 1px solid #D7242A' }}>
           <Card.Body>
 <p className='ms-3 mt-2'style={{color:"#2D2D2D",fontSize:"20px",fontWeight:"600",fontFamily:'Poppins'}}>More Details</p>

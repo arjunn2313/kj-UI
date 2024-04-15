@@ -290,11 +290,11 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
   const handleImageChange = (event) => {
     const files = event.target.files;
     if (files.length + selectedImage.length > 6) {
-      // Display an alert or message indicating the limit is reached
+     
       alert("You can only upload a maximum of 6 images.");
       return;
     }
-    // Add the selected images to the state
+   
     setSelectedImage((prevImages) => [...prevImages, ...files]);
   };
 
@@ -312,9 +312,7 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
 
     setselectedLogo(file);
   };
-  // const removeSelectedImage = () => {
-  //   setSelectedImage("");
-  // };
+ 
 
   const removeSelectedImage = (indexToRemove) => {
     setSelectedImage((prevSelectedImages) =>
@@ -475,8 +473,8 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
   return (
     <div>
       <Form className="mx-3">
-        <Row className="gx-md-3">
-          <Col md={6}>
+        <Row className="gx-md-5 gx-3">
+          <Col>
             <Form.Group controlId="formGroup1">
               <Form.Label>Property Name</Form.Label>
               <Form.Control
@@ -492,7 +490,7 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
               )}
             </Form.Group>
           </Col>
-          <Col md={6}>
+          <Col>
             <Form.Group controlId="propertyLocation">
               <Form.Label>Property Location </Form.Label>
               <Form.Control
@@ -511,8 +509,8 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
           </Col>
         </Row>
 
-        <Row className="mt-5">
-          <Col md={6}>
+        <Row className="gx-md-5 gx-3 mt-5">
+          <Col>
             <Form.Group controlId="formGroup3">
               <Form.Label>Plot size</Form.Label>
               <br />
@@ -550,7 +548,7 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
               )}
             </Form.Group>
           </Col>
-          <Col md={6}>
+          <Col>
             <Form.Group controlId="formGroup4">
               <Form.Label>Breadth</Form.Label>
               <br />
@@ -589,10 +587,12 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
           </Col>
         </Row>
 
-        <Row className="gx-md-3 mt-5">
-          <Col md={6}>
+        <Row className="gx-md-5 gx-5 mt-5">
+          <Col>
             <Form.Group controlId="formGroup5">
-              <Form.Label></Form.Label>
+              <Form.Label>
+
+              </Form.Label>
 
               <div
                 className="rounded-pill"
@@ -626,7 +626,7 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
               )}
             </Form.Group>
           </Col>
-          <Col md={6}>
+          <Col>
             <Form.Group controlId="formGroup6">
               <Form.Label></Form.Label>
 
@@ -666,80 +666,77 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
         </Row>
       </Form>
       <h5 className="mt-4">Direction Facing</h5>
-      <div
-        className="custom-radio d-flex mt-4"
-        onChange={handleChange}
-        required
-      >
-        <div className="flex-grow-1">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="direction"
-              id="exampleRadio1"
-              value="east"
-            />
-            <label className="form-check-label mb-1" htmlFor="exampleRadio1">
-              East
-            </label>
-          </div>
-        </div>
+      <div className="custom-radio d-flex mt-4 flex-column flex-md-row">
+  <div className="flex-grow-1">
+    <div className="form-check">
+      <input
+        className="form-check-input"
+        type="radio"
+        name="direction"
+        id="exampleRadio1"
+        value="east"
+      />
+      <label className="form-check-label mb-1" htmlFor="exampleRadio1">
+        East
+      </label>
+    </div>
+  </div>
 
-        <div className="flex-grow-1">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="direction"
-              id="exampleRadio2"
-              value="west"
-            />
-            <label className="form-check-label" htmlFor="exampleRadio2">
-              West
-            </label>
-          </div>
-        </div>
+  <div className="flex-grow-1">
+    <div className="form-check">
+      <input
+        className="form-check-input"
+        type="radio"
+        name="direction"
+        id="exampleRadio2"
+        value="west"
+      />
+      <label className="form-check-label" htmlFor="exampleRadio2">
+        West
+      </label>
+    </div>
+  </div>
 
-        <div className="flex-grow-1">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="direction"
-              id="exampleRadio3"
-              value="north"
-            />
-            <label className="form-check-label" htmlFor="exampleRadio3">
-              North
-            </label>
-          </div>
-        </div>
+  <div className="flex-grow-1">
+    <div className="form-check">
+      <input
+        className="form-check-input"
+        type="radio"
+        name="direction"
+        id="exampleRadio3"
+        value="north"
+      />
+      <label className="form-check-label" htmlFor="exampleRadio3">
+        North
+      </label>
+    </div>
+  </div>
 
-        <div className="flex-grow-1">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="direction"
-              id="exampleRadio4"
-              value="south"
-            />
-            <label className="form-check-label" htmlFor="exampleRadio4">
-              South
-            </label>
-          </div>
-        </div>
+  <div className="flex-grow-1">
+    <div className="form-check">
+      <input
+        className="form-check-input"
+        type="radio"
+        name="direction"
+        id="exampleRadio4"
+        value="south"
+      />
+      <label className="form-check-label" htmlFor="exampleRadio4">
+        South
+      </label>
+    </div>
+  </div>
 
-        <div className="flex-grow-1 mb-5">
-          <input
-            className="inp flex-grow-1"
-            name="direction"
-            onChange={handleChange}
-            placeholder="other if any..."
-          />
-        </div>
-      </div>
+  <div className="flex-grow-1 mb-3 mb-md-0">
+    <input
+      className="inp flex-grow-1"
+      name="direction"
+      onChange={handleChange}
+      placeholder="other if any..."
+    />
+  </div>
+</div>
+
 
       <div className="mt-3">
         <h5>Facility</h5>

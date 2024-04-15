@@ -7,34 +7,30 @@ import { useNavigate } from 'react-router-dom';
 const Properties = () => {
   const navigate = useNavigate(); 
 
-  const handleViewDetails = () => {
-    
+  const handleViewDetails = () => {   
     navigate('/builder'); 
   };
-  const handleViewDetailss = () => {
-    
+
+  const handleViewDetailss = () => {    
     navigate('/result'); 
   };
+
   return (
-    <div className='container'>
-      <div className='mt-5 pt-5 ms-2 my-5 d-flex row'>
-        <div className='col'>
+    <div className='container py-5'>
+      <div className='mt-5 pt-5 mx-5 d-flex justify-content-between flex-column flex-md-row'>
+        <div>
           <h3 className='mt-5 pt-5 mx-1 text-lg-start bigvalue underline'>
             Recommended Properties
           </h3>
         </div>
-        <div className='col'>
-          <p className='mt-3 pt-3 mx-1 text-lg-end' style={{ color: '#D7242A',cursor: 'pointer' }} onClick={()=>{handleViewDetailss()}}>
+        <div>
+          <p className='mt-3 pt-3' style={{ color: '#D7242A', cursor: 'pointer' }} onClick={handleViewDetailss}>
             See all Projects <FaArrowRight />
           </p>
         </div>
       </div>
-
-      <div
-        id="carouselExampleDark"
-        className="carousel carousel-dark slide"
-        data-bs-ride="carousel"
-      >
+      <div className="carousel-container">
+      <div className="carousel slide" id="carouselExampleDark" data-bs-ride="carousel">
         <div className="carousel-inner">
           {Data.reduce((chunks, item, index) => {
             const chunkIndex = Math.floor(index / 3);
@@ -42,17 +38,14 @@ const Properties = () => {
             chunks[chunkIndex].push(item);
             return chunks;
           }, []).map((chunk, chunkIndex) => (
-            <div
-              key={chunkIndex}
-              className={`carousel-item ${chunkIndex === 0 ? 'active' : ''}`}
-            >
-              <div className="row row-cols-1 row-cols-md-3 g-4">
+            <div key={chunkIndex} className={`carousel-item ${chunkIndex === 0 ? 'active' : ''}`}>
+              <div className="row row-cols-1 row-cols-md-3 g-4 g-md-3">
                 {chunk.map((item) => (
                   <div key={item.id} className="col">
                     <div className="card properties">
                       <img
                         src={item.thumbnail}
-                        style={{ width: "350px", height: "200px" }}
+                        style={{ width: "100%", height: "200px", objectFit: 'cover' }}
                         className="card-img-top"
                         alt="Property"
                       />
@@ -65,7 +58,7 @@ const Properties = () => {
                         <p className="card-text">{item.title}</p>
                         <div className='d-flex'>
                           <p className="card-text">{item.own}</p>
-                          <p className="card-text mx-5" style={{ color: "#1D8F00" }}>{item.hrs}</p>
+                          <p className="card-text mx-3" style={{ color: "#1D8F00" }}>{item.hrs}</p>
                         </div>
                         <button type="button" className="btn btn-danger w-100" onClick={handleViewDetails}>View Details</button>
                       </div>
@@ -85,6 +78,7 @@ const Properties = () => {
           <span className="visually-hidden">Next</span>
         </a>
       </div>
+    </div>
     </div>
   );
 };
