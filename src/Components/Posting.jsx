@@ -728,7 +728,9 @@ const Posting = () => {
           </button>
         </div>
       )} */}
+      
 
+{/*  */}
                   <Button
                     type="button"
                     className={`btn btn-outline-light customplot rounded-pill ${
@@ -857,6 +859,7 @@ const Posting = () => {
             )}
           </Dropdown>
         </Card>
+{/*  */}
 
         {activeButton === "Owner" && first && second === "Sell" && (
           <Sellform
