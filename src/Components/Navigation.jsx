@@ -195,7 +195,7 @@ const handleBudget =(budget)=>{
            
           </ul> */}
 
-<ul className="navbar-nav d-flex justify-content-between mx-5">
+<ul className="navbar-nav d-flex flex-row justify-content-between mx-5">
   <li className="nav-item">
     <Link to="/" className="nav-link" style={link === 'Buy' ? activeLinkStyle : navLinkStyle} onClick={() => handleLinkClick('Buy')}>
       Buy
@@ -222,10 +222,10 @@ const handleBudget =(budget)=>{
       </nav>
       <h1 className="text-center my-5 text-white-50">Welcome back, Let’s continue Your Search </h1>
      
-      <div className="card bg-light text-dark custom-border-radius mx-auto  pb-5 w-50">
+      <div className="card bg-light text-dark custom-border-radius mx-auto pb-5 w-100 mx-5 right">
       <nav className="navbar navbar-expand-lg">
           <div className="container" style={{backgroundColor: '#FFFFFF4D', width: '100%'}}>
-            <ul className="navbar-nav d-flex justify-content-between w-100 value">
+            <ul className="navbar-nav d-flex flex-row justify-content-center justify-content-between w-md-100 w-100 value">
               <li className="nav-item ">
                 <a  className={`nav-link ${activeLink === 'Plot' ? 'design' : ''}`}
                  style={{color: '#000000'}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={() => handleDropdownClick('Plot')}>
@@ -264,59 +264,47 @@ const handleBudget =(budget)=>{
       <hr className="dropdown-divider" />
    
       <hr />
-      <div className="container mx-3">
-      <div className="row  text-black">
-      {/* <div className="col d-flex justify-content-between align-items-center ">
-  <a className="navbar-brand me-3 me-md-5" href="/">
-    <img className="img-fluid" style={{width:"30px",height:"30px"}} src={image1} alt="Logo" /> 
-  </a>
-  <span className=''>Chennai</span>
-  <div className="vr mx-2 mx-md-4"></div>
-</div> */}
-
-<div className="col d-flex justify-content-between align-items-center">
-  <a className="navbar-brand me-3 me-md-5" href="/">
-    <img className="img-fluid ms-4"  src={image1} alt="Logo" /> 
-  </a>
-  <span className=''>Chennai</span>
-  <div className="vr mx-md-4"></div>
-</div>
-
-       <div className="col d-flex  justify-content-between align-items-center">
-   
-   <a className="navbar-brand me-3 me-md-5" href="/">
-  <img className='img-fluid fixed-image' src={image2} alt="Logo" />
-</a>
-
-    <span className='' style={{ border: 'none',cursor:'pointer' }}onClick={()=>handlePropertyTypeClick('Property Type')}>Property Type   <IoIosArrowDown /></span>
+      <div className="container">
+      <div className="row text-black justify-content-between">
+  <div className="col-md-3 col-6 d-flex align-items-center justify-content-center">
+    <a className="" href="/">
+      <img className="img-fluid me-2"  src={image1} alt="Logo" /> 
+    </a>
+    <span className='ms-2'>Chennai</span>
+<div className='vertical-line'></div>
+  </div>
 
 
+  <div className="col-md-3 col-6 d-flex align-items-center justify-content-center">
+    <a className="" href="/">
+      <img className="img-fluid me-2" src={image2} alt="Logo" />
+    </a>
+    <span className='ms-2' style={{ cursor: 'pointer' }} onClick={() => handlePropertyTypeClick('Property Type')}>Property Type <IoIosArrowDown /></span>
+    <div className='vertical-line'></div>
+    </div>
 
+  <div className="col-md-3 col-6 d-flex align-items-center justify-content-center">
+    <a className="" href="/">
+      <img className="img-fluid me-2" src={image3}  alt="Logo" />
+    </a>
+    <span className='ms-2' style={{ cursor: 'pointer' }} onClick={() => handleBudget('Budget')}>Budget <IoIosArrowDown /></span>
+  </div>
 
-  <div className="vr mx-2"></div>
-</div>
-
-<div className="col d-flex justify-content-center  align-items-center ">
-     
-
-     <a className="navbar-brand me-3 me-md-5" href="/">
-       <img  className="img-fluid fixed-image" src={image3}  alt="Logo" />
-     </a>
-     <span className='' style={{ border: 'none',cursor:'pointer'}}onClick={()=>handleBudget('Budget')}>Budget <IoIosArrowDown /></span>
-     </div>
-        <div className="col d-flex justify-content-between align-items-center me-3">
-  <button className="btn btn-danger rounded-pill  w-100" style={{ height: '60px' }} onClick={()=>handleSearch('Budget')}>
-    <IoSearchOutline className='me-4' />Search
+  <div className="col-md-3 col-6 d-flex align-items-center justify-content-center">
+  <button className="btn btn-danger rounded-pill py-3 w-100 w-md-50" onClick={() => handleSearch('Budget')}>
+    <IoSearchOutline /> 
+    <span className="ms-2">Search</span> 
   </button>
 </div>
 
-      </div>
+</div>
+
      
     </div>
    
 </div>
 {price&&!propertyType&&(
-  <Card className=" text-dark custom-border-radius mx-auto w-50"style={{ backgroundColor: "white", zIndex: 1}}>
+  <Card className=" text-dark custom-border-radius mx-auto w-50 right"style={{ backgroundColor: "white", zIndex: 1}}>
          <Budget />
           </Card>
 
@@ -330,7 +318,7 @@ const handleBudget =(budget)=>{
 <>
 
     { activeDropdown === 'Plot' && (
-       <div className='card bg-light text-dark custom-border-radius mx-auto w-50 pt-3'style={{ backgroundColor: "white", zIndex: 1}} >
+       <div className='card bg-light text-dark custom-border-radius mx-auto pb-5 w-100 mx-5 right'style={{ backgroundColor: "white", zIndex: 1}} >
           <div className=' d-flex flex-wrap gap-2 mx-3 my-3' >
                      
                      <Button
@@ -368,7 +356,7 @@ const handleBudget =(budget)=>{
              )}
             { activeDropdown === 'Land' && (
 
-<div className='card bg-light text-dark custom-border-radius mx-auto w-50 pt-3'style={{ backgroundColor: "white", zIndex: 1}} >
+<div className='card bg-light text-dark custom-border-radius mx-auto pb-5 w-100 mx-5 right'style={{ backgroundColor: "white", zIndex: 1}} >
    
         <div className='d-flex flex-wrap gap-3 mx-3 my-3 '>
          
@@ -423,7 +411,7 @@ const handleBudget =(budget)=>{
 )}
  {activeDropdown === 'Residential' && (
  
- <div className='card bg-light text-dark custom-border-radius mx-auto w-50 pt-3'style={{ backgroundColor: "white", zIndex: 1}} >
+ <div className='card bg-light text-dark custom-border-radius mx-auto pb-5 w-100 mx-5 right'style={{ backgroundColor: "white", zIndex: 1}} >
    <div className='d-flex  flex-wrap gap-2 my-2 mx-2' >
  
                      <Button
@@ -545,7 +533,7 @@ const handleBudget =(budget)=>{
        )}
  
  {activeDropdown === 'Commercial' && (
-   <div className='card bg-light text-dark custom-border-radius mx-auto w-50 pt-3'style={{ backgroundColor: "white", zIndex: 1}} >
+   <div className='card bg-light text-dark custom-border-radius mx-auto pb-5 w-100 mx-5 right'style={{ backgroundColor: "white", zIndex: 1}} >
    <div className='d-flex flex-wrap gap-2 my-2 mx-2'>
    <Button
         type="button"
@@ -644,7 +632,7 @@ const handleBudget =(budget)=>{
 )}
  {(activeDropdown === 'Plot') && plott && (
   <>
-    <Card className=" text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+    <Card className="text-dark custom-border-radius mx-auto pb-5 w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 1}}>
       <Card.Body>
       <div className='d-flex gap-3 flex-row'>
   <Button
@@ -673,7 +661,7 @@ const handleBudget =(budget)=>{
       </Card.Body>
     </Card>
     {facing === 'Facing' && (
-      <Card className="mb-3 text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+      <Card className="text-dark custom-border-radius mx-auto pb-5 w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 1}}>
         <Card.Body>
         <div className='d-flex flex-wrap'>
               <Button
@@ -705,7 +693,7 @@ const handleBudget =(budget)=>{
         </Card>
       )}
       {facing === 'PostedBy' && (
-        <Card className="mb-3  text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+        <Card className="text-dark custom-border-radius mx-auto pb-5 w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 1}}>
           <Card.Body>
             <div className='d-flex flex-wrap'>
               <Button
@@ -739,7 +727,7 @@ const handleBudget =(budget)=>{
  
     {facing === 'Area' && (
     
-    <Card className="mb-3  text-dark custom-border-radius mx-auto w-50"style={{ backgroundColor: "white", zIndex: 1}}>
+    <Card className="text-dark custom-border-radius mx-auto w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 2}}>
          <Budget name/>
           </Card>
       
@@ -748,7 +736,7 @@ const handleBudget =(budget)=>{
 )}
 {(activeDropdown === 'Land') && plott && (
   <>
-  <Card className=" text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+  <Card className="text-dark custom-border-radius mx-auto pb-5 w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 1}}>
     <Card.Body>
     <div className='d-flex gap-3 flex-row'>
 <Button
@@ -777,7 +765,7 @@ const handleBudget =(budget)=>{
     </Card.Body>
   </Card>
   {facing === 'Facing' && (
-    <Card className="mb-3 text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+    <Card className="text-dark custom-border-radius mx-auto  w-100 mx-5 right"style={{ backgroundColor: "white", zIndex:2}}>
       <Card.Body>
       <div className='d-flex flex-wrap'>
             <Button
@@ -809,7 +797,7 @@ const handleBudget =(budget)=>{
       </Card>
     )}
     {facing === 'PostedBy' && (
-      <Card className="mb-3  text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+      <Card className="text-dark custom-border-radius mx-auto w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 2}}>
         <Card.Body>
           <div className='d-flex flex-wrap'>
             <Button
@@ -843,7 +831,7 @@ const handleBudget =(budget)=>{
 
   {facing === 'Area' && (
   
-  <Card className="mb-3  text-dark custom-border-radius mx-auto w-50"style={{ backgroundColor: "white", zIndex: 1}}>
+  <Card className="text-dark custom-border-radius mx-auto  w-100 right"style={{ backgroundColor: "white", zIndex: 2}}>
        <Budget name/>
         </Card>
     
@@ -856,7 +844,7 @@ const handleBudget =(budget)=>{
    <>
      {residential && (
        <>
-       <Card className=" text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+       <Card className="text-dark custom-border-radius mx-auto pb-5 w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 1}}>
      <Card.Body>
        <div className='d-flex column-gap-3'>
          <Button
@@ -888,7 +876,7 @@ const handleBudget =(budget)=>{
    </Card>
        
          {Bedroom === 'Bedroom' && (
-           <Card className=" text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+           <Card className="text-dark custom-border-radius mx-auto  w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 2}}>
              <Card.Body>
                <div className='d-flex flex-wrap'>
                  <Button
@@ -920,7 +908,7 @@ const handleBudget =(budget)=>{
            </Card>
          )}
          {Bedroom === 'Furnishing' && (
-        <Card className="text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+        <Card className="text-dark custom-border-radius mx-auto w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 2}}>
         <Card.Body>
           <div className='d-flex flex-wrap'>
             <Button
@@ -948,7 +936,7 @@ const handleBudget =(budget)=>{
       </Card>
          )}
          {Bedroom === 'Condition' && (
-           <Card className="mb-3 text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+           <Card className="text-dark custom-border-radius mx-auto w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 2}}>
              <Card.Body>
                <div className='d-flex flex-wrap'>
                  <Button
@@ -968,7 +956,7 @@ const handleBudget =(budget)=>{
            </Card>
          )}
    {Bedroom === 'Posted By' && (
-           <Card className="mb-3 text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+           <Card className="text-dark custom-border-radius mx-auto  w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 2}}>
              <Card.Body>
                <div className='d-flex flex-wrap'>
                  <Button
@@ -1009,7 +997,7 @@ const handleBudget =(budget)=>{
   <>
     {Commercial && (
       <>
-      <Card className="text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+      <Card className="text-dark custom-border-radius mx-auto  w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 1}}>
     <Card.Body>
       <div className='d-flex flex-wrap'>
         <Button
@@ -1036,7 +1024,7 @@ const handleBudget =(budget)=>{
   </Card>
       
         {Category === 'Category' && (
-          <Card className=" text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+          <Card className="text-dark custom-border-radius mx-auto  w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 1}}>
             <Card.Body>
               <div className='d-flex flex-wrap'>
                 <Button
@@ -1058,7 +1046,7 @@ const handleBudget =(budget)=>{
           </Card>
         )}
         {Category === 'Furnishing' && (
-       <Card className=" text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+       <Card className="text-dark custom-border-radius mx-auto  w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 2}}>
        <Card.Body>
          <div className='d-flex flex-wrap'>
            <Button
@@ -1085,7 +1073,7 @@ const handleBudget =(budget)=>{
      </Card>
         )}
         {Category === 'Condition' && (
-          <Card className="text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+          <Card className="text-dark custom-border-radius mx-auto  w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 1}}>
             <Card.Body>
               <div className='d-flex flex-wrap'>
                 <Button
@@ -1112,7 +1100,7 @@ const handleBudget =(budget)=>{
   <>
     {pgrent && (
       <>
-      <Card className="text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+      <Card className="text-dark custom-border-radius mx-auto  w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 1}}>
     <Card.Body>
       <div className='d-flex flex-wrap gap-3'>
         <Button
@@ -1150,7 +1138,7 @@ const handleBudget =(budget)=>{
   </Card>
       
         {Gender === 'Gender' && (
-          <Card className="text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+          <Card className="text-dark custom-border-radius mx-auto  w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 1}}>
             <Card.Body>
               <div className='d-flex flex-wrap'>
            
@@ -1183,7 +1171,7 @@ const handleBudget =(budget)=>{
           </Card>
         )}
         {Gender === 'Tenants' && (
-       <Card className="text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+       <Card className="text-dark custom-border-radius mx-auto  w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 1}}>
        <Card.Body>
          <div className='d-flex flex-wrap'>
            <Button
@@ -1210,7 +1198,7 @@ const handleBudget =(budget)=>{
      </Card>
         )}
         {Gender=== 'Furnishing' && (
-          <Card className="text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+          <Card className="text-dark custom-border-radius mx-auto  w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 2}}>
             <Card.Body>
               <div className='d-flex flex-wrap'>
                 <Button
@@ -1237,7 +1225,7 @@ const handleBudget =(budget)=>{
           </Card>
         )}
   {Gender=== 'Rooms' && (
-          <Card className="text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+          <Card className="text-dark custom-border-radius mx-auto  w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 1}}>
             <Card.Body>
               <div className='d-flex flex-wrap'>
                 <Button
@@ -1263,7 +1251,7 @@ const handleBudget =(budget)=>{
           </Card>
         )}
  {Gender=== 'Sharing' && (
-          <Card className="mb-3  text-dark custom-border-radius mx-auto w-50 pt-3"style={{ backgroundColor: "white", zIndex: 1}}>
+          <Card className="text-dark custom-border-radius mx-auto  w-100 mx-5 right"style={{ backgroundColor: "white", zIndex: 1}}>
             <Card.Body>
               <div className='d-flex flex-wrap'>
                 <Button

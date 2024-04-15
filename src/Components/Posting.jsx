@@ -263,9 +263,9 @@ const Posting = () => {
         </div>
 
         <div className="text-start mt-5 ms-4">
-          <Form className="">
+          <Form>
             <Row className="gx-3 mb-3">
-              <Col md={4}>
+              <Col sm={6} md={6} lg={4}>
                 <Form.Group className="mb-3">
                   <Form.Label
                     className="small-label"
@@ -284,12 +284,12 @@ const Posting = () => {
                   />
                 </Form.Group>
               </Col>
-              <Col md={4} className="ms-5">
+              <Col sm={6} md={6} lg={4} className="ms-lg-5">
                 <Form.Group className="mb-3">
                   <Form.Label
                     className="small-label"
                     style={{ color: " #2D2D2D" }}
-                    htmlFor="inputFirstName"
+                    htmlFor="inputLastName"
                   >
                     Last Name
                   </Form.Label>
@@ -307,7 +307,7 @@ const Posting = () => {
 
             {/* Organization name and Location in a row */}
             <Row className="gx-3 mb-3">
-              <Col md={4}>
+              <Col sm={6} md={6} lg={4}>
                 <Form.Group className="mb-3">
                   <Form.Label
                     className="small-label w-100"
@@ -342,7 +342,7 @@ const Posting = () => {
 
                 </Form.Group>
               </Col>
-              <Col md={4} className="ms-5">
+              <Col sm={6} md={6} lg={4} className="ms-lg-5">
                 <Form.Group className="mb-3">
                   <Form.Label
                     className="small-label"
@@ -352,7 +352,7 @@ const Posting = () => {
                     Email
                   </Form.Label>
                   <Form.Control
-                    id="inputFirstName"
+                    id="inputEmail"
                     style={{ border: "1px solid #D7242A" }}
                     type="email"
                     placeholder="Enter your Email"
@@ -408,8 +408,8 @@ const Posting = () => {
           style={{ width: "1170px", height: "300px", borderRadius: "30px" }}
         >
           <nav className="navbar navbar-expand-lg mx-lg-5">
-            <div className="container" style={navbarStyle}>
-              <ul className="navbar-nav mx-5 justify-content-between w-100">
+            <div className="container-fluid" style={navbarStyle}>
+              <ul className="navbar-nav mx-2 mx-md-5 justify-content-between w-100 d-flex flex-row">
                 <li className="nav-item">
                   <a
                     className={`nav-link ${activeLink === 1 ? "design" : ""}`}
@@ -423,7 +423,7 @@ const Posting = () => {
                   </a>
                 </li>
                 <hr className="dropdown-divider" />
-                <li className="nav-item me-5">
+                <li className="nav-item me-3 me-md-5">
                   <a
                     className={`nav-link  ${activeLink === 2 ? "design" : ""}`}
                     style={navLinkStyle}
@@ -562,7 +562,7 @@ const Posting = () => {
               </div>
             )}
             {residential && (
-              <div className="d-flex my-2 px-2 mx-5 justify-content-between">
+              <div className="d-flex px-2 mx-5 justify-content-between">
                 <div className="row">
                   <div className="col">
                     <Button
@@ -694,7 +694,7 @@ const Posting = () => {
               </div>
             )}
             {Commercial && (
-              <div className="d-flex my-2 px-2 mx-5 justify-content-between mb-3">
+              <div className="d-md-flex px-2 mx-5 justify-content-between mb-3">
                 <div className="row row-cols-auto gap-3">
                   {/* {able && second === 'Rent' && (
         <div>
@@ -870,16 +870,16 @@ const Posting = () => {
 
         {activeButton === "Owner" && first && second === "Sell" && (
           <Sellform
-            activeButton={activeButton}
-            user={user}
-            first={first}
-            second={second}
-            selectedPropType={selectedPropType}
+  
           />
         )}
 
         {activeButton === "Owner" && 
-        first && second === "Rent" && <Rentform />}
+        first && second === "Rent" &&
+         (<Rentform/>
+         )}
+
+
         {activeButton === "Owner"
          && first && second === "Lease" && (
           <Leaseform />

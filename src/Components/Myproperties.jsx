@@ -110,7 +110,7 @@ On Progress
 
 </div>
 <div class="row" style={{color: '#717171',fontSize:"20px"}}>
-<div class="col-sm-3 mt-3">
+<div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
    
       <img src={circle}  className ="ms-3" style={{width:'30px',height:'32px'}} alt="Description of the image"/>
@@ -119,19 +119,19 @@ On Progress
   </div>
 </div>
 
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={circle} className ="ms-3" style={{width:'30px',height:'32px'}} alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Kids Play Area</p>
     </div>
   </div>
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={circle} className ="ms-3" style={{width:'30px',height:'32px'}}alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Lift Facility</p>
     </div>
   </div>
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={circle} className ="ms-3" style={{width:'30px',height:'32px'}} alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Car Parking</p>
@@ -221,7 +221,7 @@ Delete
 
 </div>
 <div class="row" style={{color: '#717171',fontSize:"20px"}}>
-<div class="col-sm-3 mt-3">
+<div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
    
       <img src={circle} className ="ms-3" style={{width:'30px',height:'32px'}} alt="Description of the image"/>
@@ -230,19 +230,19 @@ Delete
   </div>
 </div>
 
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={circle} className ="ms-3"  style={{width:'30px',height:'32px'}} alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Kids Play Area</p>
     </div>
   </div>
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={circle} className ="ms-3"  style={{width:'30px',height:'32px'}}alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Lift Facility</p>
     </div>
   </div>
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={circle} className ="ms-3"  style={{width:'30px',height:'32px'}} alt="Description of the image"/>
     <p className='mt-3 ms-2 'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Car Parking</p>
@@ -261,7 +261,7 @@ Lorem Ipsum is simply dummy text of the printing......</p>
         <Card className="mt-5"style={{ width: '1170px', border: '1px solid #D7242A',cursor:'pointer'}} onClick={handleDetail}>
         <div className='row mx-2 my-3'style={{color: "#2D2D2D",fontSize:"20px"
 }}>
-          <div className='col  mx-3 my-2'>
+          <div className='col mx-3 my-2'>
           <img src={m2} alt="" style={{height:"380px",weight:'450px'}} />
           </div>
           <div className='col ms-2'>
@@ -336,7 +336,7 @@ Sold
 </div>
 </div>
 <div class="row" style={{color: '#717171',fontSize:"20px"}}>
-<div class="col-sm-3 mt-3">
+<div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
    
       <img src={circle} className='ms-3' style={{width:'30px',height:'32px'}} alt="Description of the image"/>
@@ -345,19 +345,19 @@ Sold
   </div>
 </div>
 
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={circle} className="ms-3"style={{width:'30px',height:'32px'}} alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Kids Play Area</p>
     </div>
   </div>
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={circle} className="ms-3" style={{width:'30px',height:'32px'}}alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Lift Facility</p>
     </div>
   </div>
-  <div class="col-sm-3 mt-3">
+  <div class="col mt-3">
   <div class="card" style={{width:'100px',height:'92px'}}>
     <img src={circle} className="ms-3" style={{width:'30px',height:'32px'}} alt="Description of the image"/>
     <p className='mt-3 ms-2'style={{fontWeight:'500',fontSize:'12px',alignItems:'center'}}>Car Parking</p>

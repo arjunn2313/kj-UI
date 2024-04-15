@@ -108,7 +108,7 @@ thumbnail: v1
 
 id:2,
 villa:"Agricultural Land",
-value:"₹ 1.85 cr",
+value:"₹1.85 cr",
 title:"Perumbakkam, Chennai",
 feet:"1200 sqft",
 own:"View Details",

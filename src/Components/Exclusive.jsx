@@ -14,14 +14,15 @@ const Exclusive = () => {
     
     navigate('/builder'); 
   };
+  //
   return (
     <div className='container'>
-      <div className='mt-5 pt-5 ms-2 d-flex row'>
-        <div className='col'>
+      <div className='d-flex justify-content-between'>
+        <div className=''>
           {/* <h3 className='mt-5 pt-5 mx-1 text-lg-start bigvalue underline'>
             Exclusive Owner Properties in Chennai
           </h3> */}
-          <h3 className='mt-5 pt-5 mx-1 text-lg-start bigvalue underline'>
+          <h3 className='mt-3 pt-5 mx-1 text-lg-start bigvalue underline'>
           Recommended Land
           </h3>
         </div>
@@ -30,14 +31,14 @@ const Exclusive = () => {
             See all Projects
           </p>
         </div> */}
-          <div className='col'>
-          <p className='mt-3 pt-3 mx-1 text-lg-end' style={{ color: '#D7242A',cursor: 'pointer' }} onClick={()=>{handleViewDetailss()}}>
+          <div className=''>
+          <p className=' pt-5 mx-1 text-lg-end' style={{ color: '#D7242A',cursor: 'pointer' }} onClick={()=>{handleViewDetailss()}}>
             See all Projects <FaArrowRight />
           </p>
         </div>
       </div>
 
-      <Carousel>
+      <Carousel className='carousel-value'>
         {Value.reduce((chunks, items, index) => {
           const chunkIndex = Math.floor(index / 4); 
           if (!chunks[chunkIndex]) chunks[chunkIndex] = [];

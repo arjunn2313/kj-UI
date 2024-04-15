@@ -89,9 +89,13 @@ const Navbar = () => {
     <>
     <nav className="navbar navbar-expand-lg navbar-custom fixed-top">
       <div className="container-fluid mx-5 px-5">
-        <a className="navbar-brand" href="/">
+        {/* <a className="navbar-brand" href="/">
           <img src={logo} alt="Logo" />
-        </a>
+        </a> */}
+<a className="navbar-brand" href="/">
+  <img src={logo} alt="Logo" className="img-fluid" style={{ maxWidth: '100%', height: 'auto' }} />
+</a>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -145,9 +149,16 @@ const Navbar = () => {
       <ToastContainer />
     </div>
           </ul>
-        <button className='d-lg-flex ms-3 rounded-pill gap-2' 
-        style={{width:'250px',height:'40px',border:'none'}} onClick={handlepost}> <p className='mt-1 ms-3' style={{fontSize:'20px',fontWeight:'500'}}>Post Your Property</p><span className='rounded-pill mt-2' style={{backgroundColor:"#FEC72B",fontSize:'13px'}}> free</span>
-        </button>
+          <button className='d-lg-flex ms-3 rounded-pill gap-2' 
+        style={{ maxWidth: '250px', height:'40px',border:'none'}}
+        onClick={handlepost}>
+  <p className='mt-1 ms-3' style={{fontSize:'18px',fontWeight:'00'}}>
+    Post Your Property  
+    <span className='rounded-pill mt-2' style={{backgroundColor:"#FEC72B",fontSize:'13px'}}> 
+      free
+    </span>
+  </p>
+</button>
           {/* <form className=" d-lg-flex ms-2">
             <input
               className="form-control me-2 rounded-pill"
