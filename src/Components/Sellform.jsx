@@ -14,6 +14,7 @@ import { FaTimes } from "react-icons/fa";
 import request, { Baseurl, UserConfig, token } from "./request";
 import { log } from "util";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
   const [plot, setPlot] = useState(false);
@@ -26,12 +27,13 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
   const [city, setCity] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [activeLink, setActiveLink] = useState(1);
-
+const navigate = useNavigate()
   const [formValue, setFormValue] = useState({});
 
   const handleCityChange = (e) => {
     setCity(e.target.value);
   };
+ 
   const [plotSizeUnit, setPlotSizeUnit] = useState("");
   const handleplotClick = (items) => {
     if (items === 1) {
@@ -450,11 +452,13 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
           formData,
           UserConfig
         );
-        console.log(response);
-        toast.success("Submitted", {
-          hideProgressBar: true,
-          position: "top-center",
-        });
+        // console.log(response);
+        // toast.success("Submitted", {
+        //   hideProgressBar: true,
+        //   position: "top-center",
+        // });
+        navigate("/check",{state : response.data})
+        
       } catch (error) {
         console.error("Server error", error);
         toast.error("something went wrong", {
@@ -666,7 +670,7 @@ const Sellform = ({ activeButton, user, first, second, selectedPropType }) => {
         </Row>
       </Form>
       <h5 className="mt-4">Direction Facing</h5>
-      <div className="custom-radio d-flex mt-4 flex-column flex-md-row">
+      <div className="custom-radio d-flex mt-4 flex-column flex-md-row" onChange={handleChange}>
   <div className="flex-grow-1">
     <div className="form-check">
       <input

@@ -1533,6 +1533,7 @@ import { log } from "util";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Baseurl, UserConfig } from "./request";
+import { useNavigate } from 'react-router-dom';
 const Servicesell = ({
   activeButton,
   user,
@@ -1544,7 +1545,7 @@ const Servicesell = ({
   const [land, setLand] = useState(false);
   const [residential, setResidential] = useState(false);
   const [Commercial, setCommercial] = useState(false);
-
+  const navigate =  useNavigate()
   const handleplotClick = (items) => {
     if (items === 1) {
       setPlot(true);
@@ -1930,7 +1931,8 @@ const Servicesell = ({
     description: "",
     agentCommision:"",
     age:"",
-    month:""
+    month:"",
+    roadUnit:"ft"
   });
   //onchange function
   const handleChange = (event) => {
@@ -2003,8 +2005,7 @@ const Servicesell = ({
     submitForm(formValue);
   };
 
-  console.log(input);
-  console.log(formValue);
+ 
   // form submittion after validation
   const submitForm = async (formValue) => {
     const formData = new FormData();
@@ -2012,7 +2013,7 @@ const Servicesell = ({
     formData.append("phone", `+${user?.phone}`);
     formData.append("email", user?.email);
     formData.append("property_type", selectedPropType);
-    formData.append("commercial.commercial_type", "industrialbuilding");
+    formData.append("commercial.commercial_type",four);
     formData.append("you_are_here_to", second.toLowerCase());
     formData.append("owner", activeButton === "Owner");
     formData.append("agent", activeButton === "Agent");
@@ -2034,11 +2035,10 @@ const Servicesell = ({
     );
     formData.append("industrialbuilding.plot_area_unit", "sqft");
     formData.append("industrialbuilding.road_width", parseInt(formValue?.roadWidth));
-    formData.append("industrialbuilding.road_width_unit", "m");
+    formData.append("industrialbuilding.road_width_unit",formValue?.roadUnit);
 
-    // dummy data to avoid errors
-
-    // ddddd
+   
+ 
     formData.append("industrialbuilding.condition", formValue?.condition);
     formData.append("industrialbuilding.age", formValue?.age);
     formData.append("industrialbuilding.under_construction_months", formValue?.month);
@@ -2099,10 +2099,7 @@ const Servicesell = ({
         UserConfig
       );
       console.log(response);
-      toast.success("Submitted", {
-        hideProgressBar: true,
-        position: "top-center",
-      });
+      navigate("/check",{state : response.data})
     } catch (error) {
       console.error("Server error", error);
       toast.error("something went wrong", {
@@ -2111,7 +2108,7 @@ const Servicesell = ({
       });
     }
   };
-
+ 
   return (
     <div>
       <div>
@@ -2202,7 +2199,7 @@ const Servicesell = ({
                       height: "100%",
                     }}
                   >
-                    <option>Sq.ft</option>
+                    <option>Sqft</option>
                   </select>
                 </div>
                 {errors.buildArea && (
@@ -2237,10 +2234,7 @@ const Servicesell = ({
                       height: "100%",
                     }}
                   >
-                    <option>ft</option>
-                    <option>mt</option>
-
-                    <option>Sq.ft</option>
+                    <option>Sqft</option>
                   </select>
                 </div>
                 {errors.ploatArea && (
@@ -2278,9 +2272,11 @@ const Servicesell = ({
                       width: "100px",
                       height: "100%",
                     }}
+                    name="roadUnit"
+                    onChange={handleChange}
                   >
-                    <option>ft</option>
-                    <option>mt</option>
+                    <option value="ft">ft</option>
+                    <option value="m">m</option>
                   </select>
                 </div>
                 {errors.roadWidth && (
