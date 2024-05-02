@@ -6,12 +6,13 @@ import { FaTimes } from 'react-icons/fa';
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Baseurl, UserConfig } from "./request";
+import { useNavigate } from 'react-router-dom';
 const Servicelease = ({ 
   activeButton,  user,
   four,
     second,
     selectedPropType,}) => {
-
+      const navigate =  useNavigate()
   const [plot, setPlot] = useState(false);
   const [land, setLand] = useState(false);
   const [residential, setResidential] = useState(false);
@@ -519,7 +520,7 @@ const Servicelease = ({
      formData.append("phone", `+${user?.phone}`);
      formData.append("email", user?.email);
      formData.append("property_type", selectedPropType);
-     formData.append("commercial.commercial_type", "industrialbuilding");
+     formData.append("commercial.commercial_type",four);
      formData.append("you_are_here_to", second.toLowerCase());
      formData.append("owner", activeButton === "Owner");
      formData.append("agent", activeButton === "Agent");
@@ -606,10 +607,7 @@ const Servicelease = ({
          UserConfig
        );
        console.log(response);
-       toast.success("Submitted", {
-         hideProgressBar: true,
-         position: "top-center",
-       });
+       navigate("/check",{state : response.data})
      } catch (error) {
        console.error("Server error", error);
        toast.error("something went wrong", {

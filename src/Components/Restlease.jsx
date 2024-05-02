@@ -14,6 +14,7 @@ import { FaTimes } from "react-icons/fa";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Baseurl, UserConfig } from "./request";
+import { useNavigate } from "react-router-dom";
 const Restlease = ({
   activeButton,
   user,
@@ -22,6 +23,7 @@ const Restlease = ({
   selectedPropType,
   restbutton,
 }) => {
+  const navigate = useNavigate();
   const [plot, setPlot] = useState(false);
   const [land, setLand] = useState(false);
   const [residential, setResidential] = useState(false);
@@ -29,6 +31,7 @@ const Restlease = ({
   const [sell, setsell] = useState("Sell");
   const [rent, setrent] = useState("Rent");
   const [lease, setlease] = useState("");
+
   const handleplotClick = (items) => {
     if (items === 1) {
       setPlot(true);
@@ -385,9 +388,9 @@ const Restlease = ({
         errors.agentCommision = "*Please enter agent commision";
       }
     }
-   if(selectedImage.length === 0){
-    errors.image = "*please upload at least 1 image"
-   }
+    if (selectedImage.length === 0) {
+      errors.image = "*please upload at least 1 image";
+    }
     return errors;
   };
 
@@ -492,11 +495,7 @@ const Restlease = ({
         formData,
         UserConfig
       );
-      console.log(response);
-      toast.success("Submitted", {
-        hideProgressBar: true,
-        position: "top-center",
-      });
+      navigate("/check", { state: response.data });
 
       // setFormValue({
       //   propertyName: "",
@@ -532,7 +531,6 @@ const Restlease = ({
 
   return (
     <div>
- 
       <Form className="mx-3">
         <Row className="gx-md-3">
           <Col md={6}>
@@ -935,7 +933,7 @@ const Restlease = ({
                 value={formValue.lease}
                 onChange={handleChange}
               />
-               <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type="invalid">
                 {errors.lease}
               </Form.Control.Feedback>
             </Form.Group>
@@ -973,9 +971,9 @@ const Restlease = ({
                   value={formValue.agentCommision}
                   onChange={handleChange}
                 />
-                   <Form.Control.Feedback type="invalid">
-                {errors.agentCommision}
-              </Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  {errors.agentCommision}
+                </Form.Control.Feedback>
               </Form.Group>
             </Col>
           )}
@@ -1485,7 +1483,7 @@ const Restlease = ({
         </Card.Body>
       </Card>
       <div className="d-flex justify-content-center">
-      {errors.image && <div className="text-danger">{errors.image}</div>}
+        {errors.image && <div className="text-danger">{errors.image}</div>}
         <button
           type="button"
           className="buttonmobile mt-5"

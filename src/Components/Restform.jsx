@@ -14,7 +14,7 @@ import { log } from "util";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Baseurl, UserConfig } from "./request";
-
+import { useNavigate } from 'react-router-dom';
 const Restform = ({
   activeButton,
   user,
@@ -23,6 +23,7 @@ const Restform = ({
   selectedPropType,
   restbutton,
 }) => {
+  const navigate =  useNavigate()
   const [plot, setPlot] = useState(false);
   const [land, setLand] = useState(false);
   const [residential, setResidential] = useState(false);
@@ -489,34 +490,7 @@ const Restform = ({
         formData,
         UserConfig
       );
-      console.log(response);
-      toast.success("Submitted", {
-        hideProgressBar: true,
-        position: "top-center",
-      });
-      // setFormValue({
-      //   propertyName: "",
-      //   propertyLocation: "",
-      //   bhk: "1BHK",
-      //   area: "",
-      //   noOfUnit: "",
-      //   totalFloor: "",
-      //   category: "",
-      //   status: "",
-      //   condition: "",
-      //   salePrice: "",
-      //   advanceAmount: "",
-      //   description: "",
-      //   agentCommision: "",
-      // });
-      // setSelectedImage("");
-      // setSelectedFile("");
-      // setselectedvalue("");
-      // setselectedroom("");
-      // setselectedKitchen("");
-      // setselectedPlan("");
-      // setselectedmap("");
-      // setselectedLogo("");
+      navigate("/check",{state : response.data})
     } catch (error) {
       console.error("Server error", error);
       toast.error("something went wrong", {

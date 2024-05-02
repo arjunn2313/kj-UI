@@ -15,7 +15,9 @@ import { Baseurl, UserConfig } from "./request";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { log } from "util";
+import { useNavigate } from 'react-router-dom';
 const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
+  const navigate = useNavigate()
   const [plot, setPlot] = useState(false);
   const [land, setLand] = useState(false);
   const [residential, setResidential] = useState(false);
@@ -431,11 +433,12 @@ const Leaseform = ({ activeButton, user, first, second, selectedPropType }) => {
         formValue,
         UserConfig
       );
-      console.log(response.data);
-      toast.success("Submitted", {
-        hideProgressBar: true,
-        position: "top-center",
-      });
+      navigate("/check",{state : response.data})
+      // console.log(response.data);
+      // toast.success("Submitted", {
+      //   hideProgressBar: true,
+      //   position: "top-center",
+      // });
       // setFormData({
       //   propertyName: "",
       //   propertyLocation: "",

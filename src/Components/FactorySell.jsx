@@ -14,13 +14,14 @@ import { FaTimes } from "react-icons/fa";
 import { log } from "util";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 import { Baseurl, UserConfig } from "./request";
 const FactorySell = ({ activeButton,
   user,
-  
+  four, 
   second,
   selectedPropType,}) => {
-
+    const navigate =  useNavigate()
   const [plot, setPlot] = useState(false);
   const [land, setLand] = useState(false);
   const [residential, setResidential] = useState(false);
@@ -532,7 +533,7 @@ const FactorySell = ({ activeButton,
   formData.append("phone", `+${user?.phone}`);
   formData.append("email", user?.email);
   formData.append("property_type", selectedPropType);
-  formData.append("commercial.commercial_type", "factory");
+  formData.append("commercial.commercial_type",four);
   formData.append("you_are_here_to", second.toLowerCase());
   formData.append("owner", activeButton === "Owner");
   formData.append("agent", activeButton === "Agent");
@@ -627,10 +628,11 @@ const FactorySell = ({ activeButton,
       UserConfig
     );
     console.log(response);
-    toast.success("Submitted", {
-      hideProgressBar: true,
-      position: "top-center",
-    });
+    navigate("/check",{state : response.data})
+    // toast.success("Submitted", {
+    //   hideProgressBar: true,
+    //   position: "top-center",
+    // });
   } catch (error) {
     console.error("Server error", error);
     toast.error("something went wrong", {

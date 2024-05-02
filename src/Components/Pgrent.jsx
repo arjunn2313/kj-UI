@@ -7,11 +7,13 @@ import { FaTimes } from 'react-icons/fa';
 import { log } from "util";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 import { Baseurl, UserConfig } from "./request";
 const Pgrent = ({ activeButton,
   user,
   second,
   selectedPropType }) => {
+    const navigate =  useNavigate()
   const [plot, setPlot] = useState(false);
   const [land, setLand] = useState(false);
   const [residential, setResidential] = useState(false);
@@ -710,10 +712,11 @@ const Pgrent = ({ activeButton,
         UserConfig
       );
       console.log(response);
-      toast.success("Submitted", {
-        hideProgressBar: true,
-        position: "top-center",
-      });
+      navigate("/check",{state : response.data})
+      // toast.success("Submitted", {
+      //   hideProgressBar: true,
+      //   position: "top-center",
+      // });
     } catch (error) {
       console.error("Server error", error);
       toast.error("something went wrong", {

@@ -1,5 +1,3 @@
-
-
 // import React from 'react'
 // import { Button, Card, Form, Row, Col, Dropdown, DropdownToggle } from 'react-bootstrap';
 // import { useState } from 'react';
@@ -36,7 +34,6 @@
 //     }
 //   };
 
-
 //   const formControlStyle = {
 //     borderColor: '#D7242A',
 //     width: '500px',
@@ -50,8 +47,6 @@
 //     borderRadius: '20px'
 //   }
 //   // images upload code
-
-
 
 //   const navLinkHoverStyle = {
 //     Color: '#D7242A',
@@ -112,7 +107,7 @@
 //        setInputValue("");
 //      }
 //    };
- 
+
 //    const handleKeyPress = (e) => {
 //      if (e.key === "Enter") {
 //        handleAddCount();
@@ -148,47 +143,44 @@
 //      "Street Lights": false,
 //      "Avenue Trees": false,
 //      Compound: false,
-   
+
 //      "Club House": false,
 //      "Community Hall": false,
 //      Saloon: false,
 //      Pool: false,
-        
-   
+
 //    });
- 
+
 //    const newvalue = [
 //      "Car Parking",
 //      "Security",
 //      "Street Lights",
 //      "Avenue Trees",
-   
-    
+
 //      "Compound",
 //      "ClubHouse",
 //     "Community Hall" ,
 //     "Saloon" ,
 //     " Pool",
-        
-   
+
 //    ];
- 
+
 //    const [data, setData] = useState([]);
 //    const [input, setInput] = useState("");
- 
+
 //    const handleAdd = () => {
 //      if (input.trim() !== "") {
 //        setData((prevData) => [...prevData, input]);
 //        setInput("");
 //      }
 //    };
- 
+
 //    const handleKeys = (e) => {
 //      if (e.key === "Enter") {
 //        handleAdd();
 //      }
 //    };
- 
+
 //    const handleButtonClickss = (datta) => {
 //      if (!buttonAdd[datta]) {
 //        setButtonAdd((prevButtonAdd) => ({
@@ -198,7 +190,7 @@
 //        setData((prevData) => [...prevData, datta]);
 //      }
 //    };
- 
+
 //    const handleRemoveData = (Remove) => {
 //      if (newvalue.includes(Remove)) {
 //        setButtonAdd((prevButtonAdd) => ({
@@ -211,8 +203,7 @@
 //      }
 //    };
 //  const newData =[
- 
-   
+
 //    "Residential",
 //    "Commercial",
 //    "Industrial",
@@ -226,9 +217,7 @@
 //    "  Communication",
 //    " OpenSpace",
 //    'Public&Semi-Publicuse'
- 
- 
- 
+
 //  ]
 //    const [buttonStates, setButtonStates] = useState({
 //      Residential: false,
@@ -244,42 +233,38 @@
 //      Communication: false,
 //      OpenSpace: false,
 //      'Public&Semi-Publicuse': false,
- 
+
 //    });
- 
+
 //    const [content, setContent] = useState([]);
 //  const [inputtype,setInputType] = useState("");
-  
+
 //  const handleinput = () =>{
 //    if (inputtype.trim() !== "") {
 //      setContent((prevContent) => [...prevContent, inputtype]);
 //      setInputType("");
 //    }
 //  }
- 
+
 //    const handleButtonContent = (buttonName) => {
- 
+
 //      if (!buttonStates[buttonName]) {
 //        setButtonStates((prevStates) => ({
 //          ...prevStates,
 //          [buttonName]: true,
 //        }));
- 
+
 //        setContent((prevContent) => [...prevContent, buttonName]);
- 
- 
+
 //      }
 //    };
- 
+
 //    const handleKeytype = (e) => {
 //      if (e.key === "Enter") {
 //        handleinput();
 //      }
 //    };
- 
- 
- 
- 
+
 //    const handleRemoveContent = (itemToRemove) => {
 //      if (newData.includes(itemToRemove)) {
 //        setButtonAdd((prevStates) => ({
@@ -303,41 +288,36 @@
 //    const handleUpload = () => {
 //      if (upload === 'Site View' && selectedImage) {
 //        console.log('Uploading Site View image:', selectedImage);
-      
+
 //        setSelectedImage('');
 //      } else if (upload === 'FMB' && selectedFile) {
 //        console.log('Uploading FMB image:', selectedFile);
-    
+
 //        setSelectedFile('');
 //      } else if (upload === 'Location Map' && selectedvalue) {
 //        console.log('Uploading Location Map image:', selectedvalue);
-       
+
 //        setselectedvalue('');
 //      } else if (upload === 'Logo' && selectedLogo) {
 //        console.log('Uploading Logo image:', selectedLogo);
-     
+
 //        setSelectedImage('');
 //      } else {
 //        console.log('No image selected');
 //      }
 //    };
-   
+
 //   const handleImage = (values) =>{
-   
+
 //    setupload(values)
-   
+
 //   }
- 
- 
- 
- 
+
 //  const handleImageChange = (event) => {
 //    const file = event.target.files[0];
- 
- 
- 
+
 //    setSelectedImage(file);
-   
+
 //  };
 //  const handleFileChange = (event) => {
 //  const file = event.target.files[0];
@@ -345,63 +325,54 @@
 //  };
 //  const handleImagevalue = (event) => {
 //  const file = event.target.files[0];
- 
- 
- 
+
 //  setselectedvalue(file);
- 
+
 //  };
 //   const handleImagerooms = (event) =>{
 //    const file = event.target.files[0];
- 
- 
- 
+
 //    setselectedroom(file);
- 
+
 //   }
- 
+
 //  const handleFileKitchen =(event)=>{
 //    const file = event.target.files[0];
- 
- 
+
 //    setselectedKitchen(file);
 //  }
- 
+
 //  const handleImageplan =(event)=>{
 //    const file = event.target.files[0];
- 
- 
+
 //    setselectedPlan(file);
 //  }
 //   const handleImagemap = (event) =>{
 //    const file = event.target.files[0];
 //    setselectedmap(file)
 //   }
-  
+
 //  const handleImageLogo = (event) => {
 //  const file = event.target.files[0];
- 
- 
- 
+
 //  setselectedLogo(file);
- 
+
 //  };
 //  const removeSelectedImage = () => {
 //  setSelectedImage('');
 //  };
- 
+
 //  const removeSelectedImage1 = () => {
 //  setSelectedFile('');
 //  };
- 
- 
+
 //  const removeSelectedImage2 = () => {
 //  setselectedvalue('');
 //  };
 //  const removeSelectedroom = () =>{
 //    setselectedroom('');
 //  }
- 
+
 //  const removeSelectedKitchen = () =>{
 //    setselectedKitchen("");
 //  }
@@ -414,10 +385,6 @@
 //  const removeSelectedLogo = () => {
 //  setselectedLogo('');
 //  };
- 
-
-
-
 
 //   return (
 //     <div>
@@ -432,9 +399,9 @@
 //             <Form.Control type="text" placeholder="Enter Name" style={{ ...formControllStyle}} />
 //           </Form.Group>
 //         </Col>
-       
+
 //       </Row>
-          
+
 //       <Row className="mt-5">
 //             <Col md={6}>
 //               <Form.Group controlId="formGroup3">
@@ -462,7 +429,7 @@
 //             />
 //             <select className='rounded-end down border-start-0 ps-2' style={{ position: 'absolute', top: 0, right: 0, width: '100px', height: '100%',}}>
 //   <option>Sq.ft</option>
- 
+
 // </select>
 // </div>
 //               </Form.Group>
@@ -479,15 +446,13 @@
 //             <select className='rounded-end down border-start-0 ps-2' style={{ position: 'absolute', top: 0, right: 0, width: '100px', height: '100%',}}>
 //   <option>ft</option>
 //   <option>mt</option>
- 
+
 //   <option>Sq.ft</option>
 // </select>
 // </div>
 //               </Form.Group>
 //             </Col>
 //           </Row>
-
-  
 
 //           <Row className="gx-md-3 mt-5">
 //             {/* Third Row */}
@@ -511,9 +476,7 @@
 
 //             </Col>
 //           </Row>
-          
-         
-        
+
 //         </Form>
 //         <div className='mt-5'>
 //           <h5 className='mb-5'>Land Zone</h5>
@@ -521,14 +484,7 @@
 //           <Card style={{ borderRadius: '10px', border: '1px solid #B3B3B3', width: '1170px' }}>
 //             <Card.Body>
 
-
-
-
-
 //               <div className="row mb-2">
-
-
-
 
 //                 <div className='d-flex gap-3 flex-wrap'>
 //                   {content.map((item) => (
@@ -568,9 +524,6 @@
 //                     ))}
 //                   </div>
 //                 </div>
-
-
-
 
 //               </div>
 
@@ -700,8 +653,6 @@
 //           </div>
 //         </div>
 
-      
-
 //         <div className="mt-5">
 //       <h5 className="mb-5">Indoor Facility</h5>
 
@@ -808,12 +759,7 @@
 //       </Card>
 //     </div>
 
-
-
-
-      
 //         <Form className=" mx-2">
-
 
 //           <Row className="mt-5">
 //             <Col className="">
@@ -862,10 +808,10 @@
 //                   </li>
 
 //                   <li className="nav-item ">
-//                     <a 
+//                     <a
 //                     className={`nav-link ${upload === "Interior" ? 'design' : ''}`}
 //                      style={navLinkStyle}
-//                      onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} 
+//                      onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
 //                      onClick={() => handleImage('Interior')}
 //                      >
 //                       Interior
@@ -874,15 +820,15 @@
 //                   <li className="nav-item">
 //                     <a
 //                      className={`nav-link ${upload === "Washroom" ? 'design' : ''}`}
-//                      style={navLinkStyle} onMouseEnter={handleMouseEnter} 
-//                      onMouseLeave={handleMouseLeave} 
+//                      style={navLinkStyle} onMouseEnter={handleMouseEnter}
+//                      onMouseLeave={handleMouseLeave}
 //                      onClick={() => handleImage('Washroom')}
 //                      >
 //                       Washroom
 //                     </a>
 //                   </li>
 //                   <li className="nav-item">
-//                     <a 
+//                     <a
 //                     className={`nav-link ${upload === "Floor Plan" ? 'design' : ''}`}
 //                      style={navLinkStyle}
 //                      onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
@@ -891,10 +837,10 @@
 //                     </a>
 //                   </li>
 //                   <li className="nav-item ">
-//                     <a 
+//                     <a
 //                     className={`nav-link ${upload === "Location Map" ? 'design' : ''}`}
-//                      style={navLinkStyle} onMouseEnter={handleMouseEnter} 
-//                      onMouseLeave={handleMouseLeave} 
+//                      style={navLinkStyle} onMouseEnter={handleMouseEnter}
+//                      onMouseLeave={handleMouseLeave}
 //                      onClick={() => handleImage('Location Map')} >
 //                       Location Map
 //                     </a>
@@ -902,9 +848,9 @@
 //                   {activeButton === "Builder" &&
 //                     <li className="nav-item ">
 //                       <a
-//                        className={`nav-link ${upload === "Logo" ? 'design' : ''}`} 
-//                       style={navLinkStyle} onMouseEnter={handleMouseEnter} 
-//                       onMouseLeave={handleMouseLeave} 
+//                        className={`nav-link ${upload === "Logo" ? 'design' : ''}`}
+//                       style={navLinkStyle} onMouseEnter={handleMouseEnter}
+//                       onMouseLeave={handleMouseLeave}
 //                       onClick={() => handleImage('Logo')}>
 //                         Logo
 //                       </a>
@@ -945,8 +891,8 @@
 
 //             )} */}
 
-// {upload === 'Exterior View' && 
-//     <div>     
+// {upload === 'Exterior View' &&
+//     <div>
 //         <div className="file-input d-flex justify-content-center align-items-center">
 //             <input
 //                 type="file"
@@ -960,7 +906,6 @@
 //                 <span>Upload file</span>
 //             </label>
 //         </div>
-        
 
 //         {selectedImage && (
 //             <div className="mt-3 text-center">
@@ -976,7 +921,7 @@
 //         )}
 //     </div>
 // }
-// {upload === 'Interior' && 
+// {upload === 'Interior' &&
 //     <div>
 //         <div className="file-input d-flex justify-content-center align-items-center" >
 //             <input
@@ -1007,9 +952,8 @@
 //     </div>
 // }
 
-
-// {upload === 'Washroom' && 
-//     <div>     
+// {upload === 'Washroom' &&
+//     <div>
 //         <div className="file-input d-flex justify-content-center align-items-center">
 //             <input
 //                 type="file"
@@ -1023,7 +967,6 @@
 //                 <span>Upload file</span>
 //             </label>
 //         </div>
-        
 
 //         {selectedroom && (
 //             <div className="mt-3 text-center">
@@ -1039,7 +982,7 @@
 //         )}
 //     </div>
 // }
-// {upload === 'Floor Plan' && 
+// {upload === 'Floor Plan' &&
 //     <div>
 //         <div className="file-input d-flex justify-content-center align-items-center" >
 //             <input
@@ -1067,9 +1010,8 @@
 //                 </button>
 //             </div>
 //         )}
-//     </div>                            
+//     </div>
 // }
-
 
 // {upload === 'Location Map' && (
 //   <div>
@@ -1086,7 +1028,7 @@
 //         <span>Upload file</span>
 //       </label>
 //     </div>
-   
+
 //     {selectedmap && (
 //       <div className="mt-3 text-center">
 //         <img
@@ -1101,7 +1043,7 @@
 //     )}
 //   </div>
 // )}
-// {upload === 'Logo' && 
+// {upload === 'Logo' &&
 //     <div>
 //         <div className="file-input d-flex justify-content-center align-items-center">
 //             <input
@@ -1132,11 +1074,8 @@
 //     </div>
 // }
 
-
-
 //           </Card.Body>
 //         </Card>
-
 
 //       </div>
 //       <div className="d-flex justify-content-center">
@@ -1148,9 +1087,6 @@
 // }
 
 // export default FactoryRent
-
-
-
 
 import React from "react";
 import {
@@ -1169,12 +1105,15 @@ import { log } from "util";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Baseurl, UserConfig } from "./request";
-const FactoryRent = ({ activeButton,
+import { useNavigate } from "react-router-dom";
+const FactoryRent = ({
+  activeButton,
   user,
   four,
   second,
-  selectedPropType,}) => {
-
+  selectedPropType,
+}) => {
+  const navigate = useNavigate();
   const [plot, setPlot] = useState(false);
   const [land, setLand] = useState(false);
   const [residential, setResidential] = useState(false);
@@ -1185,16 +1124,16 @@ const FactoryRent = ({ activeButton,
       setPlot(true);
       setLand(false);
       setResidential(false);
-      setCommercial(false)
+      setCommercial(false);
     } else if (items === 2) {
       setLand(true);
       setPlot(false);
-      setCommercial(false)
+      setCommercial(false);
       setResidential(false);
     } else if (items === 3) {
       setLand(false);
       setPlot(false);
-      setCommercial(false)
+      setCommercial(false);
       setResidential(true);
     } else if (items === 4) {
       setLand(false);
@@ -1204,25 +1143,22 @@ const FactoryRent = ({ activeButton,
     }
   };
 
-
-
   const formControlStyle = {
-    borderColor: '#D7242A',
-    width: '500px',
-    height: '60px',
-    borderRadius: '20px'
-  }
+    borderColor: "#D7242A",
+    width: "500px",
+    height: "60px",
+    borderRadius: "20px",
+  };
   const formControllStyle = {
-    borderColor: '#D7242A',
-    width: '1150px',
-    height: '60px',
-    borderRadius: '20px'
-  }
- 
+    borderColor: "#D7242A",
+    width: "1150px",
+    height: "60px",
+    borderRadius: "20px",
+  };
 
   const navLinkHoverStyle = {
-    Color: '#D7242A',
-    transition: 'background-color 0.3s ease',
+    Color: "#D7242A",
+    transition: "background-color 0.3s ease",
   };
   const handleMouseEnter = (e) => {
     e.target.style.Color = navLinkHoverStyle.Color;
@@ -1230,360 +1166,325 @@ const FactoryRent = ({ activeButton,
   };
 
   const handleMouseLeave = (e) => {
-    e.target.style.backgroundColor = '';
+    e.target.style.backgroundColor = "";
     e.target.style.color = navLinkStyle.color;
-
   };
 
   const buttonStyle = {
-    backgroundColor: '#FFFFFF',
-    color: '#656565',
-    border: '1px solid #C5C5C5',
-    margin: '0 0.5rem',
-
+    backgroundColor: "#FFFFFF",
+    color: "#656565",
+    border: "1px solid #C5C5C5",
+    margin: "0 0.5rem",
   };
   const navbarStyle = {
-    backgroundColor: '#FFFFFF4D',
+    backgroundColor: "#FFFFFF4D",
 
-    width: '100%',
+    width: "100%",
   };
   const navLinkStyle = {
-    color: '#000000',
-    fontSize: '12px'
+    color: "#000000",
+    fontSize: "12px",
   };
   const newArray = [
-    "Officeroom" ,
-    "EmployeeQuarters" ,
-    'AirConditioning' ,
-     "CoffeeBar",
-     "WIFI",
-     "Lift",
+    "Officeroom",
+    "EmployeeQuarters",
+    "AirConditioning",
+    "CoffeeBar",
+    "WIFI",
+    "Lift",
     "PowerBackup",
     "Labourrooms",
-   ];
-   const [buttonValue, setButtonvalue] = useState({
-        Officeroom: false,
-     EmployeeQuarters: false,
-     AirConditioning: false,
-     CoffeeBar: false,
-     WIFI: false,
-     Lift: false,
-     PowerBackup: false,
-    "Labourrooms" : false
-   });
-   const [count, setCount] = useState([]);
-   const [inputValue, setInputValue] = useState("");
-   const handleAddCount = () => {
-     if (inputValue.trim() !== "") {
-       setCount((prevCount) => [...prevCount, inputValue]);
-       setInputValue("");
-     }
-   };
- 
-   const handleKeyPress = (e) => {
-     if (e.key === "Enter") {
-       handleAddCount();
-     }
-   };
-   const handleButton = (type) => {
-     if (!buttonValue[type]) {
-       setButtonvalue((prevValue) => ({
-         ...prevValue,
-         [type]: true,
-       }));
-       setCount((prevCount) => [...prevCount, type]);
-     }
-   };
-   const handleRemoveCount = (itemRemove) => {
-     if (newArray.includes(itemRemove)) {
-       setButtonvalue((prevValue) => ({
-         ...prevValue,
-         [itemRemove]: false,
-       }));
-       setCount((prevCount) =>
-         prevCount.filter((outdoor) => outdoor !== itemRemove)
-       );
-     } else {
-       setCount((prevCount) =>
-         prevCount.filter((outdoor) => outdoor !== itemRemove)
-       );
-     }
-   };
-   const [buttonAdd, setButtonAdd] = useState({
-     "Car Parking": false,
-     Security: false,
-     "Street Lights": false,
-     "Avenue Trees": false,
-     Compound: false,
-   
-     "Club House": false,
-     "Community Hall": false,
-     Saloon: false,
-     Pool: false,
-        
-   
-   });
- 
-   const newvalue = [
-     "Car Parking",
-     "Security",
-     "Street Lights",
-     "Avenue Trees",
-   
-    
-     "Compound",
-     "Club House",
-    "Community Hall" ,
-    "Saloon" ,
+  ];
+  const [buttonValue, setButtonvalue] = useState({
+    Officeroom: false,
+    EmployeeQuarters: false,
+    AirConditioning: false,
+    CoffeeBar: false,
+    WIFI: false,
+    Lift: false,
+    PowerBackup: false,
+    Labourrooms: false,
+  });
+  const [count, setCount] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const handleAddCount = () => {
+    if (inputValue.trim() !== "") {
+      setCount((prevCount) => [...prevCount, inputValue]);
+      setInputValue("");
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleAddCount();
+    }
+  };
+  const handleButton = (type) => {
+    if (!buttonValue[type]) {
+      setButtonvalue((prevValue) => ({
+        ...prevValue,
+        [type]: true,
+      }));
+      setCount((prevCount) => [...prevCount, type]);
+    }
+  };
+  const handleRemoveCount = (itemRemove) => {
+    if (newArray.includes(itemRemove)) {
+      setButtonvalue((prevValue) => ({
+        ...prevValue,
+        [itemRemove]: false,
+      }));
+      setCount((prevCount) =>
+        prevCount.filter((outdoor) => outdoor !== itemRemove)
+      );
+    } else {
+      setCount((prevCount) =>
+        prevCount.filter((outdoor) => outdoor !== itemRemove)
+      );
+    }
+  };
+  const [buttonAdd, setButtonAdd] = useState({
+    "Car Parking": false,
+    Security: false,
+    "Street Lights": false,
+    "Avenue Trees": false,
+    Compound: false,
+
+    "Club House": false,
+    "Community Hall": false,
+    Saloon: false,
+    Pool: false,
+  });
+
+  const newvalue = [
+    "Car Parking",
+    "Security",
+    "Street Lights",
+    "Avenue Trees",
+
+    "Compound",
+    "Club House",
+    "Community Hall",
+    "Saloon",
     "Pool",
-        
-   
-   ];
- 
-   const [data, setData] = useState([]);
-   const [input, setInput] = useState("");
- 
-   const handleAdd = () => {
-     if (input.trim() !== "") {
-       setData((prevData) => [...prevData, input]);
-       setInput("");
-     }
-   };
- 
-   const handleKeys = (e) => {
-     if (e.key === "Enter") {
-       handleAdd();
-     }
-   };
- 
-   const handleButtonClickss = (datta) => {
-     if (!buttonAdd[datta]) {
-       setButtonAdd((prevButtonAdd) => ({
-         ...prevButtonAdd,
-         [datta]: true,
-       }));
-       setData((prevData) => [...prevData, datta]);
-     }
-   };
- 
-   const handleRemoveData = (Remove) => {
-     if (newvalue.includes(Remove)) {
-       setButtonAdd((prevButtonAdd) => ({
-         ...prevButtonAdd,
-         [Remove]: false,
-       }));
-       setData((prevData) => prevData.filter((item) => item !== Remove));
-     } else {
-       setData((prevData) => prevData.filter((item) => item !== Remove));
-     }
-   };
- const newData =[
- 
-   
-   "Residential",
-   "Commercial",
-   "Industrial",
-   "Agricultural",
-   "GovtUse",
-   "Lift",
-   "PublicUtilities",
-   "Special Economic",
-   "Natural Conservation",
-   "Transport",
-   "Communication",
-   "OpenSpace",
-   'Public&Semi-Publicuse'
- 
- 
- 
- ]
-   const [buttonStates, setButtonStates] = useState({
-     Residential: false,
-     Commercial: false,
-     Industrial: false,
-     Agricultural: false,
-     GovtUse: false,
-     Lift: false,
-     PublicUtilities: false,
-     SpecialEconomic: false,
-     NaturalConservation: false,
-     Transport: false,
-     Communication: false,
-     OpenSpace: false,
-     'Public&Semi-Publicuse': false,
- 
-   });
- 
-   const [content, setContent] = useState([]);
- const [inputtype,setInputType] = useState("");
-  
- const handleinput = () =>{
-   if (inputtype.trim() !== "") {
-     setContent((prevContent) => [...prevContent, inputtype]);
-     setInputType("");
-   }
- }
- 
-   const handleButtonContent = (buttonName) => {
- 
-     if (!buttonStates[buttonName]) {
-       setButtonStates((prevStates) => ({
-         ...prevStates,
-         [buttonName]: true,
-       }));
- 
-       setContent((prevContent) => [...prevContent, buttonName]);
- 
- 
-     }
-   };
- 
-   const handleKeytype = (e) => {
-     if (e.key === "Enter") {
-       handleinput();
-     }
-   };
- 
- 
- 
- 
-   const handleRemoveContent = (itemToRemove) => {
-     if (newData.includes(itemToRemove)) {
+  ];
+
+  const [data, setData] = useState([]);
+  const [input, setInput] = useState("");
+
+  const handleAdd = () => {
+    if (input.trim() !== "") {
+      setData((prevData) => [...prevData, input]);
+      setInput("");
+    }
+  };
+
+  const handleKeys = (e) => {
+    if (e.key === "Enter") {
+      handleAdd();
+    }
+  };
+
+  const handleButtonClickss = (datta) => {
+    if (!buttonAdd[datta]) {
+      setButtonAdd((prevButtonAdd) => ({
+        ...prevButtonAdd,
+        [datta]: true,
+      }));
+      setData((prevData) => [...prevData, datta]);
+    }
+  };
+
+  const handleRemoveData = (Remove) => {
+    if (newvalue.includes(Remove)) {
+      setButtonAdd((prevButtonAdd) => ({
+        ...prevButtonAdd,
+        [Remove]: false,
+      }));
+      setData((prevData) => prevData.filter((item) => item !== Remove));
+    } else {
+      setData((prevData) => prevData.filter((item) => item !== Remove));
+    }
+  };
+  const newData = [
+    "Residential",
+    "Commercial",
+    "Industrial",
+    "Agricultural",
+    "GovtUse",
+    "Lift",
+    "PublicUtilities",
+    "Special Economic",
+    "Natural Conservation",
+    "Transport",
+    "Communication",
+    "OpenSpace",
+    "Public&Semi-Publicuse",
+  ];
+  const [buttonStates, setButtonStates] = useState({
+    Residential: false,
+    Commercial: false,
+    Industrial: false,
+    Agricultural: false,
+    GovtUse: false,
+    Lift: false,
+    PublicUtilities: false,
+    SpecialEconomic: false,
+    NaturalConservation: false,
+    Transport: false,
+    Communication: false,
+    OpenSpace: false,
+    "Public&Semi-Publicuse": false,
+  });
+
+  const [content, setContent] = useState([]);
+  const [inputtype, setInputType] = useState("");
+
+  const handleinput = () => {
+    if (inputtype.trim() !== "") {
+      setContent((prevContent) => [...prevContent, inputtype]);
+      setInputType("");
+    }
+  };
+
+  const handleButtonContent = (buttonName) => {
+    if (!buttonStates[buttonName]) {
       setButtonStates((prevStates) => ({
-         ...prevStates,
-         [itemToRemove]: false,
-       }));
-       setContent((prevContent) => prevContent.filter((item) => item !== itemToRemove));
-     } else {
-       setContent((prevContent) => prevContent.filter((item) => item !== itemToRemove));
-     }
-   };
- 
-   const [upload,setupload] = useState('');
-   const [selectedImage, setSelectedImage] = useState('');
-   const [selectedFile, setSelectedFile] = useState('');
-   const [selectedvalue, setselectedvalue] = useState('');
- const [selectedLogo, setselectedLogo] = useState('');
- const [selectedroom,setselectedroom] = useState('');
- const [selectedKitchen, setselectedKitchen] = useState('');
- const [selectedPlan, setselectedPlan] = useState('');
- const [selectedmap, setselectedmap] = useState('');
-   const handleUpload = () => {
-     if (upload === 'Site View' && selectedImage) {
-       console.log('Uploading Site View image:', selectedImage);
-      
-       setSelectedImage('');
-     } else if (upload === 'FMB' && selectedFile) {
-       console.log('Uploading FMB image:', selectedFile);
-    
-       setSelectedFile('');
-     } else if (upload === 'Location Map' && selectedvalue) {
-       console.log('Uploading Location Map image:', selectedvalue);
-       
-       setselectedvalue('');
-     } else if (upload === 'Logo' && selectedLogo) {
-       console.log('Uploading Logo image:', selectedLogo);
-     
-       setSelectedImage('');
-     } else {
-       console.log('No image selected');
-     }
-   };
-   
-  const handleImage = (values) =>{
-   
-   setupload(values)
-   
-  }
- 
- 
- 
- 
- const handleImageChange = (event) => {
-   const file = event.target.files[0];
- 
- 
- 
-   setSelectedImage(file);
-   
- };
- const handleFileChange = (event) => {
- const file = event.target.files[0];
- setSelectedFile(file);
- };
- const handleImagevalue = (event) => {
- const file = event.target.files[0];
- 
- 
- 
- setselectedvalue(file);
- 
- };
-  const handleImagerooms = (event) =>{
-   const file = event.target.files[0];
- 
- 
- 
-   setselectedroom(file);
- 
-  }
- 
- const handleFileKitchen =(event)=>{
-   const file = event.target.files[0];
- 
- 
-   setselectedKitchen(file);
- }
- 
- const handleImageplan =(event)=>{
-   const file = event.target.files[0];
- 
- 
-   setselectedPlan(file);
- }
-  const handleImagemap = (event) =>{
-   const file = event.target.files[0];
-   setselectedmap(file)
-  }
-  
- const handleImageLogo = (event) => {
- const file = event.target.files[0];
- 
- 
- 
- setselectedLogo(file);
- 
- };
- const removeSelectedImage = () => {
- setSelectedImage('');
- };
- 
- const removeSelectedImage1 = () => {
- setSelectedFile('');
- };
- 
- 
- const removeSelectedImage2 = () => {
- setselectedvalue('');
- };
- const removeSelectedroom = () =>{
-   setselectedroom('');
- }
- 
- const removeSelectedKitchen = () =>{
-   setselectedKitchen("");
- }
- const removeSelectedplan = () =>{
-   setselectedPlan('');
- }
- const removeSelectedmap =()=>{
-   setselectedmap('');
- }
- const removeSelectedLogo = () => {
- setselectedLogo('');
- };
- ////////////// api integration///////
- const [errors, setErrors] = useState({});
+        ...prevStates,
+        [buttonName]: true,
+      }));
+
+      setContent((prevContent) => [...prevContent, buttonName]);
+    }
+  };
+
+  const handleKeytype = (e) => {
+    if (e.key === "Enter") {
+      handleinput();
+    }
+  };
+
+  const handleRemoveContent = (itemToRemove) => {
+    if (newData.includes(itemToRemove)) {
+      setButtonStates((prevStates) => ({
+        ...prevStates,
+        [itemToRemove]: false,
+      }));
+      setContent((prevContent) =>
+        prevContent.filter((item) => item !== itemToRemove)
+      );
+    } else {
+      setContent((prevContent) =>
+        prevContent.filter((item) => item !== itemToRemove)
+      );
+    }
+  };
+
+  const [upload, setupload] = useState("");
+  const [selectedImage, setSelectedImage] = useState("");
+  const [selectedFile, setSelectedFile] = useState("");
+  const [selectedvalue, setselectedvalue] = useState("");
+  const [selectedLogo, setselectedLogo] = useState("");
+  const [selectedroom, setselectedroom] = useState("");
+  const [selectedKitchen, setselectedKitchen] = useState("");
+  const [selectedPlan, setselectedPlan] = useState("");
+  const [selectedmap, setselectedmap] = useState("");
+  const handleUpload = () => {
+    if (upload === "Site View" && selectedImage) {
+      console.log("Uploading Site View image:", selectedImage);
+
+      setSelectedImage("");
+    } else if (upload === "FMB" && selectedFile) {
+      console.log("Uploading FMB image:", selectedFile);
+
+      setSelectedFile("");
+    } else if (upload === "Location Map" && selectedvalue) {
+      console.log("Uploading Location Map image:", selectedvalue);
+
+      setselectedvalue("");
+    } else if (upload === "Logo" && selectedLogo) {
+      console.log("Uploading Logo image:", selectedLogo);
+
+      setSelectedImage("");
+    } else {
+      console.log("No image selected");
+    }
+  };
+
+  const handleImage = (values) => {
+    setupload(values);
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+
+    setSelectedImage(file);
+  };
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+  const handleImagevalue = (event) => {
+    const file = event.target.files[0];
+
+    setselectedvalue(file);
+  };
+  const handleImagerooms = (event) => {
+    const file = event.target.files[0];
+
+    setselectedroom(file);
+  };
+
+  const handleFileKitchen = (event) => {
+    const file = event.target.files[0];
+
+    setselectedKitchen(file);
+  };
+
+  const handleImageplan = (event) => {
+    const file = event.target.files[0];
+
+    setselectedPlan(file);
+  };
+  const handleImagemap = (event) => {
+    const file = event.target.files[0];
+    setselectedmap(file);
+  };
+
+  const handleImageLogo = (event) => {
+    const file = event.target.files[0];
+
+    setselectedLogo(file);
+  };
+  const removeSelectedImage = () => {
+    setSelectedImage("");
+  };
+
+  const removeSelectedImage1 = () => {
+    setSelectedFile("");
+  };
+
+  const removeSelectedImage2 = () => {
+    setselectedvalue("");
+  };
+  const removeSelectedroom = () => {
+    setselectedroom("");
+  };
+
+  const removeSelectedKitchen = () => {
+    setselectedKitchen("");
+  };
+  const removeSelectedplan = () => {
+    setselectedPlan("");
+  };
+  const removeSelectedmap = () => {
+    setselectedmap("");
+  };
+  const removeSelectedLogo = () => {
+    setselectedLogo("");
+  };
+  ////////////// api integration///////
+  const [errors, setErrors] = useState({});
   const [formValue, setFormValue] = useState({
     address: "",
     propertyLocation: "",
@@ -1598,22 +1499,22 @@ const FactoryRent = ({ activeButton,
     advanceAmount: "",
     description: "",
     typeoffactory: "",
-    agentCommision:"",
-    age:"",
-    month:""
+    agentCommision: "",
+    age: "",
+    month: "",
   });
- //onchange function
- const handleChange = (event) => {
-  const { name, value } = event.target;
-  setFormValue({
-    ...formValue,
-    [name]: value,
-  });
-  setErrors({
-    ...errors,
-    [name]: "",
-  });
-};
+  //onchange function
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormValue({
+      ...formValue,
+      [name]: value,
+    });
+    setErrors({
+      ...errors,
+      [name]: "",
+    });
+  };
   //form validation
   const validateFormData = (data) => {
     const errors = {};
@@ -1650,13 +1551,11 @@ const FactoryRent = ({ activeButton,
     if (!data.typeoffactory.trim()) {
       errors.typeoffactory = "Please enter factory";
     }
-    if(activeButton === "Agent"){
+    if (activeButton === "Agent") {
       if (!data.agentCommision.trim()) {
         errors.agentCommision = "Please enter agentCommision";
       }
     }
-   
-   
 
     return errors;
   };
@@ -1677,132 +1576,112 @@ const FactoryRent = ({ activeButton,
   };
   console.log(input);
   console.log(formValue);
- // form submittion after validation
- const submitForm = async (formValue) => {
-  const formData = new FormData();
-  formData.append("name", user?.userName);
-  formData.append("phone", `+${user?.phone}`);
-  formData.append("email", user?.email);
-  formData.append("property_type", selectedPropType);
-  formData.append("commercial.commercial_type", "factory");
-  formData.append("you_are_here_to", second.toLowerCase());
-  formData.append("owner", activeButton === "Owner");
-  formData.append("agent", activeButton === "Agent");
-  formData.append("builder", activeButton === "Builder");
-  formData.append("title", formValue?.propertyName);
-  formData.append(
-    "factory.built_up_area",
-    parseInt(formValue?.buildArea)
-  );
-  formData.append("factory.built_up_area_unit", "sqft");
-  formData.append("factory.address", formValue?.address);
-  formData.append(
-    "factory.available_floors",
-    parseInt(formValue?.floors)
-  );
+  // form submittion after validation
+  const submitForm = async (formValue) => {
+    const formData = new FormData();
+    formData.append("name", user?.userName);
+    formData.append("phone", `+${user?.phone}`);
+    formData.append("email", user?.email);
+    formData.append("property_type", selectedPropType);
+    formData.append("commercial.commercial_type", four);
+    formData.append("you_are_here_to", second.toLowerCase());
+    formData.append("owner", activeButton === "Owner");
+    formData.append("agent", activeButton === "Agent");
+    formData.append("builder", activeButton === "Builder");
+    formData.append("title", formValue?.propertyName);
+    formData.append("factory.built_up_area", parseInt(formValue?.buildArea));
+    formData.append("factory.built_up_area_unit", "sqft");
+    formData.append("factory.address", formValue?.address);
+    formData.append("factory.available_floors", parseInt(formValue?.floors));
 
-  formData.append(
-    "factory.type_of_factory",
-    parseInt(formValue?.typeoffactory)
-  );
-  
-
-
-  formData.append(
-    "factory.plot_area",
-    parseInt(formValue?.ploatArea)
-  );
-  formData.append("factory.plot_area_unit", "sqft");
-  formData.append("factory.road_width", parseInt(formValue?.roadWidth));
-  formData.append("factory.road_width_unit", "m");
-
-  // dummy data to avoid errors
-
-  // ddddd
-  formData.append("factory.condition", formValue?.condition);
-  formData.append("factory.age", formValue?.age);
-  formData.append("factory.under_construction_months", formValue?.month);
-  formData.append("factory.status", formValue?.status);
-  formData.append("description", formValue?.description);
-  formData.append("location", formValue?.propertyLocation);
-  formData.append("city", formValue?.city);
-  formData.append("factory.floor_number", formValue?.floorNumber);
-  formData.append("rent", formValue?.rentPrice);
-  formData.append("advance", formValue?.advanceAmount);
-  if (activeButton === "Agent"){
-    formData.append("agent_commission",formValue?.agentCommision)
-  }
-  data.forEach((element, index) => {
     formData.append(
-      `factory.outdoor_facilities[${index}]facility.name`,
-      element
+      "factory.type_of_factory",
+      parseInt(formValue?.typeoffactory)
     );
-  });
-  count.forEach((element, index) => {
-    formData.append(
-      `factory.indoor_facilities[${index}]facility.name`,
-      element
-    );
-  });
-  content.forEach((element, index) => {
-    formData.append(`factory.land_zone[${index}]name`, element);
-  });
-  if (selectedImage) {
-    formData.append(`factory_images[${0}]section`, "exterior_view");
-    formData.append(`factory_images[${0}]image`, selectedImage);
-  }
 
-  if (selectedFile) {
-    formData.append(`factory_images[${1}]section`, "interior_view");
-    formData.append(`factory_images[${1}]image`, selectedFile);
-  }
-  if (selectedroom) {
-    formData.append(`factory_images[${2}]section`, "washroom");
-    formData.append(`factory_images[${2}]image`, selectedroom);
-  }
-  if (selectedKitchen) {
-    formData.append(`factory_images[${3}]section`, "floor_plan");
-    formData.append(`factory_images[${3}]image`, selectedKitchen);
-  }
-  if (selectedmap) {
-    formData.append(`factory_images[${4}]section`, "location_map");
-    formData.append(`factory_images[${4}]image`, selectedmap);
-  }
-  if (selectedLogo) {
-    formData.append(`factory_images[${5}]section`, "logo");
-    formData.append(`factory_images[${5}]image`, selectedLogo);
-  }
-  try {
-    const response = await axios.post(
-      ` ${Baseurl}createproperty/`,
-      formData,
-      UserConfig
-    );
-    console.log(response);
-    toast.success("Submitted", {
-      hideProgressBar: true,
-      position: "top-center",
+    formData.append("factory.plot_area", parseInt(formValue?.ploatArea));
+    formData.append("factory.plot_area_unit", "sqft");
+    formData.append("factory.road_width", parseInt(formValue?.roadWidth));
+    formData.append("factory.road_width_unit", "m");
+
+    // dummy data to avoid errors
+
+    // ddddd
+    formData.append("factory.condition", formValue?.condition);
+    formData.append("factory.age", formValue?.age);
+    formData.append("factory.under_construction_months", formValue?.month);
+    formData.append("factory.status", formValue?.status);
+    formData.append("description", formValue?.description);
+    formData.append("location", formValue?.propertyLocation);
+    formData.append("city", formValue?.city);
+    formData.append("factory.floor_number", formValue?.floorNumber);
+    formData.append("rent", formValue?.rentPrice);
+    formData.append("advance", formValue?.advanceAmount);
+    if (activeButton === "Agent") {
+      formData.append("agent_commission", formValue?.agentCommision);
+    }
+    data.forEach((element, index) => {
+      formData.append(
+        `factory.outdoor_facilities[${index}]facility.name`,
+        element
+      );
     });
-  } catch (error) {
-    console.error("Server error", error);
-    toast.error("something went wrong", {
-      hideProgressBar: true,
-      position: "top-center",
+    count.forEach((element, index) => {
+      formData.append(
+        `factory.indoor_facilities[${index}]facility.name`,
+        element
+      );
     });
-  }
-};
+    content.forEach((element, index) => {
+      formData.append(`factory.land_zone[${index}]name`, element);
+    });
+    if (selectedImage) {
+      formData.append(`factory_images[${0}]section`, "exterior_view");
+      formData.append(`factory_images[${0}]image`, selectedImage);
+    }
 
-
-
-
-
-
+    if (selectedFile) {
+      formData.append(`factory_images[${1}]section`, "interior_view");
+      formData.append(`factory_images[${1}]image`, selectedFile);
+    }
+    if (selectedroom) {
+      formData.append(`factory_images[${2}]section`, "washroom");
+      formData.append(`factory_images[${2}]image`, selectedroom);
+    }
+    if (selectedKitchen) {
+      formData.append(`factory_images[${3}]section`, "floor_plan");
+      formData.append(`factory_images[${3}]image`, selectedKitchen);
+    }
+    if (selectedmap) {
+      formData.append(`factory_images[${4}]section`, "location_map");
+      formData.append(`factory_images[${4}]image`, selectedmap);
+    }
+    if (selectedLogo) {
+      formData.append(`factory_images[${5}]section`, "logo");
+      formData.append(`factory_images[${5}]image`, selectedLogo);
+    }
+    try {
+      const response = await axios.post(
+        ` ${Baseurl}createproperty/`,
+        formData,
+        UserConfig
+      );
+      console.log(response);
+      navigate("/check", { state: response.data });
+    } catch (error) {
+      console.error("Server error", error);
+      toast.error("something went wrong", {
+        hideProgressBar: true,
+        position: "top-center",
+      });
+    }
+  };
 
   return (
     <div>
       <div>
-      <Form className="mx-3">
-          <h5 className='mt-5 gy-3'>Address</h5>
+        <Form className="mx-3">
+          <h5 className="mt-5 gy-3">Address</h5>
           <textarea
             className="form-control mt-4"
             style={{
@@ -1820,39 +1699,40 @@ const FactoryRent = ({ activeButton,
             onChange={handleChange}
             required
           ></textarea>
-          {errors.address && <div className="text-danger">{errors.address}</div>} 
-          
-          
-          
+          {errors.address && (
+            <div className="text-danger">{errors.address}</div>
+          )}
+
           <Row className="mt-5">
-        <Col>
-          <Form.Group controlId="formGroup1">
-            <Form.Label>Type of Factory</Form.Label>
-            <Form.Control type="text"
-             placeholder="Enter Name"
-              style={{ ...formControllStyle}} 
-              name="typeoffactory"
-              isInvalid={!!errors.typeoffactory}
-              value={formValue.typeoffactory}
-              onChange={handleChange}/>
-          </Form.Group>
-        </Col>
-       
-      </Row>
-          
+            <Col>
+              <Form.Group controlId="formGroup1">
+                <Form.Label>Type of Factory</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Name"
+                  style={{ ...formControllStyle }}
+                  name="typeoffactory"
+                  isInvalid={!!errors.typeoffactory}
+                  value={formValue.typeoffactory}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+
           <Row className="mt-5">
             <Col md={6}>
               <Form.Group controlId="formGroup3">
                 <Form.Label>Property Location</Form.Label>
-                <Form.Control type="text" 
-                placeholder="Property Location"
-                 style={{ ...formControlStyle }}
-             name="propertyLocation"
-                 isInvalid={!!errors.propertyLocation}
-                 value={formValue.propertyLocation}
-                 onChange={handleChange}
-
-                 />
+                <Form.Control
+                  type="text"
+                  placeholder="Property Location"
+                  style={{ ...formControlStyle }}
+                  name="propertyLocation"
+                  isInvalid={!!errors.propertyLocation}
+                  value={formValue.propertyLocation}
+                  onChange={handleChange}
+                />
               </Form.Group>
             </Col>
             <Col md={6}>
@@ -1880,8 +1760,7 @@ const FactoryRent = ({ activeButton,
                 <Form.Label>Building Built Up Area</Form.Label>
                 <div
                   className="rounded-pill"
-                  style={{ position: "relative",
-                   display: "inline-block" }}
+                  style={{ position: "relative", display: "inline-block" }}
                 >
                   <Form.Control
                     type="number"
@@ -1992,24 +1871,20 @@ const FactoryRent = ({ activeButton,
             <Col md={6}></Col>
           </Row>
         </Form>
-        <div className='mt-5'>
-          <h5 className='mb-5'>Land Zone</h5>
+        <div className="mt-5">
+          <h5 className="mb-5">Land Zone</h5>
 
-          <Card style={{ borderRadius: '10px', border: '1px solid #B3B3B3', width: '1170px' }}>
+          <Card
+            style={{
+              borderRadius: "10px",
+              border: "1px solid #B3B3B3",
+              width: "1170px",
+            }}
+          >
             <Card.Body>
-
-
-
-
-
               <div className="row mb-2">
-
-
-
-
-                <div className='d-flex gap-3 flex-wrap'>
+                <div className="d-flex gap-3 flex-wrap">
                   {content.map((item) => (
-
                     <button
                       key={item}
                       className="btn btn-values mb-2 me-2"
@@ -2017,27 +1892,30 @@ const FactoryRent = ({ activeButton,
                     >
                       {item} <FaTimes />
                     </button>
-
                   ))}
-                   <input
-                placeholder="Typesomething"
-                value={inputtype}
-                onChange={(e) => setInputType(e.target.value)}
-                onKeyPress={handleKeytype}
-                style={{ border: "none" }}
-              />
+                  <input
+                    placeholder="Typesomething"
+                    value={inputtype}
+                    onChange={(e) => setInputType(e.target.value)}
+                    onKeyPress={handleKeytype}
+                    style={{ border: "none" }}
+                  />
                 </div>
 
                 <hr />
 
                 <div className="container">
-                  <div className="d-flex gap-3 flex-wrap"> {/* Set the maximum number of buttons per row */}
+                  <div className="d-flex gap-3 flex-wrap">
+                    {" "}
+                    {/* Set the maximum number of buttons per row */}
                     {Object.keys(buttonStates).map((buttonName) => (
                       <div key={buttonName} className="col mb-2">
                         <button
-                          className={`btn ${buttonStates[buttonName] ? 'btn-Nam' : 'btn-Name'}`}
+                          className={`btn ${
+                            buttonStates[buttonName] ? "btn-Nam" : "btn-Name"
+                          }`}
                           onClick={() => handleButtonContent(buttonName)}
-                          style={{ width: '100%' }} // Ensure buttons take full width
+                          style={{ width: "100%" }} // Ensure buttons take full width
                         >
                           {buttonName}
                         </button>
@@ -2045,17 +1923,11 @@ const FactoryRent = ({ activeButton,
                     ))}
                   </div>
                 </div>
-
-
-
-
               </div>
-
             </Card.Body>
           </Card>
-
         </div>
-        <h5 className='mt-4'>Category of Project</h5>
+        <h5 className="mt-4">Category of Project</h5>
         <div className="custom-radio d-flex mt-4" onChange={handleChange}>
           <div className="flex-grow-1 me-2">
             <div className="form-check">
@@ -2096,7 +1968,7 @@ const FactoryRent = ({ activeButton,
             />
           </div>
         </div>
-        <h5 className='mt-4'>Status</h5>
+        <h5 className="mt-4">Status</h5>
         <div className="custom-radio d-flex mt-4" onChange={handleChange}>
           <div className="flex-grow-1">
             <div className="form-check">
@@ -2144,7 +2016,7 @@ const FactoryRent = ({ activeButton,
           </div>
         </div>
 
-        <h5 className='mt-4'>Condition</h5>
+        <h5 className="mt-4">Condition</h5>
         <div className="custom-radio d-flex mt-4" onChange={handleChange}>
           <div className="flex-grow-1">
             <div className="form-check">
@@ -2186,114 +2058,118 @@ const FactoryRent = ({ activeButton,
           </div>
         </div>
 
-
         <div className="mt-5">
-      <h5 className="mb-5">Indoor Facility</h5>
+          <h5 className="mb-5">Indoor Facility</h5>
 
-      <Card
-        style={{
-          borderRadius: "10px",
-          border: "1px solid #B3B3B3",
-          width: "1170px",
-        }}
-      >
-        <Card.Body>
-          <div className="row mb-2">
-            <div className="d-flex gap-3 flex-wrap ">
-              {/** // <input placeholder="tyoe here " onClick={(e)=>setCount("e")} /> */}
+          <Card
+            style={{
+              borderRadius: "10px",
+              border: "1px solid #B3B3B3",
+              width: "1170px",
+            }}
+          >
+            <Card.Body>
+              <div className="row mb-2">
+                <div className="d-flex gap-3 flex-wrap ">
+                  {/** // <input placeholder="tyoe here " onClick={(e)=>setCount("e")} /> */}
 
-              {count.map((items) => (
-                <button
-                  key={items}
-                  className="btn btn-values  mb-2 me-2"
-                  onClick={() => handleRemoveCount(items)}
-                >
-                  {items} <FaTimes />
-                </button>
-              ))}
-              {/** check this page --> sell --> residential --? duplex */}
-              <input
-                placeholder="Typesomething"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={handleKeyPress}
-                style={{ border: "none" }}
-              />
-            </div>
-
-            <hr />
-          <div className="row mb-2">
-  <div className="d-flex flex-wrap" style={{ justifyContent: 'space-between', gap: '10px' }}>
-    {Object.keys(buttonValue).map((type) => (
-      <div key={type} className="col mb-2 me-2">
-        <button
-          className={`btn ${buttonValue[type] ? "btn-Nam" : "btn-Name"}`}
-          onClick={() => handleButton(type)}
-          style={{ width: "100%" }}
-        >
-          {type}
-        </button>
-      </div>
-    ))}
-  </div>
-</div>
-
-          </div>
-        </Card.Body>
-      </Card>
-    </div>
-    <div className="mt-5">
-      <h5 className="mb-5">Outdoor Facility</h5>
-      <Card
-        style={{
-          borderRadius: "10px",
-          border: "1px solid #B3B3B3",
-          width: "1170px",
-        }}
-      >
-        <Card.Body>
-          <div className="row mb-2">
-            <div className="d-flex gap-3 flex-wrap">
-              {data.map((outdoors) => (
-                <button
-                  key={outdoors}
-                  className="btn btn-values mb-2 me-2"
-                  onClick={() => handleRemoveData(outdoors)}
-                >
-                  {outdoors} <FaTimes />
-                </button>
-              ))}
-              <input
-                placeholder="Type something"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyPress={handleKeys}
-                style={{ border: "none" }}
-              />
-            </div>
-            <hr />
-            <div className="container">
-              <div className="row row-cols-6">
-                {Object.keys(buttonAdd).map((datta) => (
-                  <div key={datta} className="col mb-2 me-2">
+                  {count.map((items) => (
                     <button
-                      className={`btn ${buttonAdd[datta] ? "btn-Nam" : "btn-Name"
-                        }`}
-                      onClick={() => handleButtonClickss(datta)}
-                      style={{ width: "100%" }}
+                      key={items}
+                      className="btn btn-values  mb-2 me-2"
+                      onClick={() => handleRemoveCount(items)}
                     >
-                      {datta}
+                      {items} <FaTimes />
                     </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Card.Body>
-      </Card>
-    </div>
+                  ))}
+                  {/** check this page --> sell --> residential --? duplex */}
+                  <input
+                    placeholder="Typesomething"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    style={{ border: "none" }}
+                  />
+                </div>
 
-    <Form className=" mx-2">
+                <hr />
+                <div className="row mb-2">
+                  <div
+                    className="d-flex flex-wrap"
+                    style={{ justifyContent: "space-between", gap: "10px" }}
+                  >
+                    {Object.keys(buttonValue).map((type) => (
+                      <div key={type} className="col mb-2 me-2">
+                        <button
+                          className={`btn ${
+                            buttonValue[type] ? "btn-Nam" : "btn-Name"
+                          }`}
+                          onClick={() => handleButton(type)}
+                          style={{ width: "100%" }}
+                        >
+                          {type}
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
+        <div className="mt-5">
+          <h5 className="mb-5">Outdoor Facility</h5>
+          <Card
+            style={{
+              borderRadius: "10px",
+              border: "1px solid #B3B3B3",
+              width: "1170px",
+            }}
+          >
+            <Card.Body>
+              <div className="row mb-2">
+                <div className="d-flex gap-3 flex-wrap">
+                  {data.map((outdoors) => (
+                    <button
+                      key={outdoors}
+                      className="btn btn-values mb-2 me-2"
+                      onClick={() => handleRemoveData(outdoors)}
+                    >
+                      {outdoors} <FaTimes />
+                    </button>
+                  ))}
+                  <input
+                    placeholder="Type something"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyPress={handleKeys}
+                    style={{ border: "none" }}
+                  />
+                </div>
+                <hr />
+                <div className="container">
+                  <div className="row row-cols-6">
+                    {Object.keys(buttonAdd).map((datta) => (
+                      <div key={datta} className="col mb-2 me-2">
+                        <button
+                          className={`btn ${
+                            buttonAdd[datta] ? "btn-Nam" : "btn-Name"
+                          }`}
+                          onClick={() => handleButtonClickss(datta)}
+                          style={{ width: "100%" }}
+                        >
+                          {datta}
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
+
+        <Form className=" mx-2">
           <Row className="mt-5">
             <Col className="">
               <Form.Group controlId="formGroup3">
@@ -2344,9 +2220,9 @@ const FactoryRent = ({ activeButton,
                     value={formValue.agentCommision}
                     onChange={handleChange}
                   />
-                        <Form.Control.Feedback type="invalid">
-                  {errors.agentCommision}
-                </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">
+                    {errors.agentCommision}
+                  </Form.Control.Feedback>
                 </Form.Group>
               </Col>
             )}
@@ -2380,10 +2256,7 @@ const FactoryRent = ({ activeButton,
           <div className="text-danger">{errors.description}</div>
         )}
 
-    
-      
-       
-        <h5 className='mt-5 gy-3'>Upload Photos</h5>
+        <h5 className="mt-5 gy-3">Upload Photos</h5>
         <Card
           className="mt-5"
           style={{
@@ -2752,7 +2625,6 @@ const FactoryRent = ({ activeButton,
             )}
           </Card.Body>
         </Card>
-
       </div>
       <div className="d-flex justify-content-center">
         <button
@@ -2764,11 +2636,8 @@ const FactoryRent = ({ activeButton,
           Post Property
         </button>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default FactoryRent
-
-
+export default FactoryRent;

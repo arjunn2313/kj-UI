@@ -14,6 +14,7 @@ import { FaTimes } from "react-icons/fa";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Baseurl, UserConfig } from "./request";
+import { useNavigate } from 'react-router-dom';
 const Restland = ({
   activeButton,
   user,
@@ -23,7 +24,7 @@ const Restland = ({
   restbutton,
  
 }) => {
-  console.log(second);
+  const navigate =  useNavigate()
   const [plot, setPlot] = useState(false);
   const [land, setLand] = useState(false);
   const [residential, setResidential] = useState(false);
@@ -488,11 +489,12 @@ const Restland = ({
         formData,
         UserConfig
       );
-      console.log(response);
-      toast.success("Submitted", {
-        hideProgressBar: true,
-        position: "top-center",
-      });
+      navigate("/check",{state : response.data})
+      // console.log(response);
+      // toast.success("Submitted", {
+      //   hideProgressBar: true,
+      //   position: "top-center",
+      // });
     
       // setFormValue({
       //   propertyName: "",

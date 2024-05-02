@@ -13,12 +13,16 @@ import { FaTimes } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { Baseurl, UserConfig } from "./request";
 import axios from "axios";
-const Flatapartrent = ({  activeButton,
+import { useNavigate } from "react-router-dom";
+const Flatapartrent = ({
+  activeButton,
   user,
   first,
   second,
   selectedPropType,
-  restbutton, }) => {
+  restbutton,
+}) => {
+  const navigate = useNavigate();
   const [plot, setPlot] = useState(false);
   const [land, setLand] = useState(false);
   const [residential, setResidential] = useState(false);
@@ -396,9 +400,9 @@ const Flatapartrent = ({  activeButton,
         errors.agentCommision = "*Please enter agent commision";
       }
     }
-   if(selectedImage.length === 0){
-    errors.image = "*please upload at least 1 image"
-   }
+    if (selectedImage.length === 0) {
+      errors.image = "*please upload at least 1 image";
+    }
     return errors;
   };
 
@@ -505,12 +509,7 @@ const Flatapartrent = ({  activeButton,
         formData,
         UserConfig
       );
-      console.log(response);
-      toast.success("Submitted", {
-        hideProgressBar: true,
-        position: "top-center",
-      });
-
+      navigate("/check",{state : response.data})
       // setFormValue({
       //   propertyName: "",
       //   propertyLocation: "",
@@ -1528,7 +1527,7 @@ const Flatapartrent = ({  activeButton,
         </Card>
       </div>
       <div className="d-flex justify-content-center">
-      {errors.image && <div className="text-danger">{errors.image}</div>}
+        {errors.image && <div className="text-danger">{errors.image}</div>}
         <button
           type="button"
           className="buttonmobile mt-5"

@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { Baseurl, UserConfig } from "./request";
 import { log } from "util";
@@ -22,6 +23,7 @@ const Flatapartsell = ({
   selectedPropType,
   restbutton,
 }) => {
+  const navigate =  useNavigate()
   const [plot, setPlot] = useState(false);
   const [land, setLand] = useState(false);
   const [residential, setResidential] = useState(false);
@@ -510,11 +512,7 @@ const Flatapartsell = ({
         formData,
         UserConfig
       );
-      console.log(response);
-      toast.success("Submitted", {
-        hideProgressBar: true,
-        position: "top-center",
-      });
+      navigate("/check",{state : response.data})
 
       // setFormValue({
       //   propertyName: "",
