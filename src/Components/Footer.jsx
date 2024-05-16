@@ -81,9 +81,9 @@ const Footer = () => {
       <div className="col-lg-12 col-md-12  mt-5">
         <hr className="my-4" style={{ borderTop: '1px solid black' }} />
         <div className="d-flex align-items-center justify-content-center mt-3">
-          <div className="text-center">2021 © hcghchgcfdsf.com. All rights reserved.</div>
+          <div className="text-center">2024 © www.kevinjose.com. All rights reserved.</div>
           <div className="mx-3" style={{ borderLeft: '1px solid black', height: '20px' }}></div>
-          <div className="ms-3 text-center">Designed by Spangles</div>
+          <div className="ms-3 text-center">Designed by Spangles Infotech</div>
         </div>
       </div>
     </div>

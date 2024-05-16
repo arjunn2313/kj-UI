@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 import "../Components/Budget.css";
-const Budget = ({
+const RealBudget = ({
   name,
-  minArea,
-  setMinArea,
-  maxArea,
-  setMaxArea,
+  minPrice,
+  setMinPrice,
+  maxPrice,
+  setMaxPrice,
 }) => {
   const [selectedCar, setSelectedCar] = useState("volvo");
 
@@ -14,37 +14,37 @@ const Budget = ({
     setSelectedCar(event.target.value);
   };
 
-  // const handleMinPriceChange = (e) => {
-  //   const newMinPrice = parseInt(e.target.value);
-  //   if (newMinPrice <= maxPrice - 100000000) {
-  //     setMinPrice(newMinPrice);
-  //   }
-  // };
-
-  // const handleMaxPriceChange = (e) => {
-  //   const newMaxPrice = parseInt(e.target.value);
-  //   if (newMaxPrice >= minPrice + 100000000) {
-  //     setMaxPrice(newMaxPrice);
-  //   }
-  // };
-
-  const handleMinAreaChange = (e) => {
+  const handleMinPriceChange = (e) => {
     const newMinPrice = parseInt(e.target.value);
-    if (newMinPrice <= maxArea - 100000) {
-      setMinArea(newMinPrice);
+    if (newMinPrice <= maxPrice - 100000000) {
+      setMinPrice(newMinPrice);
     }
   };
 
-  const handleMaxAreaChange = (e) => {
+  const handleMaxPriceChange = (e) => {
     const newMaxPrice = parseInt(e.target.value);
-    if (newMaxPrice >= minArea + 100000) {
-      setMaxArea(newMaxPrice);
+    if (newMaxPrice >= minPrice + 100000000) {
+      setMaxPrice(newMaxPrice);
     }
   };
+
+//   const handleMinAreaChange = (e) => {
+//     const newMinPrice = parseInt(e.target.value);
+//     if (newMinPrice <= maxArea - 100000) {
+//       setMinArea(newMinPrice);
+//     }
+//   };
+
+//   const handleMaxAreaChange = (e) => {
+//     const newMaxPrice = parseInt(e.target.value);
+//     if (newMaxPrice >= minArea + 100000) {
+//       setMaxArea(newMaxPrice);
+//     }
+//   };
 
   return (
     <div className="wrapper">
-      {name && (
+     
         <>
           <div className="price-input">
             <div className="field">
@@ -80,8 +80,8 @@ const Budget = ({
               <input
                 type="number"
                 className="input-min"
-                value={minArea}
-                onChange={handleMinAreaChange}
+                value={minPrice}
+                onChange={handleMinPriceChange}
               />
             </div>
             <div className="separator">-</div>
@@ -89,8 +89,8 @@ const Budget = ({
               <input
                 type="number"
                 className="input-max"
-                value={maxArea}
-                onChange={handleMaxAreaChange}
+                value={maxPrice}
+                onChange={handleMaxPriceChange}
               />
             </div>
           </div>
@@ -98,8 +98,8 @@ const Budget = ({
             <div
               className="progress"
               style={{
-                left: `${(minArea / 1000000) * 100}%`,
-                right: `${100 - (maxArea / 1000000) * 100}%`,
+                left: `${(minPrice / 1000000) * 100}%`,
+                right: `${100 - (maxPrice / 1000000) * 100}%`,
               }}
             ></div>
           </div>
@@ -109,24 +109,24 @@ const Budget = ({
               className="range-min"
               min="0"
               max="1000000"
-              value={minArea}
+              value={minPrice}
               step="100"
-              onChange={handleMinAreaChange}
+              onChange={handleMinPriceChange}
             />
             <input
               type="range"
               className="range-max"
               min="0"
               max="1000000"
-              value={maxArea}
+              value={maxPrice}
               step="100"
-              onChange={handleMaxAreaChange}
+              onChange={handleMaxPriceChange}
             />
           </div>
         </>
-      )}
+   
     </div>
   );
 };
 
-export default Budget;
+export default RealBudget;
